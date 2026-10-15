@@ -1,0 +1,672 @@
+
+/* PETCARE+ | MÓDULO CLIENTES */
+
+.clientes-section {
+    border: 1px solid #dceae5;
+    box-shadow: 0 12px 35px rgba(9, 46, 43, .07);
+}
+
+.clientes-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.clientes-heading h2 {
+    margin: 8px 0;
+    color: #092e2b;
+}
+
+.clientes-heading p {
+    color: #71847d;
+    margin: 0;
+}
+
+.eyebrow {
+    color: #087f70;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.btn-primary {
+    border: none;
+    border-radius: 12px;
+    padding: 14px 22px;
+    color: white;
+    background: linear-gradient(135deg, #087f70, #064d45);
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 6px 18px rgba(8, 127, 112, .2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(8, 127, 112, .3);
+}
+
+.btn-primary:disabled {
+    opacity: .6;
+    cursor: wait;
+}
+
+.btn-secondary {
+    border: 1px solid #d2dfda;
+    border-radius: 12px;
+    padding: 13px 20px;
+    background: white;
+    color: #284a43;
+    cursor: pointer;
+}
+
+.clientes-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.clientes-toolbar input {
+    flex: 1;
+    min-width: 0;
+    padding: 15px;
+    border: 1px solid #d4e5df;
+    border-radius: 12px;
+    outline: none;
+    font-size: 14px;
+}
+
+.clientes-toolbar input:focus,
+.form-field input:focus {
+    border-color: #087f70;
+    box-shadow: 0 0 0 4px rgba(8,127,112,.1);
+}
+
+#cantidadClientes {
+    color: #667e75;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.clientes-table-wrap {
+    overflow-x: auto;
+}
+
+.clientes-table {
+    min-width: 650px;
+}
+
+.clientes-table th {
+    background: #eef6f3;
+    color: #355a50;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.clientes-table tbody tr:hover {
+    background: #f7fbf9;
+}
+
+.cliente-nombre {
+    font-weight: 700;
+    color: #123b34;
+}
+
+.cliente-sub {
+    font-size: 12px;
+    color: #82938c;
+    margin-top: 5px;
+}
+
+.btn-edit, .btn-delete {
+    padding: 9px 12px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: 600;
+    border: none;
+    margin: 3px;
+}
+
+.btn-edit {
+    color: #086f61;
+    background: #dff5ed;
+}
+
+.btn-delete {
+    color: #a62c43;
+    background: #ffe9ed;
+}
+
+.btn-edit:hover { background: #c5e9dc; }
+.btn-delete:hover { background: #ffd2da; }
+
+.clientes-message {
+    min-height: 20px;
+    font-size: 13px;
+    color: #087f70;
+}
+
+.modal-overlay[hidden] {
+    display: none !important;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(4, 22, 20, .7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    backdrop-filter: blur(6px);
+}
+
+.modal-card {
+    background: #fff;
+    border-radius: 22px;
+    padding: 30px;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 80px rgba(0,0,0,.25);
+}
+
+.modal-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+
+.modal-heading h2 {
+    color: #092e2b;
+    margin: 8px 0 0;
+}
+
+.btn-close {
+    border: none;
+    background: #eef4f1;
+    color: #284a43;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-field label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #34584e;
+}
+
+.form-field input {
+    padding: 13px;
+    border: 1px solid #d5e4de;
+    border-radius: 10px;
+    outline: none;
+    width: 100%;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+#mensajeFormulario {
+    color: #b3263e;
+    font-size: 13px;
+}
+
+@media (max-width: 600px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .clientes-toolbar {
+        flex-wrap: wrap;
+    }
+
+    .modal-card {
+        padding: 20px;
+    }
+}
+
+/* PETCARE+ | MÓDULO MASCOTAS */
+
+.mascotas-section {
+    border: 1px solid #dceae5;
+    box-shadow: 0 12px 35px rgba(9, 46, 43, .07);
+}
+
+.form-field select,
+.form-field textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #d5e4de;
+    border-radius: 10px;
+    outline: none;
+    background: white;
+    color: #203630;
+    font: inherit;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.form-field select:focus,
+.form-field textarea:focus {
+    border-color: #087f70;
+    box-shadow: 0 0 0 4px rgba(8, 127, 112, .1);
+}
+
+.form-field textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+#mensajeFormularioMascota {
+    color: #b3263e;
+    font-size: 13px;
+    min-height: 18px;
+}
+
+.mascotas-section .btn-primary:hover {
+    transform: translateY(-2px);
+}
+
+.mascotas-section .clientes-table tbody tr {
+    transition: background .2s;
+}
+
+.mascotas-section .clientes-table tbody tr:hover {
+    background: #edf8f3;
+}
+
+/* ======================================
+   PETCARE+ - GESTIÓN DE CITAS
+====================================== */
+
+.citas-section {
+    border: 1px solid #dceae5;
+    box-shadow: 0 12px 35px rgba(9, 46, 43, .07);
+}
+
+.citas-resumen {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.cita-resumen-card {
+    padding: 20px;
+    background: linear-gradient(145deg, #f3faf6, #e8f5ef);
+    border: 1px solid #d7e9df;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cita-resumen-card span {
+    color: #55766b;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.cita-resumen-card strong {
+    color: #092e2b;
+    font-size: 29px;
+}
+
+.citas-filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.citas-filtros input,
+.citas-filtros select {
+    padding: 13px;
+    border: 1px solid #d5e4de;
+    border-radius: 11px;
+    background: white;
+    color: #203630;
+    font: inherit;
+}
+
+#buscarCita {
+    flex: 1;
+    min-width: 220px;
+}
+
+.citas-filtros input:focus,
+.citas-filtros select:focus {
+    outline: none;
+    border-color: #087f70;
+    box-shadow: 0 0 0 4px rgba(8,127,112,.1);
+}
+
+.estado-cita {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.estado-pendiente {
+    background: #fff1d2;
+    color: #92610d;
+}
+
+.estado-confirmada {
+    background: #dceefe;
+    color: #1b639b;
+}
+
+.estado-atendida {
+    background: #d9f4e4;
+    color: #16734a;
+}
+
+.estado-cancelada {
+    background: #ffe0e4;
+    color: #a32e43;
+}
+
+#mensajeFormularioCita {
+    min-height: 20px;
+    color: #b3263e;
+    font-size: 13px;
+}
+
+@media (max-width: 900px) {
+    .citas-resumen {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 500px) {
+    .citas-resumen {
+        grid-template-columns: 1fr;
+    }
+
+    .citas-filtros > * {
+        width: 100%;
+    }
+}
+
+/* =========================================
+   PETCARE+ - CONSULTAS VETERINARIAS
+========================================= */
+
+.consultas-section {
+    border: 1px solid #dceae5;
+    box-shadow: 0 12px 35px rgba(9, 46, 43, .07);
+}
+
+.consultas-resumen {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.consulta-resumen-card {
+    padding: 22px;
+    border-radius: 14px;
+    border: 1px solid #d7e9df;
+    background: linear-gradient(145deg, #f3faf6, #e8f5ef);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.consulta-resumen-card span {
+    font-size: 13px;
+    font-weight: 600;
+    color: #55766b;
+}
+
+.consulta-resumen-card strong {
+    font-size: 30px;
+    color: #092e2b;
+}
+
+.consulta-diagnostico {
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#ayudaConsultaCita {
+    display: block;
+    margin-top: 7px;
+    color: #648076;
+    font-size: 12px;
+}
+
+#mensajeFormularioConsulta {
+    min-height: 20px;
+    font-size: 13px;
+    color: #b3263e;
+}
+
+@media (max-width: 700px) {
+    .consultas-resumen {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ======================================
+   PETCARE+ | FILAS Y AVATARES DE CLIENTES
+====================================== */
+
+.clientes-section .cliente-perfil {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-width: 190px;
+}
+
+.clientes-section .cliente-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 47px;
+    width: 47px;
+    height: 47px;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: .5px;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.4);
+    transition: transform .3s ease;
+}
+
+.clientes-section .cliente-fila:hover .cliente-avatar {
+    transform: scale(1.08) rotate(-4deg);
+}
+
+/* COLORES DE AVATARES */
+
+.clientes-section .avatar-verde {
+    background: linear-gradient(135deg, #c9f8e2, #9ceac8);
+    color: #00684a;
+}
+
+.clientes-section .avatar-morado {
+    background: linear-gradient(135deg, #e9ddff, #d4c0fa);
+    color: #7245ad;
+}
+
+.clientes-section .avatar-dorado {
+    background: linear-gradient(135deg, #fff0c9, #f7d995);
+    color: #9a6800;
+}
+
+.clientes-section .avatar-azul {
+    background: linear-gradient(135deg, #d8f0ff, #b5dfff);
+    color: #246caa;
+}
+
+.clientes-section .avatar-rosa {
+    background: linear-gradient(135deg, #ffe1ec, #ffc8dc);
+    color: #ac4572;
+}
+
+/* INFORMACIÓN */
+
+.clientes-section .cliente-info {
+    min-width: 0;
+}
+
+.clientes-section .cliente-nombre {
+    color: #073e30;
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 1.4;
+}
+
+.clientes-section .cliente-sub {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 5px;
+    color: #8aa69b;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.clientes-section .cliente-dni {
+    display: inline-block;
+    padding: 8px 11px;
+    border-radius: 9px;
+    background: #edf7f2;
+    color: #24664e;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.clientes-section .cliente-dato {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #476a5d;
+    white-space: nowrap;
+}
+
+.clientes-section .cliente-correo {
+    display: inline-block;
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #51786a;
+    font-size: 13px;
+}
+
+/* BOTONES */
+
+.clientes-section .cliente-acciones {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.clientes-section .cliente-btn-editar,
+.clientes-section .cliente-btn-eliminar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-height: 37px;
+    padding: 9px 12px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 800;
+    transition: transform .2s, background .2s;
+}
+
+.clientes-section .cliente-btn-editar {
+    background: #e7f6ff;
+    border-color: #cbe9fc;
+    color: #1674aa;
+}
+
+.clientes-section .cliente-btn-eliminar {
+    background: #fff0f1;
+    border-color: #ffdade;
+    color: #d34759;
+}
+
+.clientes-section .cliente-btn-editar:hover {
+    background: #d5efff;
+    transform: translateY(-2px);
+}
+
+.clientes-section .cliente-btn-eliminar:hover {
+    background: #ffe0e4;
+    transform: translateY(-2px);
+}
+
+/* ESTADO VACÍO */
+
+.clientes-section .cliente-vacio {
+    padding: 48px 20px !important;
+    text-align: center;
+}
+
+.clientes-section .cliente-vacio-icono {
+    margin-bottom: 12px;
+    font-size: 40px;
+}
+
+.clientes-section .cliente-vacio strong {
+    display: block;
+    color: #155542;
+    font-size: 17px;
+}
+
+.clientes-section .cliente-vacio p {
+    margin-top: 8px;
+    color: #8ca99d;
+    font-size: 13px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .clientes-section .cliente-avatar,
+    .clientes-section .cliente-btn-editar,
+    .clientes-section .cliente-btn-eliminar {
+        transition: none;
+    }
+}

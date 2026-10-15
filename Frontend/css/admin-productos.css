@@ -1,0 +1,108 @@
+
+/* =========================================
+   PETCARE+ - INVENTARIO
+========================================= */
+
+.inventario-section {
+    border: 1px solid #dceae5;
+    box-shadow: 0 12px 35px rgba(9, 46, 43, .07);
+}
+
+.inventario-resumen {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.inventario-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 22px;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #f3faf6, #e8f5ef);
+    border: 1px solid #d7e9df;
+}
+
+.inventario-card span {
+    font-size: 13px;
+    font-weight: 600;
+    color: #55766b;
+}
+
+.inventario-card strong {
+    font-size: 26px;
+    color: #092e2b;
+}
+
+.inventario-filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.inventario-filtros input,
+.inventario-filtros select {
+    padding: 13px;
+    border: 1px solid #d5e4de;
+    border-radius: 11px;
+    background: white;
+    color: #203630;
+    font: inherit;
+}
+
+#buscarProducto {
+    flex: 1;
+    min-width: 220px;
+}
+
+.stock-etiqueta,
+.producto-estado {
+    display: inline-block;
+    padding: 7px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.stock-normal,
+.producto-activo {
+    background: #d9f4e4;
+    color: #16734a;
+}
+
+.stock-bajo {
+    background: #fff1d2;
+    color: #92610d;
+}
+
+.stock-agotado,
+.producto-inactivo {
+    background: #ffe0e4;
+    color: #a32e43;
+}
+
+#mensajeFormularioProducto {
+    min-height: 20px;
+    color: #b3263e;
+    font-size: 13px;
+}
+
+@media (max-width: 1050px) {
+    .inventario-resumen {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .inventario-resumen {
+        grid-template-columns: 1fr;
+    }
+
+    .inventario-filtros > * {
+        width: 100%;
+    }
+}

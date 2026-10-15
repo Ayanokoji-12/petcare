@@ -1,0 +1,498 @@
+
+/* ==========================================
+   PETCARE+ | INVENTARIO NIVEL 4
+========================================== */
+
+.inventario-section.inventario-ultra {
+    padding: 26px;
+    border-radius: 26px;
+    border: 1px solid #e3eee8;
+    background: #f7fbf9;
+    color: #173d32;
+    font-family: inherit;
+}
+
+/* CABECERA */
+
+.inventario-ultra .inventario-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+    overflow: hidden;
+    padding: 36px;
+    margin-bottom: 24px;
+    border-radius: 24px;
+    border: 1px solid #e5e7ec;
+    background:
+        radial-gradient(circle at 85% 10%, rgba(176, 143, 255, .25), transparent 35%),
+        radial-gradient(circle at 10% 100%, rgba(22, 192, 143, .18), transparent 42%),
+        linear-gradient(120deg, #e5f8ec, #f8f3ff 75%);
+}
+
+.inventario-ultra .inventario-hero::after {
+    content: "✦";
+    position: absolute;
+    top: -45px;
+    right: 20%;
+    font-size: 170px;
+    color: rgba(127, 77, 189, .07);
+    pointer-events: none;
+}
+
+.inventario-ultra .inventario-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 650px;
+}
+
+.inventario-ultra .inventario-kicker {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #08785b;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.7px;
+}
+
+.inventario-ultra .inventario-hero h2 {
+    margin: 0;
+    color: #07513e;
+    font-size: clamp(26px, 3vw, 39px);
+    font-weight: 900;
+    letter-spacing: -.8px;
+}
+
+.inventario-ultra .inventario-hero p {
+    max-width: 540px;
+    margin: 13px 0 20px;
+    color: #66877b;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.inventario-ultra .inventario-hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.inventario-ultra .inventario-hero-tags span {
+    padding: 8px 12px;
+    border-radius: 30px;
+    border: 1px solid rgba(9, 130, 94, .12);
+    background: rgba(255,255,255,.75);
+    color: #3b826a;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.inventario-ultra .inventario-nuevo-btn {
+    position: relative;
+    z-index: 1;
+    padding: 15px 24px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #7842d6, #9b5ff0);
+    color: #fff;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 12px 25px rgba(117,66,214,.22);
+    transition: transform .25s, box-shadow .25s;
+}
+
+.inventario-ultra .inventario-nuevo-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 17px 30px rgba(117,66,214,.3);
+}
+
+/* ESTADÍSTICAS */
+
+.inventario-ultra .inventario-resumen {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    gap: 16px;
+    margin-bottom: 26px;
+}
+
+.inventario-ultra .inventario-card {
+    min-width: 0;
+    padding: 23px;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    transition: transform .25s, box-shadow .25s;
+}
+
+.inventario-ultra .inventario-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(20,55,45,.09);
+}
+
+.inventario-ultra .inventario-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.inventario-ultra .inventario-card-icon {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    background: rgba(255,255,255,.7);
+    font-size: 22px;
+}
+
+.inventario-ultra .inventario-card-top small {
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    opacity: .7;
+}
+
+.inventario-ultra .inventario-card p {
+    margin: 0 0 7px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.inventario-ultra .inventario-card strong {
+    display: block;
+    margin-bottom: 9px;
+    font-size: clamp(23px, 2.7vw, 38px);
+    font-weight: 900;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+.inventario-ultra .inventario-card-note {
+    font-size: 11px;
+    opacity: .7;
+}
+
+/* COLORES */
+
+.inventario-ultra .inventario-card-total {
+    background: #e3f6ec;
+    border-color: #caeadb;
+    color: #08694e;
+}
+
+.inventario-ultra .inventario-card-bajo {
+    background: #fff3da;
+    border-color: #f6e4b9;
+    color: #95610a;
+}
+
+.inventario-ultra .inventario-card-agotado {
+    background: #ffe8eb;
+    border-color: #f9d3d9;
+    color: #ad4354;
+}
+
+.inventario-ultra .inventario-card-valor {
+    background: #f0e7ff;
+    border-color: #e5d7fb;
+    color: #7543b2;
+}
+
+/* PANEL */
+
+.inventario-ultra .inventario-panel {
+    padding: 24px;
+    border: 1px solid #e0ece6;
+    border-radius: 23px;
+    background: #fff;
+    box-shadow: 0 12px 35px rgba(16,75,51,.045);
+}
+
+.inventario-ultra .inventario-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.inventario-ultra .inventario-panel-kicker {
+    color: #10a67c;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.7px;
+}
+
+.inventario-ultra .inventario-panel-header h3 {
+    margin: 7px 0;
+    color: #0c4737;
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.inventario-ultra .inventario-panel-header p {
+    margin: 0;
+    color: #8aa398;
+    font-size: 12px;
+}
+
+.inventario-ultra .inventario-panel-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 13px;
+    border-radius: 30px;
+    background: #eaf9f0;
+    color: #188663;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.inventario-ultra .inventario-panel-label span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #17bf83;
+    box-shadow: 0 0 0 4px #cff4e0;
+}
+
+/* FILTROS */
+
+.inventario-ultra .inventario-filtros {
+    display: grid;
+    grid-template-columns: minmax(220px,2fr) 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.inventario-ultra .inventario-buscador {
+    position: relative;
+    min-width: 0;
+}
+
+.inventario-ultra .inventario-buscador > span {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #7d9d8d;
+    font-size: 23px;
+    pointer-events: none;
+}
+
+.inventario-ultra #buscarProducto,
+.inventario-ultra #filtrarStockProducto,
+.inventario-ultra #filtrarEstadoProducto {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    height: 49px;
+    padding: 0 14px;
+    border: 1px solid #dcebe3;
+    border-radius: 12px;
+    outline: none;
+    background: #f8fcfa;
+    color: #375e4e;
+    font: inherit;
+    font-size: 12px;
+}
+
+.inventario-ultra #buscarProducto {
+    padding-left: 43px;
+}
+
+.inventario-ultra #buscarProducto:focus,
+.inventario-ultra #filtrarStockProducto:focus,
+.inventario-ultra #filtrarEstadoProducto:focus {
+    border-color: #16ac7d;
+    box-shadow: 0 0 0 3px rgba(22,172,125,.12);
+}
+
+/* TABLA */
+
+.inventario-ultra .inventario-table-wrap {
+    overflow-x: auto;
+    border: 1px solid #e1ede7;
+    border-radius: 16px;
+    background: #fff;
+}
+
+.inventario-ultra .inventario-table {
+    width: 100%;
+    min-width: 980px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.inventario-ultra .inventario-table thead {
+    background: linear-gradient(90deg,#e9f5f0,#f2f6fb);
+}
+
+.inventario-ultra .inventario-table th {
+    padding: 17px 15px;
+    color: #30604e;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .8px;
+}
+
+.inventario-ultra .inventario-table td {
+    padding: 16px 15px;
+    border-top: 1px solid #edf2ef;
+    color: #476759;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.inventario-ultra .inventario-table tbody tr:hover {
+    background: #f4faf6;
+}
+
+.inventario-ultra .inventario-loading {
+    padding: 38px;
+    text-align: center;
+    color: #8da99a;
+}
+
+/* ELEMENTOS PARA FILAS GENERADAS POR JS */
+
+.inventario-ultra .producto-perfil {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.inventario-ultra .producto-avatar {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    background: #e5f6ec;
+    font-size: 23px;
+}
+
+.inventario-ultra .producto-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.inventario-ultra .producto-info strong {
+    color: #173f32;
+    font-size: 13px;
+}
+
+.inventario-ultra .producto-info small {
+    color: #91a79c;
+    font-size: 11px;
+}
+
+.inventario-ultra .producto-stock {
+    display: inline-flex;
+    padding: 7px 10px;
+    border-radius: 9px;
+    background: #ddf6e7;
+    color: #16804c;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.inventario-ultra .producto-stock-bajo {
+    background: #fff1d2;
+    color: #b67608;
+}
+
+.inventario-ultra .producto-stock-agotado {
+    background: #ffe4e7;
+    color: #bd3345;
+}
+
+.inventario-ultra .producto-estado {
+    display: inline-flex;
+    padding: 7px 10px;
+    border-radius: 9px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.inventario-ultra .producto-estado-activo {
+    background: #ddf6e7;
+    color: #16804c;
+}
+
+.inventario-ultra .producto-estado-inactivo {
+    background: #ffe4e7;
+    color: #bd3345;
+}
+
+/* PIE */
+
+.inventario-ultra .inventario-panel-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 19px;
+}
+
+.inventario-ultra .inventario-panel-footer p {
+    margin: 0;
+    color: #628673;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.inventario-ultra .inventario-panel-footer span {
+    color: #a0b8aa;
+    font-size: 11px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1150px) {
+    .inventario-ultra .inventario-resumen {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+
+    .inventario-ultra .inventario-filtros {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+}
+
+@media (max-width: 650px) {
+    .inventario-section.inventario-ultra {
+        padding: 14px;
+    }
+
+    .inventario-ultra .inventario-hero {
+        padding: 23px;
+    }
+
+    .inventario-ultra .inventario-nuevo-btn {
+        width: 100%;
+    }
+
+    .inventario-ultra .inventario-resumen,
+    .inventario-ultra .inventario-filtros {
+        grid-template-columns: 1fr;
+    }
+
+    .inventario-ultra .inventario-panel {
+        padding: 14px;
+    }
+
+    .inventario-ultra .inventario-panel-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

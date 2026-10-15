@@ -1,0 +1,708 @@
+
+/* ==============================================
+   PETCARE+ - CITAS NIVEL 4 ULTRA PREMIUM
+   Verde esmeralda, dorado y morado
+============================================== */
+
+.citas-section.citas-ultra {
+    padding: 26px;
+    background: #f7fbf9;
+    border: 1px solid #e3eee8;
+    border-radius: 26px;
+    color: #173d32;
+    font-family: inherit;
+}
+
+/* ==============================================
+   CABECERA PREMIUM
+============================================== */
+
+.citas-ultra .citas-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+    overflow: hidden;
+    padding: 36px;
+    margin-bottom: 24px;
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at 85% 10%, rgba(180, 145, 255, .26), transparent 36%),
+        radial-gradient(circle at 10% 100%, rgba(29, 198, 145, .18), transparent 42%),
+        linear-gradient(120deg, #e6f7ed, #f8f4ff 75%);
+    border: 1px solid #e4e8ec;
+}
+
+.citas-ultra .citas-hero::after {
+    content: "✦";
+    position: absolute;
+    top: -35px;
+    right: 22%;
+    font-size: 160px;
+    color: rgba(127, 77, 189, .07);
+    pointer-events: none;
+}
+
+.citas-ultra .citas-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 620px;
+}
+
+.citas-ultra .citas-kicker {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #08785b;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.citas-ultra .citas-hero h2 {
+    margin: 0;
+    color: #07513e;
+    font-size: clamp(26px, 3vw, 39px);
+    font-weight: 900;
+    letter-spacing: -.8px;
+}
+
+.citas-ultra .citas-hero h2 span {
+    font-size: .85em;
+}
+
+.citas-ultra .citas-hero p {
+    max-width: 490px;
+    margin: 13px 0 20px;
+    color: #66877b;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.citas-ultra .citas-hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.citas-ultra .citas-hero-tags span {
+    padding: 8px 12px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, .75);
+    border: 1px solid rgba(9, 130, 94, .12);
+    color: #3b826a;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.citas-ultra .citas-nuevo-btn {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #7842d6, #9b5ff0);
+    color: #fff;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 12px 25px rgba(117, 66, 214, .22);
+    transition: transform .25s, box-shadow .25s;
+}
+
+.citas-ultra .citas-nuevo-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 17px 30px rgba(117, 66, 214, .3);
+}
+
+.citas-ultra .citas-nuevo-btn span {
+    font-size: 19px;
+}
+
+/* ==============================================
+   TARJETAS DE ESTADÍSTICAS
+============================================== */
+
+.citas-ultra .citas-resumen {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 26px;
+}
+
+.citas-ultra .cita-resumen-card {
+    position: relative;
+    min-width: 0;
+    padding: 23px;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    box-shadow: 0 7px 20px rgba(20, 55, 45, .03);
+    transition: transform .25s, box-shadow .25s;
+}
+
+.citas-ultra .cita-resumen-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(20, 55, 45, .09);
+}
+
+.citas-ultra .cita-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.citas-ultra .cita-card-top > span {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    background: rgba(255, 255, 255, .7);
+    font-size: 22px;
+}
+
+.citas-ultra .cita-card-top small {
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    opacity: .7;
+}
+
+.citas-ultra .cita-resumen-card p {
+    margin: 0 0 7px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.citas-ultra .cita-resumen-card strong {
+    display: block;
+    margin-bottom: 9px;
+    font-size: 38px;
+    font-weight: 900;
+    line-height: 1.1;
+}
+
+.citas-ultra .cita-card-note {
+    font-size: 11px;
+    opacity: .7;
+}
+
+/* COLORES DE TARJETAS */
+
+.citas-ultra .cita-total {
+    background: #e3f6ec;
+    border-color: #caeadb;
+    color: #08694e;
+}
+
+.citas-ultra .cita-pendiente {
+    background: #fff3da;
+    border-color: #f6e4b9;
+    color: #95610a;
+}
+
+.citas-ultra .cita-confirmada {
+    background: #e8f0ff;
+    border-color: #d7e3fc;
+    color: #315ca7;
+}
+
+.citas-ultra .cita-atendida {
+    background: #f0e7ff;
+    border-color: #e5d7fb;
+    color: #7543b2;
+}
+
+/* ==============================================
+   PANEL DE AGENDA
+============================================== */
+
+.citas-ultra .citas-panel {
+    padding: 24px;
+    border: 1px solid #e0ece6;
+    border-radius: 23px;
+    background: #fff;
+    box-shadow: 0 12px 35px rgba(16, 75, 51, .045);
+}
+
+.citas-ultra .citas-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.citas-ultra .citas-panel-kicker {
+    color: #10a67c;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.7px;
+}
+
+.citas-ultra .citas-panel-header h3 {
+    margin: 7px 0;
+    color: #0c4737;
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.citas-ultra .citas-panel-header p {
+    margin: 0;
+    color: #8aa398;
+    font-size: 12px;
+}
+
+.citas-ultra .citas-live-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 13px;
+    border-radius: 30px;
+    background: #eaf9f0;
+    color: #188663;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.citas-ultra .citas-live-label > span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #17bf83;
+    box-shadow: 0 0 0 4px #cff4e0;
+}
+
+/* ==============================================
+   FILTROS AVANZADOS
+============================================== */
+
+.citas-ultra .citas-filtros {
+    display: grid;
+    grid-template-columns: minmax(220px, 2fr) minmax(150px, 1fr) minmax(150px, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.citas-ultra .citas-buscador {
+    position: relative;
+    min-width: 0;
+}
+
+.citas-ultra .citas-buscador > span {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #7d9d8d;
+    font-size: 23px;
+    pointer-events: none;
+}
+
+.citas-ultra #buscarCita,
+.citas-ultra #filtrarEstadoCita,
+.citas-ultra #filtrarFechaCita {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    height: 49px;
+    padding: 0 14px;
+    border: 1px solid #dcebe3;
+    border-radius: 12px;
+    outline: none;
+    background: #f8fcfa;
+    color: #375e4e;
+    font: inherit;
+    font-size: 12px;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.citas-ultra #buscarCita {
+    padding-left: 43px;
+}
+
+.citas-ultra #buscarCita:focus,
+.citas-ultra #filtrarEstadoCita:focus,
+.citas-ultra #filtrarFechaCita:focus {
+    border-color: #16ac7d;
+    box-shadow: 0 0 0 3px rgba(22, 172, 125, .12);
+}
+
+.citas-ultra .citas-limpiar {
+    height: 49px;
+    padding: 0 17px;
+    border: 1px solid #dcebe3;
+    border-radius: 12px;
+    background: #edf7f1;
+    color: #36735a;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.citas-ultra .citas-limpiar:hover {
+    background: #d9f0e3;
+}
+
+/* ==============================================
+   TABLA ULTRA PREMIUM
+============================================== */
+
+.citas-ultra .citas-table-wrap {
+    overflow-x: auto;
+    border: 1px solid #e1ede7;
+    border-radius: 16px;
+    background: #fff;
+}
+
+.citas-ultra .citas-table {
+    width: 100%;
+    min-width: 850px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.citas-ultra .citas-table thead {
+    background: linear-gradient(90deg, #e9f5f0, #f2f6fb);
+}
+
+.citas-ultra .citas-table th {
+    padding: 17px 15px;
+    color: #30604e;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .8px;
+    white-space: nowrap;
+}
+
+.citas-ultra .citas-table td {
+    padding: 16px 15px;
+    border-top: 1px solid #edf2ef;
+    color: #476759;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.citas-ultra .citas-table tbody tr {
+    transition: background .2s;
+}
+
+.citas-ultra .citas-table tbody tr:hover {
+    background: #f4faf6;
+}
+
+.citas-ultra .citas-loading {
+    padding: 40px !important;
+    text-align: center;
+    color: #8da99a;
+}
+
+/* ==============================================
+   AVATARES DE MASCOTAS
+   Para las filas generadas con JavaScript
+============================================== */
+
+.citas-ultra .cita-paciente {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    min-width: 140px;
+}
+
+.citas-ultra .cita-avatar {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 43px;
+    height: 43px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #dcf7e8, #e9f0ff);
+    font-size: 24px;
+}
+
+.citas-ultra .cita-paciente-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.citas-ultra .cita-paciente-info strong {
+    color: #173f32;
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.citas-ultra .cita-paciente-info small {
+    color: #91a79c;
+    font-size: 11px;
+}
+
+/* FECHA */
+
+.citas-ultra .cita-fecha-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.citas-ultra .cita-dia {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 47px;
+    height: 52px;
+    border-radius: 12px;
+    background: #f0eaff;
+    color: #7443bd;
+}
+
+.citas-ultra .cita-dia strong {
+    font-size: 19px;
+    font-weight: 900;
+}
+
+.citas-ultra .cita-dia small {
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.citas-ultra .cita-hora {
+    color: #45695a;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* SERVICIO */
+
+.citas-ultra .cita-servicio-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.citas-ultra .cita-servicio-info strong {
+    color: #254c3e;
+    font-size: 12px;
+}
+
+.citas-ultra .cita-servicio-info small {
+    color: #95a99e;
+    font-size: 10px;
+}
+
+/* ESTADOS */
+
+.citas-ultra .cita-estado {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 11px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.citas-ultra .cita-estado-pendiente {
+    background: #fff1d2;
+    color: #b67608;
+}
+
+.citas-ultra .cita-estado-confirmada {
+    background: #e1efff;
+    color: #2565b2;
+}
+
+.citas-ultra .cita-estado-atendida {
+    background: #ddf6e7;
+    color: #16804c;
+}
+
+.citas-ultra .cita-estado-cancelada {
+    background: #ffe4e7;
+    color: #bd3345;
+}
+
+/* BOTONES DE ACCIONES */
+
+.citas-ultra .cita-acciones {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.citas-ultra .cita-btn-editar,
+.citas-ultra .cita-btn-eliminar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 35px;
+    height: 35px;
+    padding: 0 9px;
+    border: none;
+    border-radius: 10px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform .2s, background .2s;
+}
+
+.citas-ultra .cita-btn-editar {
+    background: #eaf0ff;
+    color: #4867b3;
+}
+
+.citas-ultra .cita-btn-eliminar {
+    background: #ffe9ec;
+    color: #c44153;
+}
+
+.citas-ultra .cita-btn-editar:hover,
+.citas-ultra .cita-btn-eliminar:hover {
+    transform: translateY(-2px);
+}
+
+/* COMPATIBILIDAD CON BOTONES EXISTENTES */
+
+.citas-ultra .citas-table .btn-edit {
+    border-radius: 10px;
+    background: #eaf0ff;
+    color: #4867b3;
+}
+
+.citas-ultra .citas-table .btn-delete {
+    border-radius: 10px;
+    background: #ffe9ec;
+    color: #c44153;
+}
+
+/* ==============================================
+   PIE DEL PANEL
+============================================== */
+
+.citas-ultra .citas-panel-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 19px;
+}
+
+.citas-ultra .citas-panel-footer p {
+    margin: 0;
+    color: #628673;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.citas-ultra .citas-panel-footer > span {
+    color: #a0b8aa;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.citas-ultra #mensajeCitas {
+    margin-top: 12px;
+    font-size: 12px;
+}
+
+/* ==============================================
+   RESPONSIVE - TABLET Y CELULAR
+============================================== */
+
+@media (max-width: 1150px) {
+    .citas-ultra .citas-resumen {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .citas-ultra .citas-filtros {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 650px) {
+    .citas-section.citas-ultra {
+        padding: 14px;
+        border-radius: 18px;
+    }
+
+    .citas-ultra .citas-hero {
+        padding: 23px;
+        border-radius: 18px;
+    }
+
+    .citas-ultra .citas-hero h2 {
+        font-size: 26px;
+    }
+
+    .citas-ultra .citas-nuevo-btn {
+        width: 100%;
+    }
+
+    .citas-ultra .citas-resumen {
+        gap: 10px;
+    }
+
+    .citas-ultra .cita-resumen-card {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .citas-ultra .cita-resumen-card strong {
+        font-size: 30px;
+    }
+
+    .citas-ultra .cita-card-top small {
+        font-size: 8px;
+    }
+
+    .citas-ultra .citas-panel {
+        padding: 14px;
+    }
+
+    .citas-ultra .citas-panel-header h3 {
+        font-size: 19px;
+    }
+
+    .citas-ultra .citas-filtros {
+        grid-template-columns: 1fr;
+    }
+
+    .citas-ultra .citas-panel-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 380px) {
+    .citas-ultra .citas-resumen {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .citas-ultra *,
+    .citas-ultra *::before,
+    .citas-ultra *::after {
+        transition: none !important;
+        animation: none !important;
+    }
+}

@@ -1,0 +1,921 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#062d27">
+
+  <title>Portal de Administración | PETCARE+</title>
+
+  <!-- FUENTES -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- ICONOS -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+
+  <!-- ESTILOS GENERALES -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* =============================================
+       PETCARE+ | LOGIN PREMIUM
+       ============================================= */
+
+    :root {
+      --login-dark: #041d1b;
+      --login-green: #063d32;
+      --login-mint: #63f2bc;
+      --login-gold: #dfbc76;
+      --login-text: #18372f;
+    }
+
+    body {
+      display: block;
+      min-height: 100vh;
+      margin: 0;
+      background: #041d1b;
+      font-family: "DM Sans", sans-serif;
+    }
+
+    .login-page {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* PANEL IZQUIERDO */
+
+    .login-welcome {
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100vh;
+      padding: 54px clamp(30px, 5vw, 85px);
+      overflow: hidden;
+      color: white;
+
+      background:
+        radial-gradient(
+          circle at 70% 75%,
+          rgba(0, 218, 151, .24),
+          transparent 44%
+        ),
+        radial-gradient(
+          circle at 0% 0%,
+          rgba(33, 151, 116, .22),
+          transparent 45%
+        ),
+        linear-gradient(
+          145deg,
+          #063d32 0%,
+          #03231f 65%,
+          #041916 100%
+        );
+    }
+
+    .login-welcome::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 650px;
+      height: 650px;
+      right: -330px;
+      top: -240px;
+      border: 1px solid rgba(115, 255, 195, .18);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 65px rgba(115, 255, 195, .025),
+        0 0 0 130px rgba(115, 255, 195, .025);
+    }
+
+    .login-welcome::after {
+      content: "🐾";
+      position: absolute;
+      z-index: -1;
+      top: 25%;
+      right: 10%;
+      font-size: 130px;
+      opacity: .06;
+      transform: rotate(-20deg);
+    }
+
+    .login-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 17px;
+      width: fit-content;
+    }
+
+    .login-brand-icon {
+      display: grid;
+      place-items: center;
+      width: 67px;
+      height: 67px;
+      border: 1px solid rgba(223, 188, 118, .4);
+      border-radius: 21px;
+      background: rgba(255, 255, 255, .06);
+      color: var(--login-gold);
+      font-size: 31px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, .15);
+    }
+
+    .login-brand h1 {
+      font-family: "Outfit", sans-serif;
+      font-size: clamp(30px, 3vw, 46px);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      line-height: 1;
+      color: white;
+    }
+
+    .login-brand h1 span {
+      color: var(--login-gold);
+    }
+
+    .login-brand small {
+      display: block;
+      margin-top: 8px;
+      color: #c9e5d9;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+
+    .welcome-content {
+      position: relative;
+      z-index: 3;
+      margin: 55px 0 30px;
+    }
+
+    .welcome-line {
+      width: 80px;
+      height: 5px;
+      margin-bottom: 30px;
+      border-radius: 20px;
+      background: var(--login-gold);
+    }
+
+    .welcome-content h2 {
+      max-width: 560px;
+      color: white;
+      font-size: clamp(37px, 4vw, 65px);
+      font-weight: 800;
+      line-height: 1.09;
+      letter-spacing: -2px;
+    }
+
+    .welcome-content h2 span {
+      display: block;
+      margin-top: 7px;
+      color: var(--login-gold);
+    }
+
+    .welcome-description {
+      max-width: 470px;
+      margin: 25px 0 30px;
+      color: #d1e8df;
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    .login-features {
+      display: grid;
+      gap: 20px;
+      max-width: 460px;
+    }
+
+    .login-feature {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .login-feature-icon {
+      display: grid;
+      place-items: center;
+      width: 49px;
+      height: 49px;
+      flex-shrink: 0;
+      border: 1px solid rgba(120, 255, 199, .2);
+      border-radius: 15px;
+      background: rgba(106, 245, 185, .1);
+      color: var(--login-gold);
+      font-size: 20px;
+    }
+
+    .login-feature strong {
+      display: block;
+      color: white;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .login-feature p {
+      margin-top: 3px;
+      color: #b4d7c9;
+      font-size: 12px;
+    }
+
+    .welcome-bottom {
+      position: relative;
+      z-index: 4;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 25px;
+    }
+
+    .welcome-phrase {
+      color: var(--login-gold);
+      font-family: Georgia, serif;
+      font-size: clamp(20px, 2.1vw, 30px);
+      font-style: italic;
+      line-height: 1.3;
+    }
+
+    .welcome-bottom small {
+      color: #a6c8b9;
+      font-size: 11px;
+    }
+/* MASCOTAS DECORATIVAS DEL LOGIN */
+
+.login-pets {
+  position: absolute;
+  z-index: 2;
+  right: -20px;
+  bottom: 0;
+  width: min(72%, 600px);
+  max-height: 60%;
+  object-fit: contain;
+  object-position: right bottom;
+  pointer-events: none;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.28));
+  animation: mascotasLoginFlotando 4s ease-in-out infinite;
+}
+
+@keyframes mascotasLoginFlotando {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+    /* PANEL DERECHO */
+
+    .login-access {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 45px 30px;
+
+      background:
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(0, 160, 112, .12),
+          transparent 32%
+        ),
+        linear-gradient(
+          145deg,
+          #e8f5ed,
+          #f6faf8 55%,
+          #e5f0e9
+        );
+    }
+
+    .login-access::before {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      top: -120px;
+      right: -100px;
+      border-radius: 50%;
+      background: rgba(5, 143, 104, .06);
+    }
+
+    .login-card {
+      position: relative;
+      z-index: 2;
+      width: min(100%, 490px);
+      padding: clamp(30px, 4vw, 55px);
+      border: 1px solid rgba(255, 255, 255, .9);
+      border-radius: 32px;
+      background: rgba(255, 255, 255, .92);
+      color: var(--login-text);
+      box-shadow:
+        0 30px 80px rgba(12, 61, 43, .13),
+        0 5px 20px rgba(12, 61, 43, .04);
+      backdrop-filter: blur(20px);
+      animation: cardEnter .8s ease both;
+    }
+
+    @keyframes cardEnter {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .login-card-top {
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    .login-card-icon {
+      display: grid;
+      place-items: center;
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 18px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #074d3c, #0a8060);
+      color: white;
+      font-size: 31px;
+      box-shadow: 0 12px 25px rgba(0, 120, 82, .2);
+    }
+
+    .login-card h2 {
+      font-family: "Outfit", sans-serif;
+      font-size: clamp(30px, 3vw, 40px);
+      font-weight: 900;
+      color: #063d32;
+    }
+
+    .login-card h2 span {
+      color: #bd9550;
+    }
+
+    .login-card-top p {
+      margin-top: 9px;
+      color: #6e8278;
+      font-size: 14px;
+    }
+
+    /* FORMULARIO */
+
+    .login-field {
+      margin-bottom: 22px;
+    }
+
+    .login-field label {
+      display: block;
+      margin-bottom: 9px;
+      color: #284a3e;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .login-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .login-input-wrap > i {
+      position: absolute;
+      left: 17px;
+      color: #61897b;
+      font-size: 17px;
+      pointer-events: none;
+    }
+
+    .login-input-wrap input {
+      display: block;
+      width: 100%;
+      height: 58px;
+      padding: 15px 52px;
+      border: 1px solid #d7e4db;
+      border-radius: 14px;
+      outline: none;
+      background: #f8fbf9;
+      color: #193d30;
+      font-size: 14px;
+      transition:
+        border-color .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+    }
+
+    .login-input-wrap input:focus {
+      border-color: #0bb68a;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(0, 200, 143, .1);
+    }
+
+    .login-input-wrap input::placeholder {
+      color: #9baea5;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 10px;
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 10px;
+      background: transparent;
+      color: #678479;
+      font-size: 17px;
+      cursor: pointer;
+    }
+
+    .password-toggle:hover {
+      background: #e7f5ed;
+      color: #067453;
+    }
+
+    .login-options {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin: 0 0 26px;
+    }
+
+    .remember-option {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: #50695d;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .remember-option input {
+      width: 16px;
+      height: 16px;
+      accent-color: #087d5d;
+    }
+
+    .login-security {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #578574;
+      font-size: 11px;
+    }
+
+    .login-submit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      width: 100%;
+      min-height: 57px;
+      padding: 15px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(115deg, #064b39, #078462);
+      color: white;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 12px 25px rgba(0, 100, 75, .2);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .login-submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 35px rgba(0, 100, 75, .3);
+    }
+
+    .login-submit:disabled {
+      opacity: .65;
+      cursor: wait;
+      transform: none;
+    }
+
+    #mensaje {
+      margin-top: 17px;
+      color: #b83245;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .login-divider {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin: 25px 0;
+      color: #9caca2;
+      font-size: 12px;
+    }
+
+    .login-divider::before,
+    .login-divider::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: #e2e9e4;
+    }
+
+    .volver {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      min-height: 52px;
+      border: 1px solid #a4c8b6;
+      border-radius: 14px;
+      background: transparent;
+      color: #07543d;
+      font-size: 13px;
+      font-weight: 800;
+      text-align: center;
+      transition: .3s ease;
+    }
+
+    .volver:hover {
+      border-color: #087b5b;
+      background: #eaf8f0;
+      transform: translateY(-2px);
+    }
+
+    .login-footer {
+      margin-top: 27px;
+      color: #92a39b;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1100px) {
+      .login-welcome {
+        padding: 45px 35px;
+      }
+
+      .login-pets {
+        width: 58%;
+        opacity: .7;
+      }
+
+      .welcome-content h2 {
+        font-size: 43px;
+      }
+    }
+
+    @media (max-width: 850px) {
+      .login-page {
+        grid-template-columns: 1fr;
+      }
+
+      .login-welcome {
+        min-height: auto;
+        padding: 35px 25px;
+      }
+
+      .welcome-content {
+        margin: 30px 0 0;
+      }
+
+      .welcome-content h2 {
+        font-size: 35px;
+      }
+
+      .welcome-description {
+        margin: 15px 0;
+      }
+
+      .login-features,
+      .welcome-bottom,
+      .login-pets {
+        display: none;
+      }
+
+      .login-access {
+        min-height: auto;
+        padding: 35px 20px 55px;
+      }
+
+      .login-card {
+        width: min(100%, 490px);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .login-brand h1 {
+        font-size: 28px;
+      }
+
+      .login-brand-icon {
+        width: 53px;
+        height: 53px;
+        font-size: 24px;
+      }
+
+      .welcome-content h2 {
+        font-size: 30px;
+      }
+
+      .login-card {
+        padding: 28px 20px;
+        border-radius: 23px;
+      }
+
+      .login-options {
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .login-pets,
+      .login-card {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="login-page">
+
+    <!-- =======================================
+         IZQUIERDA: BIENVENIDA
+         ======================================= -->
+
+    <section class="login-welcome">
+
+      <div class="login-brand">
+        <div class="login-brand-icon">
+          <i class="fa-solid fa-paw"></i>
+        </div>
+
+        <div>
+          <h1>PETCARE<span>+</span></h1>
+          <small>CLÍNICA VETERINARIA</small>
+        </div>
+      </div>
+
+      <div class="welcome-content">
+
+        <div class="welcome-line"></div>
+
+        <h2>
+          Bienvenido al
+          <span>Portal de Administración</span>
+        </h2>
+
+        <p class="welcome-description">
+          Gestiona mascotas, citas, consultas,
+          inventario y mucho más desde un solo lugar.
+          Todo lo que tu clínica necesita.
+        </p>
+
+        <div class="login-features">
+
+          <div class="login-feature">
+            <div class="login-feature-icon">
+              <i class="fa-solid fa-paw"></i>
+            </div>
+
+            <div>
+              <strong>Gestión de pacientes</strong>
+              <p>Mascotas, citas y consultas</p>
+            </div>
+          </div>
+
+          <div class="login-feature">
+            <div class="login-feature-icon">
+              <i class="fa-solid fa-box-open"></i>
+            </div>
+
+            <div>
+              <strong>Inventario y productos</strong>
+              <p>Medicamentos y servicios</p>
+            </div>
+          </div>
+
+          <div class="login-feature">
+            <div class="login-feature-icon">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+
+            <div>
+              <strong>Control administrativo</strong>
+              <p>Organiza las operaciones de tu clínica</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Utiliza la misma imagen transparente
+           que ya colocaste en la portada -->
+
+     
+         <img
+             src="assets/imagenes/mascotas-login.png"
+             alt="Mascotas de PETCARE+"
+             class="login-pets"
+         >
+
+
+      <div class="welcome-bottom">
+        <p class="welcome-phrase">
+          Su bienestar,<br>
+          nuestro compromiso ♡
+        </p>
+
+        <small>PETCARE+ © 2026</small>
+      </div>
+
+    </section>
+
+    <!-- =======================================
+         DERECHA: INICIO DE SESIÓN
+         ======================================= -->
+
+    <section class="login-access">
+
+      <div class="login-card">
+
+        <div class="login-card-top">
+
+          <div class="login-card-icon">
+            <i class="fa-solid fa-paw"></i>
+          </div>
+
+          <h2>PETCARE<span>+</span></h2>
+
+          <p>
+            Accede a tu panel de administración
+          </p>
+
+        </div>
+
+        <!-- Mantiene el ID original del formulario -->
+
+        <form id="loginForm">
+
+          <div class="login-field">
+
+            <label for="correo">
+              Correo electrónico
+            </label>
+
+            <div class="login-input-wrap">
+
+              <i class="fa-regular fa-envelope"></i>
+
+              <input
+                type="email"
+                id="correo"
+                name="correo"
+                placeholder="admin@petcare.local"
+                autocomplete="username"
+                required
+              >
+
+            </div>
+          </div>
+
+          <div class="login-field">
+
+            <label for="password">
+              Contraseña
+            </label>
+
+            <div class="login-input-wrap">
+
+              <i class="fa-solid fa-lock"></i>
+
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Ingresa tu contraseña"
+                autocomplete="current-password"
+                required
+              >
+
+              <button
+                type="button"
+                class="password-toggle"
+                id="togglePassword"
+                aria-label="Mostrar contraseña"
+                aria-pressed="false"
+              >
+                <i class="fa-regular fa-eye"></i>
+              </button>
+
+            </div>
+          </div>
+
+          <div class="login-options">
+
+            <span class="login-security">
+              <i class="fa-solid fa-shield-halved"></i>
+              Acceso administrativo
+            </span>
+
+          </div>
+
+          <button
+            type="submit"
+            class="login-submit"
+          >
+            <i class="fa-solid fa-paw"></i>
+            Iniciar sesión
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+
+        </form>
+
+        <!-- Mantiene el ID original para login.js -->
+
+        <div id="mensaje" role="status" aria-live="polite"></div>
+
+        <div class="login-divider">
+          o
+        </div>
+
+        <a class="volver" href="index.html">
+          <i class="fa-solid fa-arrow-left"></i>
+          Volver al inicio
+        </a>
+
+        <p class="login-footer">
+          © <span id="loginYear">2026</span> PETCARE+
+          · Portal administrativo
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- JAVASCRIPT ORIGINAL DEL LOGIN -->
+  <script src="js/login.js"></script>
+
+  <!-- SOLO INTERACCIONES VISUALES -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const password = document.getElementById("password");
+      const toggle = document.getElementById("togglePassword");
+
+      toggle?.addEventListener("click", () => {
+        const mostrar = password.type === "password";
+
+        password.type = mostrar ? "text" : "password";
+
+        toggle.setAttribute(
+          "aria-label",
+          mostrar ? "Ocultar contraseña" : "Mostrar contraseña"
+        );
+
+        toggle.setAttribute(
+          "aria-pressed",
+          String(mostrar)
+        );
+
+        const icono = toggle.querySelector("i");
+
+        if (icono) {
+          icono.className = mostrar
+            ? "fa-regular fa-eye-slash"
+            : "fa-regular fa-eye";
+        }
+      });
+
+      const year = document.getElementById("loginYear");
+
+      if (year) {
+        year.textContent = new Date().getFullYear();
+      }
+    });
+  </script>
+
+</body>
+</html>

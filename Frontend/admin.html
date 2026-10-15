@@ -1,0 +1,4475 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Panel Administrador | PETCARE+</title>
+    <link rel="stylesheet" href="css/admin-mascotas.css">
+    <link rel="stylesheet" href="css/admin-clientes.css">
+    <link rel="stylesheet" href="css/admin-productos.css">
+    <link rel="stylesheet" href="css/admin-ventas.css">
+    <link rel="stylesheet" href="css/admin-citas.css">
+    <link rel="stylesheet" href="css/admin-inventario.css">
+     <link rel="stylesheet" href="css/admin-consultas.css">
+     <link rel="stylesheet" href="css/admin-reportes.css">
+     <link rel="stylesheet" href="css/admin.css">
+     <link rel="stylesheet" href="css/admin.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+
+/* ==========================================
+   PETCARE+ - ADMINISTRACIÓN PREMIUM
+   ========================================== */
+
+:root {
+  --verde-oscuro: #04392f;
+  --verde: #008b68;
+  --verde-brillante: #08ae83;
+  --dorado: #e4bd74;
+  --texto: #103d32;
+  --muted: #6e8a7e;
+  --fondo: #edf8f2;
+  --borde: #dcece3;
+  --sombra: 0 16px 40px rgba(5, 62, 45, .09);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--texto);
+  font-family: "DM Sans", sans-serif;
+  background:
+    radial-gradient(circle at 88% 12%,
+      rgba(35, 201, 142, .17), transparent 32%),
+    radial-gradient(circle at 25% 75%,
+      rgba(230, 194, 125, .11), transparent 35%),
+    linear-gradient(135deg, #f5fbf7, #e7f7ee);
+  background-attachment: fixed;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ==========================================
+   MENÚ LATERAL
+   ========================================== */
+
+.sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 100;
+  width: 278px;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 34px 20px;
+  color: white;
+  background:
+    radial-gradient(circle at 85% 15%,
+      rgba(20, 192, 139, .24), transparent 42%),
+    linear-gradient(165deg, #064c3c, #03281f);
+  border-right: 2px solid rgba(228, 189, 116, .5);
+  box-shadow: 10px 0 35px rgba(3, 46, 32, .12);
+}
+
+.sidebar::before {
+  content: "🐾";
+  position: absolute;
+  right: 18px;
+  bottom: 28px;
+  font-size: 85px;
+  opacity: .12;
+  pointer-events: none;
+  animation: flotarHuella 6s ease-in-out infinite;
+}
+
+.sidebar h2 {
+  margin: 0;
+  color: var(--dorado);
+  font-family: "Outfit", sans-serif;
+  font-size: 29px;
+  font-weight: 900;
+  letter-spacing: -.7px;
+}
+
+.sidebar-subtitle {
+  margin: 12px 0 34px;
+  padding-bottom: 25px;
+  color: #b9dfcf;
+  border-bottom: 1px solid rgba(255,255,255,.15);
+  font-size: 11px;
+  letter-spacing: 1px;
+  line-height: 1.6;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar nav a {
+  display: flex;
+  align-items: center;
+  min-height: 53px;
+  padding: 14px 17px;
+  border: 1px solid transparent;
+  border-radius: 15px;
+  color: #edf9f3;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: .25s ease;
+}
+
+.sidebar nav a:hover {
+  transform: translateX(5px);
+  background: rgba(32, 200, 145, .17);
+  border-color: rgba(255,255,255,.1);
+}
+
+.sidebar nav a.active {
+  background: linear-gradient(110deg, #08775d, #0caa80);
+  color: #fff0c6;
+  border-color: rgba(228,189,116,.3);
+  box-shadow: 0 10px 24px rgba(0,0,0,.15);
+}
+
+/* ==========================================
+   CONTENIDO PRINCIPAL
+   ========================================== */
+
+.main {
+  margin-left: 278px;
+  padding: 30px clamp(20px, 3vw, 45px) 65px;
+  min-width: 0;
+}
+
+/* ==========================================
+   CABECERA CON MASCOTAS
+   ========================================== */
+
+.main > .header {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 20px;
+  min-height: 305px;
+  margin: 0;
+  padding: 43px 38px;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid rgba(228,189,116,.4);
+  border-radius: 29px;
+  background:
+    radial-gradient(circle at 77% 42%,
+      rgba(24, 194, 139, .38), transparent 39%),
+    linear-gradient(115deg, #043b30, #086f54);
+  box-shadow: 0 20px 45px rgba(4,65,45,.17);
+  animation: aparecer .65s ease both;
+}
+
+.main > .header::before {
+  content: "🐾";
+  position: absolute;
+  right: 25%;
+  top: -40px;
+  font-size: 180px;
+  opacity: .07;
+  pointer-events: none;
+  animation: flotarHuella 7s ease-in-out infinite;
+}
+
+.main > .header::after {
+  content: "";
+  position: absolute;
+  width: 390px;
+  height: 390px;
+  top: -225px;
+  right: -90px;
+  border: 1px solid rgba(228,189,116,.3);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.main > .header > div {
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  min-width: 0;
+  max-width: 60%;
+}
+
+.main > .header h1 {
+  margin: 0 0 20px;
+  color: #fff;
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(29px, 3.1vw, 46px);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -.8px;
+}
+
+.main > .header h1 span {
+  color: var(--dorado);
+}
+
+.main > .header h1::after {
+  content: " 🐾";
+  font-size: .5em;
+}
+
+.main > .header p {
+  margin: 0;
+  color: #c9eadc;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.main > .header .logout {
+  position: relative;
+  z-index: 5;
+  flex-shrink: 0;
+  align-self: flex-start;
+  padding: 13px 20px;
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 13px;
+  background: rgba(255,255,255,.13);
+  color: white;
+  font-size: 13px;
+  font-weight: 800;
+  backdrop-filter: blur(8px);
+  transition: .25s ease;
+}
+
+.main > .header .logout:hover {
+  background: #b93e49;
+  transform: translateY(-3px);
+}
+
+/* La imagen debe estar DENTRO del header */
+
+.main > .header {
+    position: relative;
+    min-height: 300px;
+    overflow: hidden;
+    border-radius: 28px;
+    background: linear-gradient(115deg, #043b30, #087b5c);
+}
+
+.main > .header .header-content {
+    position: relative;
+    z-index: 3;
+    max-width: 55%;
+}
+
+.main > .header .admin-mascotas {
+    position: absolute;
+    right: 20px;
+    bottom: 0;
+    top: auto;
+    left: auto;
+    width: min(42%, 430px);
+    height: auto;
+    max-height: 260px;
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 2;
+    animation: flotarMascotas 4s ease-in-out infinite;
+}
+
+@keyframes flotarMascotas {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+@media (max-width: 650px) {
+    .main > .header .header-content {
+        max-width: 100%;
+    }
+
+    .main > .header .admin-mascotas {
+        display: none;
+    }
+}
+
+
+/* ==========================================
+   ESTADÍSTICAS
+   ========================================== */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.cards > .card {
+  position: relative;
+  min-width: 0;
+  min-height: 185px;
+  padding: 25px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.95);
+  border-radius: 25px;
+  box-shadow: var(--sombra);
+  transition: transform .3s ease, box-shadow .3s ease;
+  animation: aparecer .65s ease both;
+}
+
+.cards > .card:nth-child(1) {
+  background: linear-gradient(145deg, #fff, #e2f9ee);
+}
+
+.cards > .card:nth-child(2) {
+  background: linear-gradient(145deg, #fff, #f0e4ff);
+  animation-delay: .08s;
+}
+
+.cards > .card:nth-child(3) {
+  background: linear-gradient(145deg, #fff, #fff0d8);
+  animation-delay: .16s;
+}
+
+.cards > .card:nth-child(4) {
+  background: linear-gradient(145deg, #fff, #e3f1ff);
+  animation-delay: .24s;
+}
+
+.cards > .card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  background: linear-gradient(90deg, #008c68, #63d7a8);
+}
+
+.cards > .card:nth-child(2)::before {
+  background: linear-gradient(90deg, #a56ae2, #d7adf4);
+}
+
+.cards > .card:nth-child(3)::before {
+  background: linear-gradient(90deg, #e5a345, #f7d18c);
+}
+
+.cards > .card:nth-child(4)::before {
+  background: linear-gradient(90deg, #4d92e5, #a4d8fb);
+}
+
+.cards > .card::after {
+  content: "🐾";
+  position: absolute;
+  top: 60px;
+  right: 15px;
+  font-size: 68px;
+  opacity: .13;
+  pointer-events: none;
+  transition: transform .3s ease;
+}
+
+.cards > .card:nth-child(3)::after {
+  content: "📅";
+}
+
+.cards > .card:nth-child(4)::after {
+  content: "📦";
+}
+
+.cards > .card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 48px rgba(5,80,55,.17);
+}
+
+.cards > .card:hover::after {
+  transform: rotate(-12deg) scale(1.1);
+}
+
+.cards > .card h3 {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 25px;
+  color: #456d5c;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.cards > .card strong {
+  position: relative;
+  z-index: 1;
+  display: block;
+  color: #053d30;
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(38px, 4vw, 54px);
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* ==========================================
+   SECCIONES DE ADMINISTRACIÓN
+   ========================================== */
+
+.section {
+  position: relative;
+  min-width: 0;
+  margin-top: 30px;
+  padding: clamp(20px, 3vw, 36px);
+  border: 1px solid #dcece3;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 100% 0%,
+      rgba(79, 207, 152, .09), transparent 26%),
+    #fff;
+  box-shadow: var(--sombra);
+  scroll-margin-top: 22px;
+}
+
+.section::before {
+  content: "🐾";
+  position: absolute;
+  top: 16px;
+  right: 35px;
+  color: #008c68;
+  font-size: 65px;
+  opacity: .055;
+  pointer-events: none;
+}
+
+.section h2 {
+  margin: 8px 0 10px;
+  color: #063e31;
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(23px, 2.4vw, 32px);
+  font-weight: 800;
+}
+
+.section p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.eyebrow {
+  display: inline-block;
+  color: #008c68;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.clientes-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+/* ==========================================
+   BOTONES
+   ========================================== */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 13px 22px;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  background: linear-gradient(110deg, #00634d, #00a67b);
+  color: white;
+  font-size: 13px;
+  font-weight: 800;
+  box-shadow: 0 10px 24px rgba(0,122,87,.2);
+  transition: .25s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 17px 30px rgba(0,122,87,.27);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 43px;
+  padding: 11px 18px;
+  border: 1px solid #c7dfd1;
+  border-radius: 12px;
+  background: #f3faf6;
+  color: #17634d;
+  font-weight: 800;
+  transition: .25s ease;
+}
+
+.btn-secondary:hover {
+  background: #e3f5e9;
+}
+
+/* ==========================================
+   BUSCADORES Y FILTROS
+   ========================================== */
+
+.clientes-toolbar,
+.citas-filtros,
+.inventario-filtros,
+.ventas-filtros {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 13px;
+  margin: 20px 0;
+}
+
+.clientes-toolbar input,
+.citas-filtros input,
+.citas-filtros select,
+.inventario-filtros input,
+.inventario-filtros select,
+.ventas-filtros input,
+.ventas-filtros select {
+  min-width: 0;
+  min-height: 48px;
+  padding: 12px 15px;
+  border: 1px solid #d5e8dc;
+  border-radius: 13px;
+  outline: none;
+  background: #f9fdfa;
+  color: var(--texto);
+}
+
+.clientes-toolbar input,
+.citas-filtros input[type="search"],
+.inventario-filtros input[type="search"],
+.ventas-filtros input[type="search"] {
+  flex: 1 1 270px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #0aaf83;
+  outline: 2px solid rgba(10,175,131,.12);
+}
+
+/* ==========================================
+   TARJETAS DE RESUMEN
+   ========================================== */
+
+.citas-resumen,
+.consultas-resumen,
+.inventario-resumen,
+.ventas-resumen {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 15px;
+  margin: 24px 0;
+}
+
+.cita-resumen-card,
+.consulta-resumen-card,
+.inventario-card,
+.venta-resumen-card {
+  padding: 22px;
+  border: 1px solid #d9eae0;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #f9fdfa, #eaf7f0);
+  transition: transform .25s ease;
+}
+
+.cita-resumen-card:hover,
+.consulta-resumen-card:hover,
+.inventario-card:hover,
+.venta-resumen-card:hover {
+  transform: translateY(-4px);
+}
+
+.cita-resumen-card strong,
+.consulta-resumen-card strong,
+.inventario-card strong,
+.venta-resumen-card strong {
+  color: #075e48;
+  font-family: "Outfit", sans-serif;
+  font-size: 30px;
+}
+
+/* ==========================================
+   TABLAS
+   ========================================== */
+
+.table-wrap,
+.clientes-table-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid #dcece3;
+  border-radius: 17px;
+  background: white;
+  -webkit-overflow-scrolling: touch;
+}
+
+.section table {
+  width: 100%;
+  min-width: 850px;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: auto;
+}
+
+.section table th,
+.section table td {
+  padding: 15px 17px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.section table thead th {
+  background: #eaf6ef;
+  color: #235544;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.section table tbody td {
+  border-bottom: 1px solid #e8f0eb;
+  color: #2b5443;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.section table tbody tr:nth-child(even) {
+  background: #f8fcf9;
+}
+
+.section table tbody tr:hover {
+  background: #edf9f2;
+}
+
+.section table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.section table td:first-child {
+  white-space: nowrap;
+}
+
+.section table td:last-child,
+.section table th:last-child {
+  min-width: 180px;
+}
+
+.section table td button {
+  margin: 3px;
+  white-space: nowrap;
+}
+
+/* ==========================================
+   MODALES Y FORMULARIOS
+   ========================================== */
+
+.modal-overlay:not([hidden]) {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  overflow-y: auto;
+  background: rgba(2,30,22,.7);
+  backdrop-filter: blur(8px);
+}
+
+.modal-card {
+  position: relative;
+  width: min(100%, 690px);
+  max-height: calc(100vh - 36px);
+  overflow-y: auto;
+  margin: auto;
+  padding: 30px;
+  border: 1px solid #dcece3;
+  border-radius: 25px;
+  background: white;
+  box-shadow: 0 35px 90px rgba(0,0,0,.25);
+  animation: aparecer .3s ease both;
+}
+
+.venta-modal {
+  width: min(100%, 850px);
+}
+
+.modal-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 22px;
+}
+
+.modal-heading h2 {
+  margin: 0;
+  color: #064633;
+  font-family: "Outfit", sans-serif;
+}
+
+.btn-close {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border: 1px solid #f1d5d5;
+  border-radius: 11px;
+  background: #fff1f1;
+  color: #b74343;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px;
+}
+
+.form-field {
+  min-width: 0;
+}
+
+.form-field.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 8px;
+  color: #2b5947;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  min-height: 45px;
+  padding: 12px 14px;
+  border: 1px solid #d7e6dc;
+  border-radius: 11px;
+  background: #f8fbf9;
+  color: #1c4938;
+}
+
+.form-field textarea {
+  min-height: 85px;
+  resize: vertical;
+}
+
+.form-field small {
+  display: block;
+  margin-top: 6px;
+  color: #7b9386;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid #e5eee7;
+}
+
+.venta-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+  padding: 18px;
+  border: 1px solid #d3e9dc;
+  border-radius: 15px;
+  background: #edf8f0;
+}
+
+/* ==========================================
+   ANIMACIONES
+   ========================================== */
+
+@keyframes flotarMascotasAdmin {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes flotarHuella {
+  0%, 100% {
+    transform: translateY(0) rotate(-15deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(3deg);
+  }
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 1250px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .main > .header .admin-mascotas {
+    width: 39%;
+  }
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    padding: 23px;
+  }
+
+  .sidebar nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .sidebar nav a {
+    min-height: 43px;
+    padding: 10px 14px;
+  }
+
+  .main {
+    margin-left: 0;
+    padding: 22px;
+  }
+
+  .main > .header {
+    min-height: 260px;
+    padding: 28px;
+  }
+
+  .main > .header .admin-mascotas {
+    width: 35%;
+    opacity: .8;
+  }
+}
+
+@media (max-width: 650px) {
+  .main {
+    padding: 15px;
+  }
+
+  .main > .header {
+    min-height: 220px;
+    padding: 23px;
+    flex-wrap: wrap;
+  }
+
+  .main > .header > div {
+    max-width: 100%;
+  }
+
+  .main > .header h1 {
+    font-size: 29px;
+  }
+
+  .main > .header .admin-mascotas {
+    display: none;
+  }
+
+  .cards {
+    gap: 12px;
+  }
+
+  .cards > .card {
+    min-height: 145px;
+    padding: 17px;
+  }
+
+  .cards > .card strong {
+    font-size: 35px;
+  }
+
+  .cards > .card::after {
+    top: 75px;
+    font-size: 43px;
+  }
+
+  .section {
+    padding: 18px;
+    border-radius: 21px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-field.full-width {
+    grid-column: auto;
+  }
+
+  .modal-card {
+    padding: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* ====================================
+   PETCARE+ | MASCOTAS EN LA CABECERA
+   ==================================== */
+
+.main > .header {
+  position: relative;
+  min-height: 270px;
+  max-height: 320px;
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-start;
+  padding: 35px;
+  border-radius: 28px;
+  background: linear-gradient(
+    115deg,
+    #043b30,
+    #087b5c
+  );
+}
+
+.main > .header > div {
+  position: relative;
+  z-index: 3;
+  max-width: 56%;
+}
+
+.main > .header h1 {
+  color: #ffffff;
+  font-size: clamp(27px, 3vw, 43px);
+  line-height: 1.15;
+  margin: 0 0 16px;
+}
+
+.main > .header p {
+  color: #d4f0e3;
+}
+
+/* Imagen pequeña y flotante */
+.main > .header img.admin-mascotas {
+  position: absolute !important;
+  display: block;
+  z-index: 2;
+  width: 350px !important;
+  max-width: 38% !important;
+  height: auto !important;
+  max-height: 240px !important;
+  right: 85px !important;
+  bottom: 0 !important;
+  top: auto !important;
+  left: auto !important;
+  object-fit: contain;
+  object-position: right bottom;
+  pointer-events: none;
+  filter: drop-shadow(
+    0 12px 20px rgba(0,0,0,.18)
+  );
+  animation: mascotasFlotando 4s ease-in-out infinite;
+}
+
+/* Cerrar sesión siempre visible */
+.main > .header .logout {
+  position: relative;
+  z-index: 5;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* Movimiento suave */
+@keyframes mascotasFlotando {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Pantallas medianas */
+@media (max-width: 1100px) {
+  .main > .header img.admin-mascotas {
+    width: 260px !important;
+    right: 20px !important;
+    opacity: .8;
+  }
+}
+
+/* Celulares */
+@media (max-width: 650px) {
+  .main > .header {
+    min-height: 210px;
+    max-height: none;
+    padding: 22px;
+  }
+
+  .main > .header > div {
+    max-width: 100%;
+  }
+
+  .main > .header img.admin-mascotas {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main > .header img.admin-mascotas {
+    animation: none;
+  }
+}
+
+/* ====================================
+   PETCARE+ | MASCOTAS EN LA CABECERA
+   ==================================== */
+
+.main > .header {
+  position: relative;
+  min-height: 270px;
+  max-height: 320px;
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-start;
+  padding: 35px;
+  border-radius: 28px;
+  background: linear-gradient(
+    115deg,
+    #043b30,
+    #087b5c
+  );
+}
+
+.main > .header > div {
+  position: relative;
+  z-index: 3;
+  max-width: 56%;
+}
+
+.main > .header h1 {
+  color: #ffffff;
+  font-size: clamp(27px, 3vw, 43px);
+  line-height: 1.15;
+  margin: 0 0 16px;
+}
+
+.main > .header p {
+  color: #d4f0e3;
+}
+
+/* Imagen pequeña y flotante */
+.main > .header img.admin-mascotas {
+  position: absolute !important;
+  display: block;
+  z-index: 2;
+  width: 350px !important;
+  max-width: 38% !important;
+  height: auto !important;
+  max-height: 240px !important;
+  right: 85px !important;
+  bottom: 0 !important;
+  top: auto !important;
+  left: auto !important;
+  object-fit: contain;
+  object-position: right bottom;
+  pointer-events: none;
+  filter: drop-shadow(
+    0 12px 20px rgba(0,0,0,.18)
+  );
+  animation: mascotasFlotando 4s ease-in-out infinite;
+}
+
+/* Cerrar sesión siempre visible */
+.main > .header .logout {
+  position: relative;
+  z-index: 5;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* Movimiento suave */
+@keyframes mascotasFlotando {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Pantallas medianas */
+@media (max-width: 1100px) {
+  .main > .header img.admin-mascotas {
+    width: 260px !important;
+    right: 20px !important;
+    opacity: .8;
+  }
+}
+
+/* Celulares */
+@media (max-width: 650px) {
+  .main > .header {
+    min-height: 210px;
+    max-height: none;
+    padding: 22px;
+  }
+
+  .main > .header > div {
+    max-width: 100%;
+  }
+
+  .main > .header img.admin-mascotas {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main > .header img.admin-mascotas {
+    animation: none;
+  }
+}
+
+/* ==========================================
+   PETCARE+ | SIDEBAR PREMIUM
+   ========================================== */
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 278px;
+    height: 100vh;
+    padding: 28px 18px 22px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background:
+        radial-gradient(
+            circle at 0% 5%,
+            rgba(23, 175, 129, .24),
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at 100% 85%,
+            rgba(8, 129, 97, .3),
+            transparent 42%
+        ),
+        linear-gradient(
+            165deg,
+            #064d3d 0%,
+            #023b2f 48%,
+            #01271f 100%
+        );
+    border-right: 1px solid rgba(231, 191, 113, .45);
+    color: #ffffff;
+    isolation: isolate;
+}
+
+/* LOGO */
+.sidebar-brand {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 25px;
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sidebar-logo-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    font-size: 27px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(231, 191, 113, .28);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .12);
+}
+
+.sidebar-logo h2 {
+    margin: 0;
+    font-family: "Outfit", sans-serif;
+    font-size: 29px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -.8px;
+    color: #e8c17a;
+}
+
+.sidebar-logo h2 span {
+    color: #7be3b8;
+}
+
+.sidebar-logo p {
+    margin: 8px 0 0;
+    color: #b8d8cc;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+}
+
+.sidebar-brand-line {
+    height: 1px;
+    margin-top: 25px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(229, 190, 112, .65),
+        transparent
+    );
+}
+
+/* NAVEGACIÓN */
+.sidebar .sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    z-index: 2;
+}
+
+.sidebar-menu-label {
+    display: block;
+    margin: 5px 12px 12px;
+    color: #8db7a7;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.sidebar .sidebar-menu a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 56px;
+    padding: 10px 12px;
+    border: 1px solid transparent;
+    border-radius: 15px;
+    color: #e8f6ee;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    overflow: hidden;
+    transition:
+        background .3s ease,
+        border-color .3s ease,
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+/* ICONOS */
+.sidebar-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 39px;
+    height: 39px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .08);
+    font-size: 19px;
+    transition: .3s ease;
+}
+
+.sidebar-link-text {
+    flex: 1;
+}
+
+.sidebar-arrow {
+    font-size: 23px;
+    color: #d8b66f;
+    opacity: 0;
+    transform: translateX(-7px);
+    transition: .3s ease;
+}
+
+/* EFECTO HOVER */
+.sidebar .sidebar-menu a:hover {
+    transform: translateX(4px);
+    background: rgba(25, 185, 137, .17);
+    border-color: rgba(122, 227, 184, .16);
+}
+
+.sidebar .sidebar-menu a:hover .sidebar-icon {
+    background: rgba(27, 197, 144, .2);
+    transform: scale(1.08) rotate(-5deg);
+}
+
+.sidebar .sidebar-menu a:hover .sidebar-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* OPCIÓN ACTIVA */
+.sidebar .sidebar-menu a.active {
+    background: linear-gradient(
+        105deg,
+        #075d4b,
+        #0aa47c
+    );
+    color: #fff0c7;
+    border-color: rgba(230, 193, 122, .3);
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, .17),
+        inset 0 1px rgba(255, 255, 255, .15);
+}
+
+.sidebar .sidebar-menu a.active::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 0;
+    width: 4px;
+    border-radius: 0 5px 5px 0;
+    background: #f3c975;
+}
+
+.sidebar .sidebar-menu a.active .sidebar-icon {
+    background: rgba(255, 255, 255, .16);
+}
+
+.sidebar .sidebar-menu a.active .sidebar-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* SEPARADOR */
+.sidebar-menu-divider {
+    height: 1px;
+    margin: 17px 8px;
+    background: rgba(255, 255, 255, .13);
+}
+
+/* PARTE INFERIOR */
+.sidebar-bottom {
+    position: relative;
+    z-index: 1;
+    margin-top: auto;
+    padding: 45px 12px 4px;
+    min-height: 190px;
+}
+
+.sidebar-bottom-line {
+    width: 60px;
+    height: 2px;
+    margin-bottom: 18px;
+    background: #e5be77;
+    border-radius: 10px;
+}
+
+.sidebar-quote {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    color: #edc57c;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 23px;
+    line-height: 1.25;
+    transform: rotate(-3deg);
+}
+
+.sidebar-quote span {
+    color: #f7d99e;
+    font-size: 20px;
+}
+
+.sidebar-copyright {
+    position: relative;
+    z-index: 2;
+    margin: 28px 0 0;
+    color: #7fa99a;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+/* HUELLAS DECORATIVAS */
+.sidebar-paw {
+    position: absolute;
+    pointer-events: none;
+    opacity: .16;
+    animation: sidebarPawFloat 5s ease-in-out infinite;
+}
+
+.sidebar-paw-one {
+    top: 15px;
+    right: 15px;
+    font-size: 55px;
+    transform: rotate(-20deg);
+}
+
+.sidebar-paw-two {
+    bottom: 30px;
+    right: 0;
+    font-size: 38px;
+    animation-delay: -2s;
+}
+
+@keyframes sidebarPawFloat {
+    0%, 100% {
+        translate: 0 0;
+    }
+
+    50% {
+        translate: 0 -12px;
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .sidebar {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        height: auto;
+        padding: 20px;
+    }
+
+    .sidebar .sidebar-menu {
+        display: grid;
+        grid-template-columns: repeat(
+            auto-fit,
+            minmax(145px, 1fr)
+        );
+        gap: 9px;
+    }
+
+    .sidebar-menu-label,
+    .sidebar-menu-divider {
+        grid-column: 1 / -1;
+    }
+
+    .sidebar-bottom {
+        display: none;
+    }
+
+    .sidebar .sidebar-menu a {
+        min-height: 48px;
+        padding: 8px;
+    }
+
+    .sidebar-icon {
+        width: 34px;
+        height: 34px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sidebar-paw,
+    .sidebar .sidebar-menu a,
+    .sidebar-icon,
+    .sidebar-arrow {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* =========================================
+   PETCARE+ | TARJETAS DE ESTADÍSTICAS
+   ========================================= */
+
+.petcare-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+    margin: 32px 0 36px;
+}
+
+.petcare-stats .stat-card {
+    position: relative;
+    min-width: 0;
+    min-height: 210px;
+    padding: 25px;
+    overflow: hidden;
+    border-radius: 28px;
+    border: 1px solid rgba(255,255,255,.8);
+    box-shadow: 0 15px 35px rgba(4,62,47,.1);
+    transition: transform .35s ease, box-shadow .35s ease;
+    isolation: isolate;
+}
+
+/* Colores individuales */
+.petcare-stats .stat-clientes {
+    background: linear-gradient(135deg, #ffffff, #dff9eb);
+    --stat-accent: #009e77;
+}
+
+.petcare-stats .stat-mascotas {
+    background: linear-gradient(135deg, #ffffff, #efdefd);
+    --stat-accent: #a44fdf;
+}
+
+.petcare-stats .stat-citas {
+    background: linear-gradient(135deg, #ffffff, #fff0d7);
+    --stat-accent: #ed9d32;
+}
+
+.petcare-stats .stat-productos {
+    background: linear-gradient(135deg, #ffffff, #e0efff);
+    --stat-accent: #398bea;
+}
+
+/* Borde superior de color */
+.petcare-stats .stat-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--stat-accent);
+}
+
+/* Círculo decorativo */
+.petcare-stats .stat-card::after {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    right: -55px;
+    top: -55px;
+    border-radius: 50%;
+    background: var(--stat-accent);
+    opacity: .07;
+    transition: transform .4s ease;
+}
+
+.petcare-stats .stat-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.petcare-stats .stat-icon {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    border-radius: 17px;
+    background: rgba(255,255,255,.65);
+    box-shadow: 0 5px 15px rgba(0,0,0,.04);
+    font-size: 25px;
+}
+
+.petcare-stats .stat-label {
+    color: #28564b;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.petcare-stats .stat-card strong {
+    display: block;
+    margin: 18px 0 12px;
+    color: #034735;
+    font-family: "Outfit", sans-serif;
+    font-size: clamp(44px, 4vw, 62px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.petcare-stats .stat-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    color: #63877b;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.petcare-stats .stat-decoration {
+    position: absolute;
+    right: 17px;
+    bottom: 14px;
+    color: var(--stat-accent);
+    opacity: .22;
+    font-size: 48px;
+    transform: rotate(-18deg);
+    pointer-events: none;
+}
+
+/* Animaciones */
+.petcare-stats .stat-card:hover {
+    transform: translateY(-9px);
+    box-shadow: 0 22px 42px rgba(4,62,47,.17);
+}
+
+.petcare-stats .stat-card:hover::after {
+    transform: scale(1.35);
+}
+
+.petcare-stats .stat-card:hover .stat-icon {
+    animation: statIconBounce .6s ease;
+}
+
+.petcare-stats .stat-card:hover .stat-decoration {
+    animation: statPawFloat 1.5s ease-in-out infinite;
+}
+
+@keyframes statIconBounce {
+    0%, 100% { transform: scale(1); }
+    45% { transform: scale(1.16) rotate(-8deg); }
+}
+
+@keyframes statPawFloat {
+    0%, 100% { transform: translateY(0) rotate(-18deg); }
+    50% { transform: translateY(-9px) rotate(-8deg); }
+}
+
+/* Adaptación a pantallas */
+@media (max-width: 1250px) {
+    .petcare-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 650px) {
+    .petcare-stats {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .petcare-stats .stat-card {
+        min-height: 175px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .petcare-stats .stat-card,
+    .petcare-stats .stat-card::after {
+        transition: none;
+    }
+
+    .petcare-stats .stat-card:hover,
+    .petcare-stats .stat-card:hover .stat-icon,
+    .petcare-stats .stat-card:hover .stat-decoration {
+        animation: none;
+        transform: none;
+    }
+}
+
+/* =========================================
+   PETCARE+ | DIRECTORIO DE CLIENTES PREMIUM
+   ========================================= */
+
+.clientes-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 40px;
+    border-radius: 32px;
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(110, 220, 170, .13),
+            transparent 32%
+        ),
+        linear-gradient(135deg, #ffffff, #fbfffd);
+    border: 1px solid rgba(8, 119, 87, .1);
+    box-shadow: 0 18px 50px rgba(6, 67, 49, .08);
+}
+
+/* HUELLAS DECORATIVAS */
+
+.clientes-paw {
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    opacity: .10;
+    font-size: 60px;
+    animation: clientesPawFloat 5s ease-in-out infinite;
+}
+
+.clientes-paw-1 {
+    top: 25px;
+    right: 60px;
+    transform: rotate(-20deg);
+}
+
+.clientes-paw-2 {
+    right: 25px;
+    bottom: 35px;
+    font-size: 42px;
+    animation-delay: -2s;
+}
+
+@keyframes clientesPawFloat {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -12px; }
+}
+
+/* CABECERA */
+
+.clientes-section .clientes-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.clientes-title-content {
+    min-width: 0;
+}
+
+.clientes-section .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 13px;
+    color: #009b72;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2.5px;
+}
+
+.eyebrow-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #11b989;
+    box-shadow: 0 0 0 5px rgba(17, 185, 137, .12);
+}
+
+.clientes-section .clientes-heading h2 {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0;
+    color: #043e30;
+    font-family: "Outfit", sans-serif;
+    font-size: clamp(26px, 2.7vw, 39px);
+    font-weight: 900;
+    line-height: 1.2;
+}
+
+.clientes-title-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 55px;
+    height: 55px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #e1fff1, #c8f5e0);
+    font-size: 28px;
+}
+
+.clientes-section .clientes-heading p {
+    margin: 13px 0 0;
+    color: #718d83;
+    font-size: 15px;
+}
+
+/* BOTÓN NUEVO CLIENTE */
+
+.clientes-section .clientes-add-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    min-height: 55px;
+    padding: 13px 23px;
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 15px;
+    background: linear-gradient(110deg, #005a46, #04a47d);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 12px 26px rgba(0, 112, 83, .2);
+    transition: transform .3s, box-shadow .3s;
+}
+
+.clientes-section .clientes-add-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 32px rgba(0, 112, 83, .3);
+}
+
+/* BUSCADOR */
+
+.clientes-section .clientes-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 25px;
+}
+
+.clientes-search-box {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+}
+
+.clientes-section .clientes-search-box input {
+    display: block;
+    width: 100%;
+    height: 60px;
+    padding: 0 60px 0 52px;
+    border: 1px solid #d5e9df;
+    border-radius: 17px;
+    outline: none;
+    background: #f7fcf9;
+    color: #103e32;
+    font: inherit;
+    font-size: 14px;
+    transition: border-color .3s, box-shadow .3s;
+}
+
+.clientes-section .clientes-search-box input:focus {
+    border-color: #0da980;
+    box-shadow: 0 0 0 4px rgba(13, 169, 128, .12);
+}
+
+.clientes-search-icon {
+    position: absolute;
+    top: 50%;
+    left: 18px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 19px;
+}
+
+.clientes-search-paw {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    opacity: .28;
+    font-size: 20px;
+}
+
+.clientes-count-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    flex-shrink: 0;
+    padding: 12px 15px;
+    border-radius: 12px;
+    background: #eaf9f1;
+    color: #11654d;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.clientes-count-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #08a779;
+}
+
+/* TABLA */
+
+.clientes-section .clientes-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #e0eee6;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(5, 66, 46, .04);
+}
+
+.clientes-section .clientes-table {
+    width: 100%;
+    min-width: 730px;
+    border-collapse: collapse;
+}
+
+.clientes-section .clientes-table thead {
+    background: linear-gradient(90deg, #e5f6ed, #eefaf4);
+}
+
+.clientes-section .clientes-table th {
+    padding: 19px 18px;
+    color: #255749;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .6px;
+}
+
+.clientes-section .clientes-table td {
+    padding: 19px 18px;
+    border-top: 1px solid #e9f1ed;
+    color: #31594c;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.clientes-section .clientes-table tbody tr {
+    transition: background .25s ease;
+}
+
+.clientes-section .clientes-table tbody tr:hover {
+    background: #f0fbf5;
+}
+
+.clientes-section .clientes-table td:first-child {
+    color: #064535;
+    font-weight: 800;
+}
+
+/* BOTONES DE ACCIONES */
+
+.clientes-section .clientes-table td button {
+    border-radius: 11px;
+    padding: 10px 13px;
+    font-weight: 800;
+    transition: transform .2s ease, filter .2s ease;
+}
+
+.clientes-section .clientes-table td button:hover {
+    transform: translateY(-2px);
+    filter: brightness(.96);
+}
+
+/* CARGANDO */
+
+.clientes-section .clientes-loading {
+    padding: 35px;
+    text-align: center;
+    color: #72958a;
+}
+
+/* MENSAJES */
+
+.clientes-section .clientes-message {
+    margin: 16px 0 0;
+    font-size: 13px;
+}
+
+/* PIE DECORATIVO */
+
+.clientes-footer-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 18px;
+    color: #91b2a5;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.clientes-footer-decoration span:first-child {
+    opacity: .5;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+    .clientes-section {
+        padding: 22px;
+        border-radius: 23px;
+    }
+
+    .clientes-section .clientes-heading {
+        align-items: stretch;
+    }
+
+    .clientes-section .clientes-add-btn {
+        width: 100%;
+    }
+
+    .clientes-section .clientes-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .clientes-count-badge {
+        align-self: flex-start;
+    }
+
+    .clientes-section .clientes-heading h2 {
+        font-size: 26px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .clientes-paw {
+        animation: none;
+    }
+
+    .clientes-section .clientes-add-btn,
+    .clientes-section .clientes-table tbody tr,
+    .clientes-section .clientes-table td button {
+        transition: none;
+    }
+}
+
+/* ==========================================
+   PETCARE+ | MÓDULO MASCOTAS PREMIUM
+========================================== */
+
+.mascotas-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 40px;
+    border-radius: 32px;
+    background:
+        radial-gradient(circle at 100% 0%,
+            rgba(162, 126, 229, .13),
+            transparent 35%),
+        linear-gradient(135deg, #fff, #fcfbff);
+    border: 1px solid rgba(111, 77, 169, .12);
+    box-shadow: 0 18px 50px rgba(51, 34, 87, .07);
+}
+
+/* HUELLAS DECORATIVAS */
+
+.mascotas-paw {
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    opacity: .10;
+    font-size: 65px;
+    animation: mascotasFlotar 5s ease-in-out infinite;
+}
+
+.mascotas-paw-1 {
+    top: 18px;
+    right: 45px;
+    rotate: -20deg;
+}
+
+.mascotas-paw-2 {
+    right: 30px;
+    bottom: 35px;
+    font-size: 43px;
+    animation-delay: -2s;
+}
+
+@keyframes mascotasFlotar {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -12px; }
+}
+
+/* CABECERA */
+
+.mascotas-section .mascotas-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.mascotas-section .mascotas-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 13px;
+    color: #9260cb;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2.5px;
+}
+
+.mascotas-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #aa75e6;
+    box-shadow: 0 0 0 5px rgba(170, 117, 230, .12);
+}
+
+.mascotas-section .mascotas-heading h2 {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0;
+    color: #332052;
+    font-size: clamp(26px, 2.7vw, 39px);
+    font-weight: 900;
+    line-height: 1.2;
+}
+
+.mascotas-title-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 58px;
+    height: 58px;
+    border-radius: 19px;
+    background: linear-gradient(135deg, #f1e7ff, #dfccff);
+    font-size: 30px;
+}
+
+.mascotas-section .mascotas-heading p {
+    margin: 13px 0 0;
+    color: #8a7d9c;
+    font-size: 15px;
+}
+
+/* BOTÓN */
+
+.mascotas-section .mascotas-add-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 55px;
+    padding: 13px 23px;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(110deg, #614095, #a16ad6);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 12px 26px rgba(108, 72, 167, .23);
+    transition: transform .3s, box-shadow .3s;
+}
+
+.mascotas-section .mascotas-add-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 32px rgba(108, 72, 167, .32);
+}
+
+/* BANNER */
+
+.mascotas-banner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    overflow: hidden;
+    margin-bottom: 27px;
+    padding: 19px 24px;
+    border: 1px solid #e9dcfa;
+    border-radius: 19px;
+    background: linear-gradient(110deg, #f3eaff, #fdf7ff);
+}
+
+.mascotas-banner-iconos {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.mascotas-banner-iconos span {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin-right: -8px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background: #e6d5ff;
+    font-size: 23px;
+}
+
+.mascotas-banner-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.mascotas-banner-texto strong {
+    color: #513479;
+    font-size: 14px;
+    font-weight: 900;
+}
+
+.mascotas-banner-texto > span {
+    color: #8b79a4;
+    font-size: 12px;
+}
+
+.mascotas-banner-huella {
+    position: absolute;
+    right: 20px;
+    font-size: 45px;
+    opacity: .13;
+}
+
+/* BÚSQUEDA */
+
+.mascotas-section .mascotas-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 25px;
+}
+
+.mascotas-search-box {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+}
+
+.mascotas-section .mascotas-search-box input {
+    display: block;
+    width: 100%;
+    height: 60px;
+    padding: 0 55px 0 52px;
+    border: 1px solid #e5d8f5;
+    border-radius: 17px;
+    outline: none;
+    background: #fbf8ff;
+    color: #493165;
+    font: inherit;
+    font-size: 14px;
+    transition: border-color .3s, box-shadow .3s;
+}
+
+.mascotas-section .mascotas-search-box input:focus {
+    border-color: #a16ad6;
+    box-shadow: 0 0 0 4px rgba(161, 106, 214, .12);
+}
+
+.mascotas-search-icon,
+.mascotas-search-decoration {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.mascotas-search-icon {
+    left: 18px;
+    font-size: 19px;
+}
+
+.mascotas-search-decoration {
+    right: 20px;
+    opacity: .3;
+    font-size: 20px;
+}
+
+.mascotas-count-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    flex-shrink: 0;
+    padding: 12px 15px;
+    border-radius: 12px;
+    background: #f0e6ff;
+    color: #7348a8;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.mascotas-count-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #9a65d5;
+}
+
+/* TABLA */
+
+.mascotas-section .mascotas-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #e9dff3;
+    border-radius: 20px;
+    background: #fff;
+}
+
+.mascotas-section .mascotas-table {
+    width: 100%;
+    min-width: 780px;
+    border-collapse: collapse;
+}
+
+.mascotas-section .mascotas-table thead {
+    background: linear-gradient(90deg, #f0e7fc, #f8f2ff);
+}
+
+.mascotas-section .mascotas-table th {
+    padding: 19px 18px;
+    color: #62458b;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .6px;
+}
+
+.mascotas-section .mascotas-table td {
+    padding: 19px 18px;
+    border-top: 1px solid #f0eaf5;
+    color: #615374;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.mascotas-section .mascotas-table tbody tr {
+    transition: background .25s;
+}
+
+.mascotas-section .mascotas-table tbody tr:hover {
+    background: #faf5ff;
+}
+
+.mascotas-section .mascotas-table td:first-child {
+    color: #493165;
+    font-weight: 800;
+}
+
+/* MENSAJES Y PIE */
+
+.mascotas-section .mascotas-loading {
+    padding: 35px;
+    text-align: center;
+    color: #9c8aaf;
+}
+
+.mascotas-section .mascotas-message {
+    margin-top: 16px;
+    font-size: 13px;
+}
+
+.mascotas-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 18px;
+    color: #a99ab9;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+    .mascotas-section {
+        padding: 22px;
+        border-radius: 23px;
+    }
+
+    .mascotas-section .mascotas-heading {
+        align-items: stretch;
+    }
+
+    .mascotas-section .mascotas-add-btn {
+        width: 100%;
+    }
+
+    .mascotas-section .mascotas-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .mascotas-count-badge {
+        align-self: flex-start;
+    }
+
+    .mascotas-banner {
+        flex-wrap: wrap;
+    }
+
+    .mascotas-section .mascotas-heading h2 {
+        font-size: 26px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mascotas-paw {
+        animation: none;
+    }
+
+    .mascotas-section .mascotas-add-btn,
+    .mascotas-section .mascotas-table tbody tr {
+        transition: none;
+    }
+}
+
+</style>
+
+
+</head>
+
+<body>
+
+    
+<!-- PETCARE+ | CONTROLES DEL MENÚ MÓVIL -->
+
+<button
+    type="button"
+    class="mobile-menu-btn"
+    id="abrirMenuMovil"
+    aria-label="Abrir menú de navegación"
+    aria-controls="menuLateral"
+    aria-expanded="false"
+>
+    ☰
+</button>
+
+<div
+    class="sidebar-overlay"
+    id="sidebarOverlay"
+    aria-hidden="true"
+></div>
+
+<!-- MENÚ LATERAL PREMIUM PETCARE+ -->
+   <aside class="sidebar" id="menuLateral">
+     
+    <button
+    type="button"
+    class="sidebar-close-btn"
+    id="cerrarMenuMovil"
+    aria-label="Cerrar menú"
+>
+    ✕
+    </button>
+
+    <!-- LOGOTIPO -->
+    <div class="sidebar-brand">
+        <div class="sidebar-logo">
+            <span class="sidebar-logo-icon">🐾</span>
+
+            <div>
+                <h2>PETCARE<span>+</span></h2>
+                <p>CLÍNICA VETERINARIA</p>
+            </div>
+        </div>
+
+        <div class="sidebar-brand-line"></div>
+    </div>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="sidebar-menu" aria-label="Navegación administrativa">
+
+        <span class="sidebar-menu-label">
+            MENÚ PRINCIPAL
+        </span>
+
+        <a href="admin.html" class="active">
+            <span class="sidebar-icon">🏠</span>
+            <span class="sidebar-link-text">Dashboard</span>
+            <span class="sidebar-arrow">›</span>
+        </a>
+
+        <a href="#clientes">
+            <span class="sidebar-icon">👥</span>
+            <span class="sidebar-link-text">Clientes</span>
+            <span class="sidebar-arrow">›</span>
+        </a>
+
+        <a href="#mascotas">
+            <span class="sidebar-icon">🐾</span>
+            <span class="sidebar-link-text">Mascotas</span>
+            <span class="sidebar-arrow">›</span>
+        </a>
+
+        <a href="#citas">
+            <span class="sidebar-icon">📅</span>
+            <span class="sidebar-link-text">Citas</span>
+            <span class="sidebar-arrow">›</span>
+        </a>
+
+        <a href="#consultas">
+            <span class="sidebar-icon">🩺</span>
+            <span class="sidebar-link-text">Consultas</span>
+            <span class="sidebar-arrow">›</span>
+        </a>
+
+        <a href="#inventario">
+            <span class="sidebar-icon">📦</span>
+            <span class="sidebar-link-text">Inventario</span>
+            <span class="sidebar-arrow">›</span>
+        </a>
+
+        <a href="#ventas">
+            <span class="sidebar-icon">💰</span>
+            <span class="sidebar-link-text">Ventas</span>
+            <span class="sidebar-arrow">›</span>
+        </a>
+           
+        <a href="#reportes">
+         <span class="sidebar-icon">📊</span>
+         <span class="sidebar-link-text">Reportes y estadísticas</span>
+         <span class="sidebar-arrow">›</span>
+        </a>
+
+
+        <div class="sidebar-menu-divider"></div>
+
+        <span class="sidebar-menu-label">
+            ACCESO RÁPIDO
+        </span>
+
+        <a href="index.html">
+            <span class="sidebar-icon">🌐</span>
+            <span class="sidebar-link-text">Página pública</span>
+            <span class="sidebar-arrow">↗</span>
+             </a>
+            <button type="button" id="cerrarSesion" class="btn-cerrar-sesion">
+            🚪 Cerrar sesión
+</button>
+    </nav>
+
+    <!-- DECORACIÓN INFERIOR -->
+    <div class="sidebar-bottom">
+
+        <span class="sidebar-paw sidebar-paw-one">🐾</span>
+        <span class="sidebar-paw sidebar-paw-two">🐾</span>
+
+        <div class="sidebar-bottom-line"></div>
+
+        <p class="sidebar-quote">
+            Su bienestar,<br>
+            <span>nuestro compromiso ♡</span>
+        </p>
+
+        <p class="sidebar-copyright">
+            PETCARE+ © 2026
+        </p>
+
+    </div>
+
+</aside>
+
+    <!-- CONTENIDO -->
+    
+<!-- CONTENIDO -->
+<main class="main">
+
+    <!-- CABECERA PREMIUM -->
+    <header class="header">
+
+        <div class="header-content">
+            <h1>
+                Bienvenido al<br>
+                <span>Panel de Administración</span>
+            </h1>
+
+            <p id="bienvenida">
+                Verificando sesión...
+            </p>
+        </div>
+
+        <button
+            type="button"
+            class="logout"
+            id="cerrarSesionSuperior"
+        >
+            Cerrar sesión
+        </button>
+
+        <!-- MASCOTAS DECORATIVAS -->
+        <img
+            src="assets/imagenes/mascotas-admin.png"
+            alt="Perro y gato de PETCARE+"
+            class="admin-mascotas"
+        >
+
+    </header>
+
+    
+<!-- ESTADÍSTICAS PREMIUM PETCARE+ -->
+<div class="cards petcare-stats">
+
+    <!-- CLIENTES -->
+    <div class="card stat-card stat-clientes">
+        <div class="stat-top">
+            <span class="stat-icon">👥</span>
+            <span class="stat-label">Clientes</span>
+        </div>
+
+        <strong id="totalClientes">—</strong>
+
+        <div class="stat-bottom">
+            <span>Clientes registrados</span>
+            <span class="stat-decoration">🐾</span>
+        </div>
+    </div>
+
+    <!-- MASCOTAS -->
+    <div class="card stat-card stat-mascotas">
+        <div class="stat-top">
+            <span class="stat-icon">🐶</span>
+            <span class="stat-label">Mascotas</span>
+        </div>
+
+        <strong id="totalMascotas">—</strong>
+
+        <div class="stat-bottom">
+            <span>Pacientes registrados</span>
+            <span class="stat-decoration">🐾</span>
+        </div>
+    </div>
+
+    <!-- CITAS -->
+    <div class="card stat-card stat-citas">
+        <div class="stat-top">
+            <span class="stat-icon">📅</span>
+            <span class="stat-label">Citas</span>
+        </div>
+
+        <strong id="totalCitas">—</strong>
+
+        <div class="stat-bottom">
+            <span>Citas registradas</span>
+            <span class="stat-decoration">✦</span>
+             </div>
+             </div>
+
+         <!-- PRODUCTOS -->
+            <div class="card stat-card stat-productos">
+            <div class="stat-top">
+            <span class="stat-icon">📦</span>
+            <span class="stat-label">Productos</span>
+            </div>
+
+        <strong id="totalProductos">—</strong>
+
+        <div class="stat-bottom">
+            <span>Productos en inventario</span>
+            <span class="stat-decoration">✧</span>
+         </div>
+        </div>
+
+        </div>
+
+
+        <
+<!-- ========================================
+     PETCARE+ | DIRECTORIO DE CLIENTES
+========================================= -->
+<section class="section clientes-section" id="clientes">
+
+    <!-- DECORACIONES -->
+    <span class="clientes-paw clientes-paw-1" aria-hidden="true">🐾</span>
+    <span class="clientes-paw clientes-paw-2" aria-hidden="true">🐾</span>
+
+    <!-- CABECERA -->
+    <div class="clientes-heading">
+
+        <div class="clientes-title-content">
+            <span class="eyebrow">
+                <span class="eyebrow-dot"></span>
+                GESTIÓN VETERINARIA
+            </span>
+
+            <h2>
+                <span class="clientes-title-icon">👥</span>
+                Directorio de clientes
+            </h2>
+
+            <p>
+                Administra los propietarios de las mascotas
+                con facilidad y seguridad.
+            </p>
+        </div>
+
+        <button
+            type="button"
+            class="btn-primary clientes-add-btn"
+            id="nuevoCliente"
+        >
+            <span aria-hidden="true">✦</span>
+            Nuevo cliente
+            <span aria-hidden="true">→</span>
+        </button>
+
+    </div>
+
+    <!-- BARRA DE BÚSQUEDA -->
+    <div class="clientes-toolbar">
+
+        <div class="clientes-search-box">
+            <span class="clientes-search-icon" aria-hidden="true">
+                🔍
+            </span>
+
+            <input
+                type="search"
+                id="buscarCliente"
+                placeholder="Buscar por nombre, DNI, teléfono o correo..."
+                aria-label="Buscar clientes"
+                autocomplete="off"
+            >
+
+            <span class="clientes-search-paw" aria-hidden="true">
+                🐾
+            </span>
+        </div>
+
+        <div class="clientes-count-badge">
+            <span class="clientes-count-dot"></span>
+            <span id="cantidadClientes">0 clientes</span>
+        </div>
+
+    </div>
+
+    <!-- TABLA -->
+    <div class="clientes-table-wrap">
+
+        <table class="clientes-table">
+            <thead>
+                <tr>
+                    <th>CLIENTE</th>
+                    <th>DNI</th>
+                    <th>TELÉFONO</th>
+                    <th>CORREO</th>
+                    <th>ACCIONES</th>
+                </tr>
+            </thead>
+
+            <tbody id="tablaClientes">
+                <tr>
+                    <td colspan="5" class="clientes-loading">
+                        🐾 Cargando clientes...
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <!-- MENSAJES -->
+    <p
+        id="mensajeClientes"
+        class="clientes-message"
+        role="status"
+    ></p>
+
+    <!-- PIE DECORATIVO -->
+    <div class="clientes-footer-decoration" aria-hidden="true">
+        <span>🐾</span>
+        <span>PETCARE+ · Cuidamos cada huella</span>
+    </div>
+
+</section>
+
+        <!-- MASCOTAS -->
+
+
+<!-- =========================================
+     PETCARE+ | MÓDULO DE MASCOTAS PREMIUM
+========================================== -->
+<section class="section mascotas-section" id="mascotas">
+
+    <!-- DECORACIONES -->
+    <span class="mascotas-paw mascotas-paw-1" aria-hidden="true">🐾</span>
+    <span class="mascotas-paw mascotas-paw-2" aria-hidden="true">🐾</span>
+
+    <!-- CABECERA -->
+    <div class="clientes-heading mascotas-heading">
+
+        <div class="mascotas-title-content">
+
+            <span class="eyebrow mascotas-eyebrow">
+                <span class="mascotas-status-dot"></span>
+                GESTIÓN VETERINARIA
+            </span>
+
+            <h2>
+                <span class="mascotas-title-icon">🐶</span>
+                Directorio de mascotas
+            </h2>
+
+            <p>
+                Gestiona las mascotas, sus características
+                y la información de sus propietarios.
+            </p>
+
+        </div>
+
+        <button
+            type="button"
+            class="btn-primary mascotas-add-btn"
+            id="nuevaMascota"
+        >
+            <span aria-hidden="true">✦</span>
+            Nueva mascota
+            <span aria-hidden="true">→</span>
+        </button>
+
+    </div>
+
+    <!-- FRANJA DECORATIVA -->
+    <div class="mascotas-banner">
+        <div class="mascotas-banner-iconos" aria-hidden="true">
+            <span>🐶</span>
+            <span>🐱</span>
+            <span>🐰</span>
+        </div>
+
+        <div class="mascotas-banner-texto">
+            <strong>Cada mascota tiene una historia especial</strong>
+            <span>Organiza sus datos y acompaña su bienestar.</span>
+        </div>
+
+        <span class="mascotas-banner-huella" aria-hidden="true">🐾</span>
+    </div>
+
+    <!-- BÚSQUEDA -->
+    <div class="clientes-toolbar mascotas-toolbar">
+
+        <div class="mascotas-search-box">
+            <span class="mascotas-search-icon" aria-hidden="true">🔍</span>
+
+            <input
+                type="search"
+                id="buscarMascota"
+                placeholder="Buscar mascota, raza o propietario..."
+                aria-label="Buscar mascotas"
+                autocomplete="off"
+            >
+
+            <span class="mascotas-search-decoration" aria-hidden="true">🐾</span>
+        </div>
+
+        <div class="mascotas-count-badge">
+            <span class="mascotas-count-dot"></span>
+            <span id="cantidadMascotas">0 mascotas</span>
+        </div>
+
+    </div>
+
+    <!-- TABLA -->
+    <div class="clientes-table-wrap mascotas-table-wrap">
+
+        <table class="clientes-table mascotas-table">
+
+            <thead>
+                <tr>
+                    <th>MASCOTA</th>
+                    <th>ESPECIE</th>
+                    <th>PROPIETARIO</th>
+                    <th>SEXO</th>
+                    <th>PESO</th>
+                    <th>ACCIONES</th>
+                </tr>
+            </thead>
+
+            <tbody id="tablaMascotas">
+                <tr>
+                    <td colspan="6" class="mascotas-loading">
+                        🐾 Cargando mascotas...
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <!-- MENSAJES -->
+    <p
+        id="mensajeMascotas"
+        class="clientes-message mascotas-message"
+        role="status"
+    ></p>
+
+    <!-- PIE -->
+    <div class="mascotas-footer">
+        <span>🐾</span>
+        PETCARE+ · Amor y cuidado en cada huella
+    </div>
+
+</section>
+
+<!-- VENTANA REGISTRAR / EDITAR MASCOTA -->
+<div class="modal-overlay" id="modalMascota" hidden>
+
+    <div
+        class="modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="tituloModalMascota"
+    >
+
+        <div class="modal-heading">
+            <div>
+                <span class="eyebrow">PETCARE+ ADMIN</span>
+                <h2 id="tituloModalMascota">
+                    Registrar mascota
+                </h2>
+            </div>
+
+            <button
+                type="button"
+                class="btn-close"
+                id="cerrarModalMascota"
+                aria-label="Cerrar formulario"
+            >
+                ✕
+            </button>
+        </div>
+
+        <form id="formMascota">
+
+            <input type="hidden" id="mascotaId">
+
+            <div class="form-grid">
+
+                <div class="form-field full-width">
+                    <label for="mascotaNombre">
+                        Nombre de la mascota *
+                    </label>
+                    <input
+                        id="mascotaNombre"
+                        maxlength="100"
+                        placeholder="Ej. Max"
+                        required
+                    >
+                </div>
+
+                <div class="form-field">
+                    <label for="mascotaCliente">
+                        Propietario *
+                    </label>
+                    <select id="mascotaCliente" required>
+                        <option value="">
+                            Seleccionar propietario
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="mascotaEspecie">
+                        Especie *
+                    </label>
+                    <select id="mascotaEspecie" required>
+                        <option value="">
+                            Seleccionar especie
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="mascotaRaza">Raza</label>
+                    <input
+                        id="mascotaRaza"
+                        maxlength="100"
+                        placeholder="Ej. Labrador"
+                    >
+                </div>
+
+                <div class="form-field">
+                    <label for="mascotaSexo">Sexo</label>
+                    <select id="mascotaSexo">
+                        <option value="">No especificado</option>
+                        <option value="Macho">Macho</option>
+                        <option value="Hembra">Hembra</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="mascotaNacimiento">
+                        Fecha de nacimiento
+                    </label>
+                    <input
+                        id="mascotaNacimiento"
+                        type="date"
+                    >
+                </div>
+
+                <div class="form-field">
+                    <label for="mascotaPeso">
+                        Peso (kg)
+                    </label>
+                    <input
+                        id="mascotaPeso"
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        placeholder="Ej. 12.5"
+                    >
+                </div>
+
+                <div class="form-field full-width">
+                    <label for="mascotaObservaciones">
+                        Observaciones
+                    </label>
+                    <textarea
+                        id="mascotaObservaciones"
+                        rows="3"
+                        maxlength="1000"
+                        placeholder="Información adicional..."
+                    ></textarea>
+                </div>
+
+            </div>
+
+            <p id="mensajeFormularioMascota" role="status"></p>
+
+            <div class="modal-actions">
+                <button
+                    type="button"
+                    class="btn-secondary"
+                    id="cancelarMascota"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                    id="guardarMascota"
+                >
+                    Guardar mascota
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+        <!-- CITAS -->
+        
+
+
+<!-- PETCARE+ | AGENDA ULTRA PREMIUM -->
+<section class="section citas-section citas-ultra" id="citas">
+
+    <div class="citas-hero">
+        <div class="citas-hero-content">
+            <span class="citas-kicker">✦ PETCARE+ · AGENDA CLÍNICA</span>
+            <h2>Agenda Veterinaria <span>🐾</span></h2>
+            <p>
+                Organiza tus consultas, controla las atenciones
+                y cuida cada detalle de tus pacientes.
+            </p>
+            <div class="citas-hero-tags">
+                <span>✦ Gestión inteligente</span>
+                <span>♡ Cuidado veterinario</span>
+            </div>
+        </div>
+
+        <button type="button" class="citas-nuevo-btn" id="nuevaCita">
+            <span>＋</span> Nueva cita
+        </button>
+    </div>
+
+    <!-- ESTADÍSTICAS -->
+    <div class="citas-resumen">
+        <div class="cita-resumen-card cita-total">
+            <div class="cita-card-top">
+                <span>📋</span><small>REGISTROS</small>
+            </div>
+            <p>Total de citas</p>
+            <strong id="citasTodas">0</strong>
+            <span class="cita-card-note">Todas las atenciones</span>
+        </div>
+
+        <div class="cita-resumen-card cita-pendiente">
+            <div class="cita-card-top">
+                <span>🕒</span><small>EN ESPERA</small>
+            </div>
+            <p>Pendientes</p>
+            <strong id="citasPendientes">0</strong>
+            <span class="cita-card-note">Por confirmar</span>
+        </div>
+
+        <div class="cita-resumen-card cita-confirmada">
+            <div class="cita-card-top">
+                <span>📅</span><small>PROGRAMADAS</small>
+            </div>
+            <p>Confirmadas</p>
+            <strong id="citasConfirmadas">0</strong>
+            <span class="cita-card-note">Citas confirmadas</span>
+        </div>
+
+        <div class="cita-resumen-card cita-atendida">
+            <div class="cita-card-top">
+                <span>✓</span><small>FINALIZADAS</small>
+            </div>
+            <p>Atendidas</p>
+            <strong id="citasAtendidas">0</strong>
+            <span class="cita-card-note">Atenciones realizadas</span>
+        </div>
+    </div>
+
+    <!-- BARRA DE HERRAMIENTAS -->
+    <div class="citas-panel">
+
+        <div class="citas-panel-header">
+            <div>
+                <span class="citas-panel-kicker">DIRECTORIO DE ATENCIONES</span>
+                <h3>Próximas citas y registros</h3>
+                <p>Consulta, busca y administra tu agenda veterinaria.</p>
+            </div>
+            <div class="citas-live-label">
+                <span></span> Agenda PETCARE+
+            </div>
+        </div>
+
+        <div class="citas-filtros">
+            <div class="citas-buscador">
+                <span>⌕</span>
+                <input
+                    type="search"
+                    id="buscarCita"
+                    placeholder="Buscar mascota, propietario o servicio..."
+                    aria-label="Buscar citas"
+                >
+            </div>
+
+            <select id="filtrarEstadoCita" aria-label="Filtrar por estado">
+                <option value="">Todos los estados</option>
+                <option value="Pendiente">Pendientes</option>
+                <option value="Confirmada">Confirmadas</option>
+                <option value="Atendida">Atendidas</option>
+                <option value="Cancelada">Canceladas</option>
+            </select>
+
+            <input
+                type="date"
+                id="filtrarFechaCita"
+                aria-label="Filtrar por fecha"
+            >
+
+            <button type="button"
+                    class="citas-limpiar"
+                    id="limpiarFiltrosCitas">
+                ↺ Limpiar
+            </button>
+        </div>
+
+        <!-- TABLA -->
+        <div class="citas-table-wrap">
+            <table class="citas-table">
+                <thead>
+                    <tr>
+                        <th>FECHA Y HORA</th>
+                        <th>PACIENTE</th>
+                        <th>SERVICIO</th>
+                        <th>VETERINARIO</th>
+                        <th>ESTADO</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaCitas">
+                    <tr>
+                        <td colspan="6" class="citas-loading">
+                            🐾 Cargando agenda veterinaria...
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="citas-panel-footer">
+            <p id="cantidadCitas" class="clientes-message"></p>
+            <span>🐾 PETCARE+ · Atención con amor</span>
+        </div>
+        <p id="mensajeCitas" class="clientes-message" role="status"></p>
+    </div>
+
+</section>
+
+
+
+<
+<!-- ==========================================
+     PETCARE+ | CONSULTAS ULTRA PREMIUM
+=========================================== -->
+<section class="section consultas-section consultas-ultra" id="consultas">
+
+    <!-- CABECERA -->
+    <div class="consultas-hero">
+        <div class="consultas-hero-content">
+            <span class="consultas-kicker">
+                ✦ PETCARE+ · HISTORIAL CLÍNICO
+            </span>
+
+            <h2>Consultas veterinarias <span>🩺</span></h2>
+
+            <p>
+                Administra diagnósticos, tratamientos y el historial
+                de atención de cada mascota en un solo lugar.
+            </p>
+
+            <div class="consultas-hero-tags">
+                <span>🐾 Historial médico</span>
+                <span>💚 Salud veterinaria</span>
+                <span>✦ Control de consultas</span>
+            </div>
+        </div>
+
+        <button
+            type="button"
+            class="consultas-nuevo-btn"
+            id="nuevaConsulta"
+        >
+            ＋ Nueva consulta
+        </button>
+    </div>
+
+    <!-- ESTADÍSTICAS -->
+    <div class="consultas-resumen">
+
+        <div class="consulta-resumen-card consultas-card-total">
+            <div class="consultas-card-top">
+                <span class="consultas-card-icon">🩺</span>
+                <small>HISTORIAL</small>
+            </div>
+            <p>Consultas registradas</p>
+            <strong id="totalConsultasModulo">0</strong>
+            <span class="consultas-card-note">
+                Atenciones en el sistema
+            </span>
+        </div>
+
+        <div class="consulta-resumen-card consultas-card-mascotas">
+            <div class="consultas-card-top">
+                <span class="consultas-card-icon">🐶</span>
+                <small>PACIENTES</small>
+            </div>
+            <p>Mascotas atendidas</p>
+            <strong id="mascotasAtendidasModulo">0</strong>
+            <span class="consultas-card-note">
+                Pacientes con historial
+            </span>
+        </div>
+
+        <div class="consulta-resumen-card consultas-card-hoy">
+            <div class="consultas-card-top">
+                <span class="consultas-card-icon">📅</span>
+                <small>HOY</small>
+            </div>
+            <p>Consultas de hoy</p>
+            <strong id="consultasHoyModulo">0</strong>
+            <span class="consultas-card-note">
+                Atenciones del día
+            </span>
+        </div>
+
+    </div>
+
+    <!-- PANEL -->
+    <div class="consultas-panel">
+
+        <div class="consultas-panel-header">
+            <div>
+                <span class="consultas-panel-kicker">
+                    EXPEDIENTES VETERINARIOS
+                </span>
+                <h3>Historial de consultas</h3>
+                <p>
+                    Consulta los diagnósticos y tratamientos
+                    registrados en PETCARE+.
+                </p>
+            </div>
+
+            <div class="consultas-panel-label">
+                <span></span>
+                PETCARE+ Clínico
+            </div>
+        </div>
+
+        <!-- FILTROS -->
+        <div class="consultas-filtros">
+
+            <div class="consultas-buscador">
+                <span aria-hidden="true">⌕</span>
+
+                <input
+                    type="search"
+                    id="buscarConsulta"
+                    placeholder="Buscar mascota, propietario o diagnóstico..."
+                    aria-label="Buscar consultas"
+                >
+            </div>
+
+            <input
+                type="date"
+                id="filtrarFechaConsulta"
+                aria-label="Filtrar consultas por fecha"
+            >
+
+            <button
+                type="button"
+                class="consultas-limpiar-btn"
+                id="limpiarFiltrosConsultas"
+            >
+                ↺ Limpiar
+            </button>
+
+        </div>
+
+        <!-- TABLA -->
+        <div class="clientes-table-wrap consultas-table-wrap">
+
+            <table class="clientes-table consultas-table">
+                <thead>
+                    <tr>
+                        <th>FECHA</th>
+                        <th>MASCOTA</th>
+                        <th>VETERINARIO</th>
+                        <th>DIAGNÓSTICO</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tablaConsultas">
+                    <tr>
+                        <td colspan="5" class="consultas-loading">
+                            🩺 Cargando consultas...
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <!-- PIE -->
+        <div class="consultas-panel-footer">
+            <p
+                id="cantidadConsultas"
+                class="clientes-message"
+            ></p>
+
+            <span>🐾 PETCARE+ · Historial clínico</span>
+        </div>
+
+        <p
+            id="mensajeConsultas"
+            class="clientes-message"
+            role="status"
+          ></p>
+
+       </div>
+
+  </section>
+
+
+<!-- FORMULARIO DE CONSULTAS -->
+<div class="modal-overlay" id="modalConsulta" hidden>
+
+    <div
+        class="modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="tituloModalConsulta"
+    >
+
+        <div class="modal-heading">
+            <div>
+                <span class="eyebrow">PETCARE+ CLÍNICA</span>
+                <h2 id="tituloModalConsulta">Nueva consulta</h2>
+            </div>
+
+            <button
+                type="button"
+                class="btn-close"
+                id="cerrarModalConsulta"
+                aria-label="Cerrar formulario"
+            >✕</button>
+        </div>
+
+        <form id="formConsulta">
+            <input type="hidden" id="consultaId">
+
+            <div class="form-grid">
+
+                <div class="form-field full-width">
+                    <label for="consultaCita">Cita veterinaria *</label>
+
+                    <select id="consultaCita" required>
+                        <option value="">Seleccionar cita</option>
+                    </select>
+
+                    <small id="ayudaConsultaCita">
+                        Selecciona una cita que no tenga consulta registrada.
+                    </small>
+                </div>
+
+                <div class="form-field full-width">
+                    <label for="consultaDiagnostico">Diagnóstico *</label>
+
+                    <textarea
+                        id="consultaDiagnostico"
+                        rows="3"
+                        required
+                        placeholder="Describe los hallazgos de la evaluación..."
+                    ></textarea>
+                </div>
+
+                <div class="form-field full-width">
+                    <label for="consultaTratamiento">Tratamiento</label>
+
+                    <textarea
+                        id="consultaTratamiento"
+                        rows="3"
+                        placeholder="Medicamentos, indicaciones o cuidados..."
+                    ></textarea>
+                </div>
+
+                <div class="form-field full-width">
+                    <label for="consultaObservaciones">Observaciones</label>
+
+                    <textarea
+                        id="consultaObservaciones"
+                        rows="3"
+                        placeholder="Notas adicionales y recomendaciones..."
+                    ></textarea>
+                </div>
+
+            </div>
+
+            <p id="mensajeFormularioConsulta" role="status"></p>
+
+            <div class="modal-actions">
+                <button
+                    type="button"
+                    class="btn-secondary"
+                    id="cancelarConsulta"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                    id="guardarConsulta"
+                >
+                    Guardar consulta
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<!-- FORMULARIO DE CITAS -->
+<div class="modal-overlay" id="modalCita" hidden>
+    <div
+        class="modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="tituloModalCita"
+    >
+
+        <div class="modal-heading">
+            <div>
+                <span class="eyebrow">PETCARE+ AGENDA</span>
+                <h2 id="tituloModalCita">Nueva cita</h2>
+            </div>
+
+            <button
+                type="button"
+                class="btn-close"
+                id="cerrarModalCita"
+                aria-label="Cerrar formulario"
+            >✕</button>
+        </div>
+
+        <form id="formCita">
+            <input type="hidden" id="citaId">
+
+            <div class="form-grid">
+
+                <div class="form-field">
+                    <label for="citaMascota">Mascota *</label>
+                    <select id="citaMascota" required>
+                        <option value="">Seleccionar mascota</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="citaServicio">Servicio *</label>
+                    <select id="citaServicio" required>
+                        <option value="">Seleccionar servicio</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="citaVeterinario">Veterinario</label>
+                    <select id="citaVeterinario">
+                        <option value="">Sin asignar</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="citaFecha">Fecha y hora *</label>
+                    <input
+                        type="datetime-local"
+                        id="citaFecha"
+                        step="60"
+                        required
+                    >
+                </div>
+
+                <div class="form-field full-width">
+                    <label for="citaEstado">Estado</label>
+                    <select id="citaEstado">
+                        <option value="Pendiente">Pendiente</option>
+                        <option value="Confirmada">Confirmada</option>
+                        <option value="Atendida">Atendida</option>
+                        <option value="Cancelada">Cancelada</option>
+                    </select>
+                </div>
+
+                <div class="form-field full-width">
+                    <label for="citaMotivo">Motivo de la consulta</label>
+                    <textarea
+                        id="citaMotivo"
+                        rows="3"
+                        maxlength="1000"
+                        placeholder="Ej. Vacunación, control general, revisión..."
+                    ></textarea>
+                </div>
+
+            </div>
+
+            <p id="mensajeFormularioCita" role="status"></p>
+
+            <div class="modal-actions">
+                <button
+                    type="button"
+                    class="btn-secondary"
+                    id="cancelarCita"
+                >Cancelar</button>
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                    id="guardarCita"
+                >Guardar cita</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+        
+
+<!-- ========================================
+     PETCARE+ | INVENTARIO ULTRA PREMIUM
+========================================= -->
+<section class="section inventario-section inventario-ultra" id="inventario">
+
+    <!-- CABECERA -->
+    <div class="inventario-hero">
+        <div class="inventario-hero-content">
+            <span class="inventario-kicker">
+                ✦ PETCARE+ · GESTIÓN COMERCIAL
+            </span>
+
+            <h2>Inventario de productos <span>📦</span></h2>
+
+            <p>
+                Administra medicamentos, vacunas, alimentos y accesorios.
+                Controla tus existencias desde un solo lugar.
+            </p>
+
+            <div class="inventario-hero-tags">
+                <span>💊 Botica veterinaria</span>
+                <span>✦ Control de existencias</span>
+            </div>
+        </div>
+
+        <button
+            type="button"
+            class="inventario-nuevo-btn"
+            id="nuevoProducto"
+        >
+            ＋ Nuevo producto
+        </button>
+    </div>
+
+    <!-- TARJETAS DE RESUMEN -->
+    <div class="inventario-resumen">
+
+        <div class="inventario-card inventario-card-total">
+            <div class="inventario-card-top">
+                <span class="inventario-card-icon">📦</span>
+                <small>CATÁLOGO</small>
+            </div>
+            <p>Productos registrados</p>
+            <strong id="inventarioTotal">0</strong>
+            <span class="inventario-card-note">Productos en el sistema</span>
+        </div>
+
+        <div class="inventario-card inventario-card-bajo">
+            <div class="inventario-card-top">
+                <span class="inventario-card-icon">⚠️</span>
+                <small>ALERTA</small>
+            </div>
+            <p>Stock bajo (≤ 5)</p>
+            <strong id="inventarioStockBajo">0</strong>
+            <span class="inventario-card-note">Requieren reposición</span>
+        </div>
+
+        <div class="inventario-card inventario-card-agotado">
+            <div class="inventario-card-top">
+                <span class="inventario-card-icon">🚫</span>
+                <small>SIN EXISTENCIAS</small>
+            </div>
+            <p>Productos agotados</p>
+            <strong id="inventarioAgotados">0</strong>
+            <span class="inventario-card-note">Stock igual a cero</span>
+        </div>
+
+        <div class="inventario-card inventario-card-valor">
+            <div class="inventario-card-top">
+                <span class="inventario-card-icon">💰</span>
+                <small>VALORIZACIÓN</small>
+            </div>
+            <p>Valor del inventario</p>
+            <strong id="inventarioValor">S/ 0.00</strong>
+            <span class="inventario-card-note">Valor calculado por el sistema</span>
+        </div>
+
+    </div>
+
+    <!-- PANEL DE PRODUCTOS -->
+    <div class="inventario-panel">
+
+        <div class="inventario-panel-header">
+            <div>
+                <span class="inventario-panel-kicker">
+                    CONTROL DE EXISTENCIAS
+                </span>
+                <h3>Catálogo de productos</h3>
+                <p>Busca, organiza y administra tu inventario veterinario.</p>
+            </div>
+
+            <div class="inventario-panel-label">
+                <span></span>
+                PETCARE+ Inventario
+            </div>
+        </div>
+
+        <!-- FILTROS -->
+        <div class="inventario-filtros">
+
+            <div class="inventario-buscador">
+                <span aria-hidden="true">⌕</span>
+                <input
+                    type="search"
+                    id="buscarProducto"
+                    placeholder="Buscar nombre, categoría o descripción..."
+                    aria-label="Buscar productos"
+                >
+            </div>
+
+            <select
+                id="filtrarStockProducto"
+                aria-label="Filtrar por stock"
+            >
+                <option value="">Todos los productos</option>
+                <option value="bajo">Stock bajo</option>
+                <option value="agotado">Agotados</option>
+                <option value="disponible">Con stock</option>
+            </select>
+
+            <select
+                id="filtrarEstadoProducto"
+                aria-label="Filtrar por estado"
+            >
+                <option value="">Todos los estados</option>
+                <option value="Activo">Activos</option>
+                <option value="Inactivo">Inactivos</option>
+            </select>
+
+        </div>
+
+        <!-- TABLA -->
+        <div class="clientes-table-wrap inventario-table-wrap">
+
+            <table class="clientes-table inventario-table">
+                <thead>
+                    <tr>
+                        <th>PRODUCTO</th>
+                        <th>CATEGORÍA</th>
+                        <th>PRECIO</th>
+                        <th>STOCK</th>
+                        <th>VENCIMIENTO</th>
+                        <th>ESTADO</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tablaInventario">
+                    <tr>
+                        <td colspan="7" class="inventario-loading">
+                            📦 Cargando inventario...
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <!-- PIE -->
+        <div class="inventario-panel-footer">
+            <p
+                id="cantidadProductosInventario"
+                class="clientes-message"
+            ></p>
+
+            <span>🐾 PETCARE+ · Control veterinario</span>
+        </div>
+
+        <p
+            id="mensajeInventario"
+            class="clientes-message"
+            role="status"
+         ></p>
+
+      </div>
+
+    </section>
+
+
+<!-- MODAL REGISTRAR / EDITAR PRODUCTO -->
+<div class="modal-overlay" id="modalProducto" hidden>
+
+    <div
+        class="modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="tituloModalProducto"
+    >
+
+        <div class="modal-heading">
+            <div>
+                <span class="eyebrow">PETCARE+ INVENTARIO</span>
+                <h2 id="tituloModalProducto">Nuevo producto</h2>
+            </div>
+
+            <button
+                type="button"
+                class="btn-close"
+                id="cerrarModalProducto"
+                aria-label="Cerrar"
+            >✕</button>
+        </div>
+
+        <form id="formProducto">
+
+            <input type="hidden" id="productoId">
+
+            <div class="form-grid">
+
+                <div class="form-field full-width">
+                    <label for="productoNombre">Nombre del producto *</label>
+                    <input
+                        id="productoNombre"
+                        required
+                        maxlength="150"
+                        placeholder="Ej. Shampoo antipulgas"
+                    >
+                </div>
+
+                <div class="form-field">
+                    <label for="productoCategoria">Categoría</label>
+                    <input
+                        id="productoCategoria"
+                        maxlength="100"
+                        list="categoriasProductos"
+                        placeholder="Ej. Medicamentos"
+                    >
+
+                    <datalist id="categoriasProductos">
+                        <option value="Medicamentos">
+                        <option value="Alimentos">
+                        <option value="Accesorios">
+                        <option value="Higiene">
+                        <option value="Vacunas">
+                        <option value="Otros">
+                    </datalist>
+                </div>
+
+                <div class="form-field">
+                    <label for="productoPrecio">Precio (S/) *</label>
+                    <input
+                        type="number"
+                        id="productoPrecio"
+                        min="0"
+                        step="0.01"
+                        required
+                        placeholder="25.00"
+                    >
+                </div>
+
+                <div class="form-field">
+                    <label for="productoStock">Stock *</label>
+                    <input
+                        type="number"
+                        id="productoStock"
+                        min="0"
+                        step="1"
+                        required
+                        placeholder="20"
+                    >
+                </div>
+
+                <div class="form-field">
+                    <label for="productoVencimiento">
+                        Fecha de vencimiento
+                    </label>
+                    <input type="date" id="productoVencimiento">
+                </div>
+
+                <div class="form-field full-width">
+                    <label for="productoEstado">Estado</label>
+                    <select id="productoEstado">
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
+                    </select>
+                </div>
+
+                <div class="form-field full-width">
+                    <label for="productoDescripcion">Descripción</label>
+                    <textarea
+                        id="productoDescripcion"
+                        rows="3"
+                        placeholder="Información adicional del producto..."
+                    ></textarea>
+                </div>
+
+            </div>
+
+            <p id="mensajeFormularioProducto" role="status"></p>
+
+            <div class="modal-actions">
+                <button
+                    type="button"
+                    class="btn-secondary"
+                    id="cancelarProducto"
+                >Cancelar</button>
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                    id="guardarProducto"
+                >Guardar producto</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+       
+
+<!-- ==========================================
+     PETCARE+ | VENTAS ULTRA PREMIUM
+=========================================== -->
+<section class="section ventas-section ventas-ultra" id="ventas">
+
+    <!-- CABECERA -->
+    <div class="ventas-hero">
+        <div class="ventas-hero-content">
+            <span class="ventas-kicker">
+                ✦ PETCARE+ · GESTIÓN COMERCIAL
+            </span>
+
+            <h2>Centro de ventas <span>🛒</span></h2>
+
+            <p>
+                Gestiona las ventas de tu botica veterinaria,
+                consulta operaciones y controla tus ingresos.
+            </p>
+
+            <div class="ventas-hero-tags">
+                <span>💳 Gestión de pagos</span>
+                <span>🧾 Historial de operaciones</span>
+                <span>🐾 Botica veterinaria</span>
+            </div>
+        </div>
+
+        <button
+            type="button"
+            class="ventas-nuevo-btn"
+            id="nuevaVenta"
+        >
+            ＋ Nueva venta
+        </button>
+    </div>
+
+    <!-- RESUMEN -->
+    <div class="ventas-resumen">
+
+        <div class="venta-resumen-card ventas-card-pagadas">
+            <div class="ventas-card-top">
+                <span class="ventas-card-icon">🛍️</span>
+                <small>OPERACIONES</small>
+            </div>
+            <p>Ventas pagadas</p>
+            <strong id="ventasPagadas">0</strong>
+            <span class="ventas-card-note">
+                Ventas completadas
+            </span>
+        </div>
+
+        <div class="venta-resumen-card ventas-card-ingresos">
+            <div class="ventas-card-top">
+                <span class="ventas-card-icon">💰</span>
+                <small>INGRESOS</small>
+            </div>
+            <p>Ingresos registrados</p>
+            <strong id="ventasIngresos">S/ 0.00</strong>
+            <span class="ventas-card-note">
+                Total de ventas pagadas
+            </span>
+        </div>
+
+        <div class="venta-resumen-card ventas-card-anuladas">
+            <div class="ventas-card-top">
+                <span class="ventas-card-icon">↩️</span>
+                <small>ANULACIONES</small>
+            </div>
+            <p>Ventas anuladas</p>
+            <strong id="ventasAnuladas">0</strong>
+            <span class="ventas-card-note">
+                Operaciones canceladas
+            </span>
+        </div>
+
+    </div>
+
+    <!-- PANEL PRINCIPAL -->
+    <div class="ventas-panel">
+
+        <div class="ventas-panel-header">
+            <div>
+                <span class="ventas-panel-kicker">
+                    REGISTRO DE OPERACIONES
+                </span>
+                <h3>Historial de ventas</h3>
+                <p>
+                    Consulta los movimientos comerciales
+                    de PETCARE+.
+                </p>
+            </div>
+
+            <div class="ventas-panel-label">
+                <span></span>
+                PETCARE+ Ventas
+            </div>
+        </div>
+
+        <!-- FILTROS -->
+        <div class="ventas-filtros">
+
+            <div class="ventas-buscador">
+                <span aria-hidden="true">⌕</span>
+
+                <input
+                    type="search"
+                    id="buscarVenta"
+                    placeholder="Buscar venta, cliente o empleado..."
+                    aria-label="Buscar ventas"
+                >
+            </div>
+
+            <select
+                id="filtrarEstadoVenta"
+                aria-label="Filtrar ventas por estado"
+            >
+                <option value="">Todos los estados</option>
+                <option value="Pagada">Pagadas</option>
+                <option value="Anulada">Anuladas</option>
+            </select>
+
+        </div>
+
+        <!-- TABLA -->
+        <div class="clientes-table-wrap ventas-table-wrap">
+
+            <table class="clientes-table ventas-table">
+                <thead>
+                    <tr>
+                        <th>N.º VENTA</th>
+                        <th>FECHA</th>
+                        <th>CLIENTE</th>
+                        <th>EMPLEADO</th>
+                        <th>TOTAL</th>
+                        <th>ESTADO</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tablaVentas">
+                    <tr>
+                        <td colspan="7" class="ventas-loading">
+                            🛒 Cargando ventas...
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <!-- PIE -->
+        <div class="ventas-panel-footer">
+            <p
+                id="cantidadVentas"
+                class="clientes-message"
+            ></p>
+
+            <span>
+                🐾 PETCARE+ · Gestión comercial
+            </span>
+        </div>
+
+        <p
+            id="mensajeVentas"
+            class="clientes-message"
+            role="status"
+        ></p>
+
+       </div>
+
+    </section>
+
+
+<!-- FORMULARIO DE NUEVA VENTA -->
+<div class="modal-overlay" id="modalVenta" hidden>
+    <div
+        class="modal-card venta-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="tituloModalVenta"
+    >
+
+        <div class="modal-heading">
+            <div>
+                <span class="eyebrow">PETCARE+ / PUNTO DE VENTA</span>
+                <h2 id="tituloModalVenta">Registrar venta</h2>
+            </div>
+
+            <button
+                type="button"
+                class="btn-close"
+                id="cerrarModalVenta"
+                aria-label="Cerrar"
+            >✕</button>
+        </div>
+
+        <form id="formVenta">
+
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="ventaCliente">Cliente *</label>
+                    <select id="ventaCliente" required>
+                        <option value="">Seleccionar cliente</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="ventaEmpleado">Empleado *</label>
+                    <select id="ventaEmpleado" required>
+                        <option value="">Seleccionar empleado</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="venta-productos-heading">
+                <h3>Productos de la venta</h3>
+                <button
+                    type="button"
+                    class="btn-secondary"
+                    id="agregarProductoVenta"
+                >+ Agregar producto</button>
+            </div>
+
+            <div id="listaProductosVenta"></div>
+
+            <div class="venta-total">
+                <span>Total estimado</span>
+                <strong id="totalVenta">S/ 0.00</strong>
+            </div>
+
+            <p id="mensajeFormularioVenta" role="status"></p>
+
+            <div class="modal-actions">
+                <button
+                    type="button"
+                    class="btn-secondary"
+                    id="cancelarVenta"
+                >Cancelar</button>
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                    id="guardarVenta"
+                >Registrar venta</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- DETALLE DE VENTA -->
+<div class="modal-overlay" id="modalDetalleVenta" hidden>
+    <div
+        class="modal-card venta-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="tituloDetalleVenta"
+    >
+
+        <div class="modal-heading">
+            <h2 id="tituloDetalleVenta">Detalle de venta</h2>
+
+            <button
+                type="button"
+                class="btn-close"
+                id="cerrarDetalleVenta"
+                aria-label="Cerrar detalle"
+            >✕</button>
+        </div>
+
+        <div id="contenidoDetalleVenta"></div>
+
+    </div>
+</div>
+
+
+    <!-- MODAL CLIENTES -->
+    <div
+        class="modal-overlay"
+        id="modalCliente"
+        hidden
+    >
+
+        <div
+            class="modal-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="tituloModalCliente"
+        >
+
+            <div class="modal-heading">
+
+                <div>
+                    <span class="eyebrow">
+                        PETCARE+ ADMIN
+                    </span>
+
+                    <h2 id="tituloModalCliente">
+                        Nuevo cliente
+                    </h2>
+                </div>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    id="cerrarModalCliente"
+                    aria-label="Cerrar formulario"
+                >
+                    ✕
+                </button>
+
+            </div>
+
+            <form id="formCliente">
+
+                <input
+                    type="hidden"
+                    id="clienteId"
+                >
+
+                <div class="form-grid">
+
+                    <div class="form-field">
+                        <label for="clienteNombres">
+                            Nombres *
+                        </label>
+
+                        <input
+                            id="clienteNombres"
+                            maxlength="100"
+                            required
+                            placeholder="Ej. Carlos"
+                        >
+                    </div>
+
+                    <div class="form-field">
+                        <label for="clienteApellidos">
+                            Apellidos *
+                        </label>
+
+                        <input
+                            id="clienteApellidos"
+                            maxlength="100"
+                            required
+                            placeholder="Ej. Ramírez"
+                        >
+                    </div>
+
+                    <div class="form-field">
+                        <label for="clienteDni">
+                            DNI
+                        </label>
+
+                        <input
+                            id="clienteDni"
+                            inputmode="numeric"
+                            maxlength="8"
+                            pattern="[0-9]{8}"
+                            placeholder="8 dígitos"
+                        >
+                    </div>
+
+                    <div class="form-field">
+                        <label for="clienteTelefono">
+                            Teléfono
+                        </label>
+
+                        <input
+                            id="clienteTelefono"
+                            type="tel"
+                            maxlength="20"
+                            placeholder="Ej. 987654321"
+                        >
+                    </div>
+
+                    <div class="form-field full-width">
+                        <label for="clienteCorreo">
+                            Correo electrónico
+                        </label>
+
+                        <input
+                            id="clienteCorreo"
+                            type="email"
+                            maxlength="150"
+                            placeholder="cliente@correo.com"
+                        >
+                    </div>
+
+                    <div class="form-field full-width">
+                        <label for="clienteDireccion">
+                            Dirección
+                        </label>
+
+                        <input
+                            id="clienteDireccion"
+                            maxlength="255"
+                            placeholder="Dirección del cliente"
+                        >
+                    </div>
+
+                </div>
+
+                <p
+                    id="mensajeFormulario"
+                    role="status"
+                ></p>
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="btn-secondary"
+                        id="cancelarCliente"
+                    >
+                        Cancelar
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                        id="guardarCliente"
+                    >
+                        Guardar cliente
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+    
+<!-- ==========================================
+     PETCARE+ | REPORTES Y ESTADÍSTICAS
+=========================================== -->
+<section class="section reportes-section" id="reportes">
+
+    <div class="reportes-hero">
+        <div>
+            <span class="reportes-kicker">
+                ✦ PETCARE+ · INTELIGENCIA DE NEGOCIO
+            </span>
+
+            <h2>📊 Reportes y estadísticas</h2>
+
+            <p>
+                Analiza las ventas, ingresos, inventario
+                y actividad veterinaria de tu clínica.
+            </p>
+        </div>
+
+        <button type="button"
+                class="reportes-exportar"
+                id="exportarReporte">
+            ↓ Exportar reporte
+        </button>
+    </div>
+
+    <!-- TARJETAS -->
+    <div class="reportes-resumen">
+
+        <article class="reporte-card reporte-verde">
+            <span>💰 Ingresos totales</span>
+            <strong id="reporteIngresos">S/ 0.00</strong>
+            <small>Ventas pagadas</small>
+        </article>
+
+        <article class="reporte-card reporte-morado">
+            <span>🛒 Ventas realizadas</span>
+            <strong id="reporteVentas">0</strong>
+            <small>Operaciones pagadas</small>
+        </article>
+
+        <article class="reporte-card reporte-dorado">
+            <span>📦 Productos registrados</span>
+            <strong id="reporteProductos">0</strong>
+            <small>Catálogo de inventario</small>
+        </article>
+
+        <article class="reporte-card reporte-azul">
+            <span>🩺 Consultas veterinarias</span>
+            <strong id="reporteConsultas">0</strong>
+            <small>Atenciones registradas</small>
+        </article>
+
+    </div>
+
+    <!-- GRÁFICOS -->
+    <div class="reportes-graficos">
+
+        <div class="reporte-panel">
+            <h3>📈 Evolución de ventas</h3>
+            <p>Ingresos registrados por fecha</p>
+            <div class="reporte-grafico">
+                <canvas id="graficoVentas"></canvas>
+            </div>
+        </div>
+
+        <div class="reporte-panel">
+            <h3>📊 Estado de las citas</h3>
+            <p>Distribución de atenciones</p>
+            <div class="reporte-grafico">
+                <canvas id="graficoCitas"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- INVENTARIO -->
+    <div class="reporte-panel reporte-inventario">
+        <h3>📦 Resumen del inventario</h3>
+        <p>Estado actual de los productos de PETCARE+</p>
+
+        <div class="reporte-inventario-grid">
+            <div>
+                <span>Productos disponibles</span>
+                <strong id="reporteDisponibles">0</strong>
+            </div>
+
+            <div>
+                <span>Stock bajo</span>
+                <strong id="reporteStockBajo">0</strong>
+            </div>
+
+            <div>
+                <span>Productos agotados</span>
+                <strong id="reporteAgotados">0</strong>
+              </div>
+          </div>
+      </div>
+
+    <p id="mensajeReportes" role="status"></p>
+
+  </section>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="js/admin.js"></script>
+    <script src="js/clientes.js"></script>
+    <script src="js/mascotas.js"></script>
+    <script src="js/citas.js"></script>
+    <script src="js/consultas.js"></script>
+    <script src="js/productos.js"></script>
+    <script src="js/ventas.js"></script>
+    <script src="js/reportes.js" defer></script>
+    <script src="js/admin-mobile.js" defer></script>
+</body>
+</html>
