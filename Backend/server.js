@@ -81,11 +81,7 @@ app.use("/api/productos", productosRoutes);
 app.use("/api/ventas", ventasRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/empleados", empleadosRoutes);
-app.use(
-    express.static(
-        path.join(__dirname, "../frontend")
-    )
-);
+
 
 
 // ========================================
