@@ -1,200 +1,193 @@
 
-const db = require("../db");
+const servicioRepository = require(
+  "../repositories/servicioRepository"
+);
 
+// ========================================
 // VALIDAR DATOS DEL SERVICIO
+// ========================================
 function validarServicio(datos) {
-    const { nombre, precio, estado } = datos;
+  const { nombre, precio, estado } = datos;
 
-    if (typeof nombre !== "string" || !nombre.trim()) {
-        return "El nombre del servicio es obligatorio";
-    }
+  if (typeof nombre !== "string" || !nombre.trim()) {
+    return "El nombre del servicio es obligatorio";
+  }
 
-    if (
-        precio === null ||
-        precio === undefined ||
-        precio === "" ||
-        !Number.isFinite(Number(precio)) ||
-        Number(precio) < 0
-    ) {
-        return "El precio debe ser un número válido";
-    }
+  if (
+    precio === null ||
+    precio === undefined ||
+    precio === "" ||
+    !Number.isFinite(Number(precio)) ||
+    Number(precio) < 0 ||
+    !/^\d+(\.\d{1,2})?$/.test(String(precio))
+  ) {
+    return "El precio debe ser un número válido con máximo 2 decimales";
+  }
 
-    if (
-        estado !== undefined &&
-        !["Activo", "Inactivo"].includes(estado)
-    ) {
-        return "El estado no es válido";
-    }
+  if (
+    estado !== undefined &&
+    !["Activo", "Inactivo"].includes(estado)
+  ) {
+    return "El estado no es válido";
+  }
 
-    return null;
+  return null;
 }
 
-// 1. LISTAR SERVICIOS
+// ========================================
+// 1. LISTAR TODOS LOS SERVICIOS
+// ========================================
 exports.listarServicios = async (req, res) => {
-    try {
-        const [servicios] = await db.query(
-            "SELECT * FROM servicio ORDER BY id_servicio DESC"
-        );
+  try {
+    const servicios = await servicioRepository.obtenerTodos();
 
-        res.status(200).json({
-            mensaje: "Servicios obtenidos correctamente",
-            total: servicios.length,
-            datos: servicios
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({
-            mensaje: "Error al listar servicios"
-        });
-    }
+    return res.status(200).json({
+      mensaje: "Servicios obtenidos correctamente",
+      total: servicios.length,
+      datos: servicios
+    });
+  } catch (error) {
+    console.error("Error al listar servicios:", error);
+
+    return res.status(500).json({
+      mensaje: "Error al listar servicios"
+    });
+  }
 };
 
+// ========================================
 // 2. OBTENER SERVICIO POR ID
+// ========================================
 exports.obtenerServicio = async (req, res) => {
-    try {
-        const [servicios] = await db.query(
-            "SELECT * FROM servicio WHERE id_servicio = ?",
-            [req.params.id]
-        );
+  try {
+    const servicio = await servicioRepository.obtenerPorId(
+      req.params.id
+    );
 
-        if (servicios.length === 0) {
-            return res.status(404).json({
-                mensaje: "Servicio no encontrado"
-            });
-        }
-
-        res.status(200).json({
-            datos: servicios[0]
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({
-            mensaje: "Error al buscar servicio"
-        });
+    if (!servicio) {
+      return res.status(404).json({
+        mensaje: "Servicio no encontrado"
+      });
     }
+
+    return res.status(200).json({
+      datos: servicio
+    });
+  } catch (error) {
+    console.error("Error al buscar servicio:", error);
+
+    return res.status(500).json({
+      mensaje: "Error al buscar servicio"
+    });
+  }
 };
 
-// 3. CREAR SERVICIO
+// ========================================
+// 3. REGISTRAR SERVICIO
+// ========================================
 exports.crearServicio = async (req, res) => {
-    try {
-        const errorValidacion = validarServicio(req.body);
+  try {
+    const errorValidacion = validarServicio(req.body);
 
-        if (errorValidacion) {
-            return res.status(400).json({
-                mensaje: errorValidacion
-            });
-        }
-
-        const {
-            nombre,
-            descripcion,
-            precio,
-            estado = "Activo"
-        } = req.body;
-
-        const [resultado] = await db.query(
-            `INSERT INTO servicio
-             (nombre, descripcion, precio, estado)
-             VALUES (?, ?, ?, ?)`,
-            [
-                nombre.trim(),
-                descripcion || null,
-                Number(precio),
-                estado
-            ]
-        );
-
-        res.status(201).json({
-            mensaje: "Servicio registrado correctamente",
-            id_servicio: resultado.insertId
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({
-            mensaje: "Error al registrar servicio"
-        });
+    if (errorValidacion) {
+      return res.status(400).json({
+        mensaje: errorValidacion
+      });
     }
+
+    const servicio = await servicioRepository.crear({
+      nombre: req.body.nombre.trim(),
+      descripcion: req.body.descripcion || null,
+      precio: Number(req.body.precio),
+      estado: req.body.estado || "Activo"
+    });
+
+    return res.status(201).json({
+      mensaje: "Servicio registrado correctamente",
+      id_servicio: servicio.id_servicio
+    });
+  } catch (error) {
+    console.error("Error al registrar servicio:", error);
+
+    return res.status(500).json({
+      mensaje: "Error al registrar servicio"
+    });
+  }
 };
 
+// ========================================
 // 4. ACTUALIZAR SERVICIO
+// ========================================
 exports.actualizarServicio = async (req, res) => {
-    try {
-        const errorValidacion = validarServicio(req.body);
+  try {
+    const errorValidacion = validarServicio(req.body);
 
-        if (errorValidacion) {
-            return res.status(400).json({
-                mensaje: errorValidacion
-            });
-        }
-
-        const {
-            nombre,
-            descripcion,
-            precio,
-            estado = "Activo"
-        } = req.body;
-
-        const [resultado] = await db.query(
-            `UPDATE servicio
-             SET nombre = ?,
-                 descripcion = ?,
-                 precio = ?,
-                 estado = ?
-             WHERE id_servicio = ?`,
-            [
-                nombre.trim(),
-                descripcion || null,
-                Number(precio),
-                estado,
-                req.params.id
-            ]
-        );
-
-        if (resultado.affectedRows === 0) {
-            return res.status(404).json({
-                mensaje: "Servicio no encontrado"
-            });
-        }
-
-        res.status(200).json({
-            mensaje: "Servicio actualizado correctamente"
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({
-            mensaje: "Error al actualizar servicio"
-        });
+    if (errorValidacion) {
+      return res.status(400).json({
+        mensaje: errorValidacion
+      });
     }
+
+    const servicio = await servicioRepository.actualizar(
+      req.params.id,
+      {
+        nombre: req.body.nombre.trim(),
+        descripcion: req.body.descripcion || null,
+        precio: Number(req.body.precio),
+        estado: req.body.estado || "Activo"
+      }
+    );
+
+    if (!servicio) {
+      return res.status(404).json({
+        mensaje: "Servicio no encontrado"
+      });
+    }
+
+    return res.status(200).json({
+      mensaje: "Servicio actualizado correctamente"
+    });
+  } catch (error) {
+    console.error("Error al actualizar servicio:", error);
+
+    return res.status(500).json({
+      mensaje: "Error al actualizar servicio"
+    });
+  }
 };
 
+// ========================================
 // 5. ELIMINAR SERVICIO
+// ========================================
 exports.eliminarServicio = async (req, res) => {
-    try {
-        const [resultado] = await db.query(
-            "DELETE FROM servicio WHERE id_servicio = ?",
-            [req.params.id]
-        );
+  try {
+    const eliminado = await servicioRepository.eliminar(
+      req.params.id
+    );
 
-        if (resultado.affectedRows === 0) {
-            return res.status(404).json({
-                mensaje: "Servicio no encontrado"
-            });
-        }
-
-        res.status(200).json({
-            mensaje: "Servicio eliminado correctamente"
-        });
-    } catch (error) {
-        console.error(error);
-
-        if (error.code === "ER_ROW_IS_REFERENCED_2") {
-            return res.status(409).json({
-                mensaje: "No se puede eliminar porque tiene citas o remisiones relacionadas"
-            });
-        }
-
-        res.status(500).json({
-            mensaje: "Error al eliminar servicio"
-        });
+    if (!eliminado) {
+      return res.status(404).json({
+        mensaje: "Servicio no encontrado"
+      });
     }
+
+    return res.status(200).json({
+      mensaje: "Servicio eliminado correctamente"
+    });
+  } catch (error) {
+    console.error("Error al eliminar servicio:", error);
+
+    if (
+      error.name === "SequelizeForeignKeyConstraintError"
+    ) {
+      return res.status(409).json({
+        mensaje:
+          "No se puede eliminar porque tiene citas o remisiones relacionadas"
+      });
+    }
+
+    return res.status(500).json({
+      mensaje: "Error al eliminar servicio"
+    });
+  }
 };

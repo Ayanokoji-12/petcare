@@ -1,0 +1,270 @@
+
+/* PETCARE+ | REPORTES ULTRA PREMIUM */
+
+.reportes-section {
+    padding: 26px;
+    background: #f7fbf9;
+    border-radius: 25px;
+    color: #173e32;
+}
+
+.reportes-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 34px;
+    margin-bottom: 24px;
+    border-radius: 23px;
+    background:
+        radial-gradient(circle at 85% 15%,
+            rgba(174,135,255,.25),transparent 38%),
+        linear-gradient(120deg,#e2f7eb,#f6efff);
+}
+
+.reportes-kicker {
+    color: #08785b;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+.reportes-hero h2 {
+    margin: 12px 0;
+    color: #07513e;
+    font-size: clamp(25px,3vw,38px);
+}
+
+.reportes-hero p {
+    color: #66877b;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+
+/* BOTÓN EXPORTAR PREMIUM */
+
+.reportes-exportar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 26px;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(
+        135deg,
+        #7341d3,
+        #a15af0
+    );
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+
+    box-shadow: 0 8px 22px rgba(116, 65, 211, 0.24);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
+}
+
+.reportes-exportar:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 30px rgba(116, 65, 211, 0.35);
+    filter: brightness(1.08);
+}
+
+.reportes-exportar:active {
+    transform: translateY(-1px) scale(0.97);
+}
+
+.reportes-exportar:focus-visible {
+    outline: 3px solid #c4a5ff;
+    outline-offset: 3px;
+}
+
+
+.reportes-resumen {
+    display: grid;
+    grid-template-columns: repeat(4,minmax(0,1fr));
+    gap: 15px;
+    margin-bottom: 24px;
+}
+
+.reporte-card {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    padding: 24px;
+    border-radius: 20px;
+    transition: transform .25s;
+}
+
+.reporte-card:hover {
+    transform: translateY(-4px);
+}
+
+.reporte-card span {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.reporte-card strong {
+    font-size: clamp(24px,2.5vw,35px);
+    font-weight: 900;
+}
+
+.reporte-card small {
+    font-size: 11px;
+    opacity: .75;
+}
+
+.reporte-verde {
+    background: #e0f5e9;
+    color: #08684c;
+}
+
+.reporte-morado {
+    background: #eee5ff;
+    color: #7543b2;
+}
+
+.reporte-dorado {
+    background: #fff1d3;
+    color: #93610a;
+}
+
+.reporte-azul {
+    background: #e2efff;
+    color: #2865a8;
+}
+
+.reportes-graficos {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.reporte-panel {
+    min-width: 0;
+    padding: 24px;
+    border: 1px solid #e2ede7;
+    border-radius: 21px;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(16,75,51,.045);
+}
+
+.reporte-panel h3 {
+    margin: 0 0 8px;
+    color: #164a38;
+    font-size: 18px;
+}
+
+.reporte-panel p {
+    margin: 0 0 22px;
+    color: #8ba497;
+    font-size: 12px;
+}
+
+.reporte-grafico {
+    position: relative;
+    width: 100%;
+    height: 280px;
+}
+
+.reporte-grafico canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.reporte-inventario-grid {
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 15px;
+}
+
+.reporte-inventario-grid > div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 19px;
+    border-radius: 14px;
+    background: #f1f8f4;
+}
+
+.reporte-inventario-grid span {
+    color: #66877b;
+    font-size: 12px;
+}
+
+.reporte-inventario-grid strong {
+    color: #08785b;
+    font-size: 29px;
+}
+
+#mensajeReportes {
+    margin-top: 18px;
+    color: #66877b;
+    font-size: 13px;
+}
+
+@media (max-width: 1000px) {
+    .reportes-resumen {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+
+    .reportes-graficos {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .reportes-section {
+        padding: 14px;
+    }
+
+    .reportes-hero {
+        padding: 23px;
+    }
+
+    .reportes-exportar {
+        width: 100%;
+    }
+
+    .reportes-resumen,
+    .reporte-inventario-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .reporte-panel {
+        padding: 16px;
+    }
+}
+/* BOTÓN REPORTES DEL MENÚ LATERAL */
+
+.menu-reportes {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 14px 18px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #087b59, #125c4b);
+    color: white;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.menu-reportes:hover {
+    background: linear-gradient(135deg, #7040c9, #9459e8);
+}

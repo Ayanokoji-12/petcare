@@ -1,0 +1,486 @@
+
+/* ==========================================
+   PETCARE+ | VENTAS NIVEL 4 ULTRA PREMIUM
+========================================== */
+
+.ventas-section.ventas-ultra {
+    padding: 26px;
+    border: 1px solid #e3eee8;
+    border-radius: 26px;
+    background: #f7fbf9;
+    color: #173d32;
+}
+
+/* CABECERA */
+
+.ventas-ultra .ventas-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+    overflow: hidden;
+    padding: 36px;
+    margin-bottom: 24px;
+    border: 1px solid #e5e7ec;
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at 85% 10%,
+            rgba(176,143,255,.25),transparent 35%),
+        radial-gradient(circle at 10% 100%,
+            rgba(22,192,143,.18),transparent 42%),
+        linear-gradient(120deg,#e5f8ec,#f8f3ff 75%);
+}
+
+.ventas-ultra .ventas-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 650px;
+}
+
+.ventas-ultra .ventas-kicker {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #08785b;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.7px;
+}
+
+.ventas-ultra .ventas-hero h2 {
+    margin: 0;
+    color: #07513e;
+    font-size: clamp(26px,3vw,39px);
+    font-weight: 900;
+}
+
+.ventas-ultra .ventas-hero p {
+    max-width: 540px;
+    margin: 13px 0 20px;
+    color: #66877b;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.ventas-ultra .ventas-hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.ventas-ultra .ventas-hero-tags span {
+    padding: 8px 12px;
+    border: 1px solid rgba(9,130,94,.12);
+    border-radius: 30px;
+    background: rgba(255,255,255,.75);
+    color: #3b826a;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.ventas-ultra .ventas-nuevo-btn {
+    position: relative;
+    z-index: 1;
+    padding: 15px 24px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg,#7842d6,#9b5ff0);
+    color: #fff;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 12px 25px rgba(117,66,214,.22);
+    transition: transform .25s,box-shadow .25s;
+}
+
+.ventas-ultra .ventas-nuevo-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 17px 30px rgba(117,66,214,.3);
+}
+
+/* TARJETAS */
+
+.ventas-ultra .ventas-resumen {
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 16px;
+    margin-bottom: 26px;
+}
+
+.ventas-ultra .venta-resumen-card {
+    min-width: 0;
+    padding: 23px;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    transition: transform .25s,box-shadow .25s;
+}
+
+.ventas-ultra .venta-resumen-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(20,55,45,.09);
+}
+
+.ventas-ultra .ventas-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.ventas-ultra .ventas-card-icon {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    background: rgba(255,255,255,.7);
+    font-size: 22px;
+}
+
+.ventas-ultra .ventas-card-top small {
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    opacity: .7;
+}
+
+.ventas-ultra .venta-resumen-card p {
+    margin: 0 0 7px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.ventas-ultra .venta-resumen-card strong {
+    display: block;
+    margin-bottom: 9px;
+    font-size: clamp(23px,2.7vw,38px);
+    font-weight: 900;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+.ventas-ultra .ventas-card-note {
+    font-size: 11px;
+    opacity: .7;
+}
+
+.ventas-ultra .ventas-card-pagadas {
+    background: #e3f6ec;
+    border-color: #caeadb;
+    color: #08694e;
+}
+
+.ventas-ultra .ventas-card-ingresos {
+    background: #f0e7ff;
+    border-color: #e5d7fb;
+    color: #7543b2;
+}
+
+.ventas-ultra .ventas-card-anuladas {
+    background: #ffe8eb;
+    border-color: #f9d3d9;
+    color: #ad4354;
+}
+
+/* PANEL */
+
+.ventas-ultra .ventas-panel {
+    padding: 24px;
+    border: 1px solid #e0ece6;
+    border-radius: 23px;
+    background: #fff;
+    box-shadow: 0 12px 35px rgba(16,75,51,.045);
+}
+
+.ventas-ultra .ventas-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.ventas-ultra .ventas-panel-kicker {
+    color: #10a67c;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.7px;
+}
+
+.ventas-ultra .ventas-panel-header h3 {
+    margin: 7px 0;
+    color: #0c4737;
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.ventas-ultra .ventas-panel-header p {
+    margin: 0;
+    color: #8aa398;
+    font-size: 12px;
+}
+
+.ventas-ultra .ventas-panel-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 13px;
+    border-radius: 30px;
+    background: #eaf9f0;
+    color: #188663;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.ventas-ultra .ventas-panel-label span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #17bf83;
+    box-shadow: 0 0 0 4px #cff4e0;
+}
+
+/* FILTROS */
+
+.ventas-ultra .ventas-filtros {
+    display: grid;
+    grid-template-columns: minmax(220px,2fr) 1fr;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.ventas-ultra .ventas-buscador {
+    position: relative;
+    min-width: 0;
+}
+
+.ventas-ultra .ventas-buscador > span {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #7d9d8d;
+    font-size: 23px;
+    pointer-events: none;
+}
+
+.ventas-ultra #buscarVenta,
+.ventas-ultra #filtrarEstadoVenta {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    height: 49px;
+    padding: 0 14px;
+    border: 1px solid #dcebe3;
+    border-radius: 12px;
+    outline: none;
+    background: #f8fcfa;
+    color: #375e4e;
+    font: inherit;
+    font-size: 12px;
+}
+
+.ventas-ultra #buscarVenta {
+    padding-left: 43px;
+}
+
+.ventas-ultra #buscarVenta:focus,
+.ventas-ultra #filtrarEstadoVenta:focus {
+    border-color: #16ac7d;
+    box-shadow: 0 0 0 3px rgba(22,172,125,.12);
+}
+
+/* TABLA */
+
+.ventas-ultra .ventas-table-wrap {
+    overflow-x: auto;
+    border: 1px solid #e1ede7;
+    border-radius: 16px;
+    background: #fff;
+}
+
+.ventas-ultra .ventas-table {
+    width: 100%;
+    min-width: 950px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.ventas-ultra .ventas-table thead {
+    background: linear-gradient(90deg,#e9f5f0,#f2f6fb);
+}
+
+.ventas-ultra .ventas-table th {
+    padding: 17px 15px;
+    color: #30604e;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .8px;
+}
+
+.ventas-ultra .ventas-table td {
+    padding: 16px 15px;
+    border-top: 1px solid #edf2ef;
+    color: #476759;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.ventas-ultra .ventas-table tbody tr:hover {
+    background: #f4faf6;
+}
+
+.ventas-ultra .ventas-loading {
+    padding: 38px;
+    text-align: center;
+    color: #8da99a;
+}
+
+/* ESTILOS PARA FILAS DINÁMICAS */
+
+.ventas-ultra .venta-numero {
+    display: inline-flex;
+    padding: 8px 11px;
+    border-radius: 10px;
+    background: #edf0ff;
+    color: #6651ae;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.ventas-ultra .venta-cliente {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ventas-ultra .venta-cliente-avatar {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: #e6f7ee;
+    font-size: 20px;
+}
+
+.ventas-ultra .venta-total {
+    color: #07865c;
+    font-size: 14px;
+    font-weight: 900;
+}
+
+.ventas-ultra .venta-estado {
+    display: inline-flex;
+    padding: 8px 12px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.ventas-ultra .venta-estado-pagada {
+    background: #ddf6e7;
+    color: #16804c;
+}
+
+.ventas-ultra .venta-estado-anulada {
+    background: #ffe4e7;
+    color: #bd3345;
+}
+
+.ventas-ultra .venta-acciones {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.ventas-ultra .venta-btn-detalle,
+.ventas-ultra .venta-btn-anular {
+    padding: 9px 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform .2s;
+}
+
+.ventas-ultra .venta-btn-detalle {
+    background: #eee7ff;
+    color: #7543b2;
+}
+
+.ventas-ultra .venta-btn-anular {
+    background: #ffe4e7;
+    color: #bd3345;
+}
+
+.ventas-ultra .venta-btn-detalle:hover,
+.ventas-ultra .venta-btn-anular:hover {
+    transform: translateY(-2px);
+}
+
+/* PIE */
+
+.ventas-ultra .ventas-panel-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 19px;
+}
+
+.ventas-ultra .ventas-panel-footer p {
+    margin: 0;
+    color: #628673;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.ventas-ultra .ventas-panel-footer span {
+    color: #a0b8aa;
+    font-size: 11px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 950px) {
+    .ventas-ultra .ventas-resumen {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+}
+
+@media (max-width: 650px) {
+    .ventas-section.ventas-ultra {
+        padding: 14px;
+    }
+
+    .ventas-ultra .ventas-hero {
+        padding: 23px;
+    }
+
+    .ventas-ultra .ventas-nuevo-btn {
+        width: 100%;
+    }
+
+    .ventas-ultra .ventas-resumen,
+    .ventas-ultra .ventas-filtros {
+        grid-template-columns: 1fr;
+    }
+
+    .ventas-ultra .ventas-panel {
+        padding: 14px;
+    }
+
+    .ventas-ultra .ventas-panel-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

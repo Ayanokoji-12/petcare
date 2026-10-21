@@ -1,0 +1,770 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="PetCare+: plataforma de remisión veterinaria para conectar pacientes con especialistas."
+    >
+
+    <title>PetCare+ | Remisión veterinaria</title>
+
+    <!-- Tipografía -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Iconos -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Estilos propios -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         BARRA DE NAVEGACIÓN
+    ========================== -->
+    <header class="site-header">
+        <div class="container navbar">
+
+            <a href="#inicio" class="brand" aria-label="PetCare, inicio">
+                <span class="brand-icon">
+                    <i class="fa-solid fa-paw"></i>
+                </span>
+
+                <span class="brand-name">
+                    PetCare<span>+</span>
+                </span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="mobileMenu"
+                type="button"
+                aria-label="Abrir menú"
+                aria-expanded="false"
+            >
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="#inicio">Inicio</a>
+                <a href="#beneficios">Beneficios</a>
+                <a href="#remision">Remitir un caso</a>
+                <a href="#contacto">Contacto</a>
+
+                <a href="admin.html" class="nav-portal">
+                    <i class="fa-solid fa-user-shield"></i>
+                    Portal profesional
+                </a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- =========================
+             PORTADA PRINCIPAL
+        ========================== -->
+        <section class="hero" id="inicio">
+            <div class="hero-decoration hero-decoration-one"></div>
+            <div class="hero-decoration hero-decoration-two"></div>
+
+            <div class="container hero-grid">
+
+                <div class="hero-content">
+                    <span class="eyebrow">
+                        <span class="eyebrow-dot"></span>
+                        RED DE ESPECIALISTAS VETERINARIOS
+                    </span>
+
+                    <h1>
+                        Conectamos tu caso con el
+                        <span>especialista ideal.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Remite a tus pacientes y recibe atención veterinaria
+                        especializada, con comunicación cercana y seguimiento
+                        durante cada etapa del proceso.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#remision" class="btn btn-gold">
+                            Remitir un caso
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                        <a href="#beneficios" class="btn btn-outline">
+                            Conocer los beneficios
+                        </a>
+                    </div>
+
+                    <div class="hero-trust">
+                        <span class="trust-icon">
+                            <i class="fa-solid fa-shield-heart"></i>
+                        </span>
+
+                        <span>
+                            Atención profesional centrada en el bienestar animal.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="hero-glow"></div>
+
+                    <div class="hero-orbit orbit-one"></div>
+                    <div class="hero-orbit orbit-two"></div>
+
+                    <div class="hero-image-frame">
+                        <img
+                            src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1000&q=85"
+                            alt="Perro golden retriever"
+                            class="hero-dog"
+                        >
+
+                        <div class="hero-image-overlay"></div>
+
+                        <div class="hero-image-caption">
+                            <span class="caption-icon">
+                                <i class="fa-solid fa-heart-pulse"></i>
+                            </span>
+
+                            <span>
+                                <strong>Su bienestar, primero.</strong>
+                                <small>Atención veterinaria especializada</small>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="floating-badge badge-top">
+                        <span class="floating-icon">
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </span>
+
+                        <span>
+                            <strong>Especialistas</strong>
+                            <small>Atención profesional</small>
+                        </span>
+                    </div>
+
+                    <div class="floating-badge badge-bottom">
+                        <span class="floating-icon gold-icon">
+                            <i class="fa-solid fa-paw"></i>
+                        </span>
+
+                        <span>
+                            <strong>Cada caso importa</strong>
+                            <small>Seguimiento personalizado</small>
+                        </span>
+                    </div>
+
+                    <span class="decorative-paw paw-one">
+                        <i class="fa-solid fa-paw"></i>
+                    </span>
+
+                    <span class="decorative-paw paw-two">
+                        <i class="fa-solid fa-paw"></i>
+                    </span>
+                </div>
+
+            </div>
+
+            <!-- Indicadores de confianza -->
+            <div class="container hero-features" id="beneficios">
+
+                <article class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+
+                    <div>
+                        <h3>Respuesta coordinada</h3>
+                        <p>Comunicación clara para cada remisión.</p>
+                    </div>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+
+                    <div>
+                        <h3>Seguimiento continuo</h3>
+                        <p>Información organizada durante el proceso.</p>
+                    </div>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+
+                    <div>
+                        <h3>Atención especializada</h3>
+                        <p>Conexión con el servicio adecuado.</p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+
+        <!-- =========================
+             FORMULARIO DE REMISIÓN
+        ========================== -->
+        <section class="referral-section" id="remision">
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <span class="section-label">
+                        <i class="fa-solid fa-paw"></i>
+                        SOLICITUD DE REMISIÓN
+                    </span>
+
+                    <h2>Comencemos con los datos del caso</h2>
+
+                    <p>
+                        Completa la información para que el equipo veterinario
+                        pueda evaluar la solicitud y coordinar la atención.
+                    </p>
+                </div>
+
+
+                <!-- Indicador de pasos -->
+                <div class="steps-card">
+                    <div class="step active">
+                        <span class="step-number">01</span>
+
+                        <span class="step-text">
+                            <strong>Información</strong>
+                            <small>Datos de contacto</small>
+                        </span>
+                    </div>
+
+                    <span class="step-line"></span>
+
+                    <div class="step">
+                        <span class="step-number">02</span>
+
+                        <span class="step-text">
+                            <strong>Paciente</strong>
+                            <small>Datos de la mascota</small>
+                        </span>
+                    </div>
+
+                    <span class="step-line"></span>
+
+                    <div class="step">
+                        <span class="step-number">03</span>
+
+                        <span class="step-text">
+                            <strong>Historia clínica</strong>
+                            <small>Detalles del caso</small>
+                        </span>
+                    </div>
+                </div>
+
+
+                <!-- Formulario -->
+                <form id="referralForm" class="referral-form">
+
+                    <div class="form-heading">
+                        <div class="form-heading-icon">
+                            <i class="fa-solid fa-clipboard-list"></i>
+                        </div>
+
+                        <div>
+                            <h3>Información del caso</h3>
+                            <p>
+                                Los campos marcados con * son obligatorios.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <!-- Datos del centro veterinario -->
+                    <div class="form-section-title">
+                        <span class="section-number">01</span>
+                        <h4>Centro veterinario de origen</h4>
+                    </div>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="clinic">
+                                Centro veterinario <span>*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="clinic"
+                                name="clinic"
+                                placeholder="Nombre de la clínica"
+                                required
+                                maxlength="120"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service">
+                                Servicio solicitado <span>*</span>
+                            </label>
+
+                            <select id="service" name="service" required>
+                                <option value="">Selecciona un servicio</option>
+                                <option value="Medicina interna">Medicina interna</option>
+                                <option value="Cirugía">Cirugía</option>
+                                <option value="Diagnóstico">Diagnóstico por imágenes</option>
+                                <option value="Hospitalización">Hospitalización</option>
+                                <option value="Cardiología">Cardiología</option>
+                                <option value="Dermatología">Dermatología</option>
+                                <option value="Neurología">Neurología</option>
+                                <option value="Rehabilitación">Rehabilitación</option>
+                                <option value="Otro">Otro servicio</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="vetName">
+                                Nombre del veterinario <span>*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="vetName"
+                                name="vetName"
+                                placeholder="Nombre y apellidos"
+                                required
+                                maxlength="120"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">
+                                Teléfono de contacto <span>*</span>
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                placeholder="Ej. +51 999 999 999"
+                                required
+                                maxlength="25"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">
+                                Correo profesional <span>*</span>
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="nombre@clinica.com"
+                                required
+                                maxlength="150"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="referralDate">
+                                Fecha de remisión
+                            </label>
+
+                            <input
+                                type="date"
+                                id="referralDate"
+                                name="referralDate"
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <!-- Datos de la mascota -->
+                    <div class="form-section-title">
+                        <span class="section-number">02</span>
+                        <h4>Datos del paciente y propietario</h4>
+                    </div>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="owner">
+                                Nombre del propietario <span>*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="owner"
+                                name="owner"
+                                placeholder="Nombre completo"
+                                required
+                                maxlength="120"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="petName">
+                                Nombre de la mascota <span>*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="petName"
+                                name="petName"
+                                placeholder="Ej. Max"
+                                required
+                                maxlength="100"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="species">
+                                Especie <span>*</span>
+                            </label>
+
+                            <select id="species" name="species" required>
+                                <option value="">Selecciona la especie</option>
+                                <option value="Perro">Perro</option>
+                                <option value="Gato">Gato</option>
+                                <option value="Ave">Ave</option>
+                                <option value="Conejo">Conejo</option>
+                                <option value="Otro">Otra</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">
+                                Edad aproximada
+                            </label>
+
+                            <input
+                                type="text"
+                                id="age"
+                                name="age"
+                                placeholder="Ej. 3 años"
+                                maxlength="30"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sex">
+                                Sexo
+                            </label>
+
+                            <select id="sex" name="sex">
+                                <option value="">Selecciona una opción</option>
+                                <option value="Macho">Macho</option>
+                                <option value="Hembra">Hembra</option>
+                                <option value="No determinado">No determinado</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="breed">
+                                Raza
+                            </label>
+
+                            <input
+                                type="text"
+                                id="breed"
+                                name="breed"
+                                placeholder="Raza de la mascota"
+                                maxlength="100"
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <!-- Motivo de remisión -->
+                    <div class="form-section-title">
+                        <span class="section-number">03</span>
+                        <h4>Motivo de la remisión</h4>
+                    </div>
+
+                    <p class="field-description">
+                        Selecciona el tipo de atención que necesita el paciente.
+                    </p>
+
+                    <div class="reason-options">
+
+                        <label class="reason-option">
+                            <input
+                                type="radio"
+                                name="reason"
+                                value="Hospitalización"
+                                required
+                            >
+
+                            <span class="reason-content">
+                                <i class="fa-solid fa-house-medical"></i>
+                                <span>Hospitalización</span>
+                            </span>
+                        </label>
+
+                        <label class="reason-option">
+                            <input
+                                type="radio"
+                                name="reason"
+                                value="Cirugía"
+                            >
+
+                            <span class="reason-content">
+                                <i class="fa-solid fa-kit-medical"></i>
+                                <span>Cirugía</span>
+                            </span>
+                        </label>
+
+                        <label class="reason-option">
+                            <input
+                                type="radio"
+                                name="reason"
+                                value="Diagnóstico"
+                            >
+
+                            <span class="reason-content">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <span>Diagnóstico</span>
+                            </span>
+                        </label>
+
+                        <label class="reason-option">
+                            <input
+                                type="radio"
+                                name="reason"
+                                value="Reevaluación"
+                            >
+
+                            <span class="reason-content">
+                                <i class="fa-solid fa-rotate"></i>
+                                <span>Reevaluación</span>
+                            </span>
+                        </label>
+
+                        <label class="reason-option">
+                            <input
+                                type="radio"
+                                name="reason"
+                                value="Rehabilitación"
+                            >
+
+                            <span class="reason-content">
+                                <i class="fa-solid fa-person-walking"></i>
+                                <span>Rehabilitación</span>
+                            </span>
+                        </label>
+
+                    </div>
+
+
+                    <!-- Historia clínica -->
+                    <div class="form-group full-width summary-group">
+                        <label for="summary">
+                            Resumen clínico / historia del caso <span>*</span>
+                        </label>
+
+                        <textarea
+                            id="summary"
+                            name="summary"
+                            rows="5"
+                            placeholder="Describe los síntomas, antecedentes, evolución, tratamientos realizados y motivo de la remisión..."
+                            required
+                            minlength="10"
+                            maxlength="5000"
+                        ></textarea>
+
+                        <small>
+                            No incluyas información que no sea necesaria para la atención.
+                        </small>
+                    </div>
+
+
+                    <!-- Archivos adjuntos -->
+                    <div class="form-group full-width">
+                        <label for="attachments">
+                            Documentos clínicos
+                        </label>
+
+                        <div class="upload-area">
+                            <div class="upload-icon">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                            </div>
+
+                            <h4>Adjunta los documentos del paciente</h4>
+
+                            <p>
+                                Selecciona análisis, informes o imágenes.
+                                Formatos PDF, JPG o PNG.
+                            </p>
+
+                            <label for="attachments" class="upload-button">
+                                <i class="fa-solid fa-paperclip"></i>
+                                Seleccionar archivos
+                            </label>
+
+                            <input
+                                type="file"
+                                id="attachments"
+                                name="attachments"
+                                accept=".pdf,.jpg,.jpeg,.png"
+                                multiple
+                                hidden
+                            >
+
+                            <small id="fileNames">
+                                Ningún archivo seleccionado
+                            </small>
+                        </div>
+                    </div>
+
+
+                    <!-- Consentimiento -->
+                    <div class="consent-group">
+                        <input
+                            type="checkbox"
+                            id="consent"
+                            name="consent"
+                            value="1"
+                            required
+                        >
+
+                        <label for="consent">
+                            Confirmo que estoy autorizado para compartir la
+                            información necesaria para esta remisión y acepto
+                            el tratamiento de los datos conforme a la política
+                            de privacidad de la clínica.
+                            <span>*</span>
+                        </label>
+                    </div>
+
+
+                    <!-- Mensajes del formulario -->
+                    <div
+                        id="formMessage"
+                        class="form-message"
+                        role="status"
+                        aria-live="polite"
+                    ></div>
+
+
+                    <!-- Envío -->
+                    <div class="form-footer">
+                        <div class="form-security">
+                            <i class="fa-solid fa-shield-halved"></i>
+
+                            <span>
+                                Información destinada a la coordinación
+                                de la atención veterinaria.
+                            </span>
+                        </div>
+
+                        <button type="submit" class="btn btn-submit">
+                            <i class="fa-solid fa-paw"></i>
+                            <span>Enviar solicitud de remisión</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </section>
+
+
+        <!-- =========================
+             LLAMADA A LA ACCIÓN
+        ========================== -->
+        <section class="contact-cta" id="contacto">
+            <div class="container cta-inner">
+
+                <div class="cta-icon">
+                    <i class="fa-solid fa-paw"></i>
+                </div>
+
+                <div class="cta-copy">
+                    <span>ESTAMOS PARA AYUDARTE</span>
+
+                    <h2>Un equipo conectado puede marcar la diferencia.</h2>
+
+                    <p>
+                        Organiza tus remisiones y facilita la coordinación
+                        entre profesionales veterinarios.
+                    </p>
+                </div>
+
+                <a href="#remision" class="btn btn-gold">
+                    Remitir un caso
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         PIE DE PÁGINA
+    ========================== -->
+    <footer class="site-footer">
+        <div class="container footer-main">
+
+            <a href="#inicio" class="brand footer-brand">
+                <span class="brand-icon">
+                    <i class="fa-solid fa-paw"></i>
+                </span>
+
+                <span class="brand-name">
+                    PetCare<span>+</span>
+                </span>
+            </a>
+
+            <p>
+                Conectando profesionales para cuidar mejor de cada mascota.
+            </p>
+
+            <a href="#inicio" class="back-top" aria-label="Volver al inicio">
+                <i class="fa-solid fa-arrow-up"></i>
+            </a>
+
+        </div>
+
+        <div class="container footer-bottom">
+            <span>
+                © <span id="year"></span> PetCare+. Proyecto académico.
+            </span>
+
+            <span>
+                Desarrollado con <i class="fa-solid fa-heart"></i> por el bienestar animal.
+            </span>
+        </div>
+    </footer>
+
+
+    <!-- JavaScript de la página -->
+    <script src="js/app.js"></script>
+
+</body>
+</html>
+```

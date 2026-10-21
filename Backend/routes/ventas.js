@@ -16,7 +16,9 @@ router.use(
     verificarToken,
     permitirRoles("Administrador")
 );
-
+const ventaPagosController = require(
+  "../controllers/ventaPagosController"
+);
 // LISTAR VENTAS
 router.get("/", controller.listarVentas);
 
@@ -28,5 +30,9 @@ router.post("/", controller.crearVenta);
 
 // ANULAR VENTA
 router.put("/:id/anular", controller.anularVenta);
-
+////se registrar cualquier consulta 
+router.get(
+  "/:id/pagos",
+  ventaPagosController.obtenerHistorialPagos
+);
 module.exports = router;

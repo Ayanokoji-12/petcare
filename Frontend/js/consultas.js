@@ -402,8 +402,8 @@ function mostrarConsultas() {
 
         // AGREGAR FILA
         el.tabla.appendChild(fila);
-    });
-}
+      });
+   }
 
     async function cargarConsultas() {
         try {

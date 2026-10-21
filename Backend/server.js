@@ -19,7 +19,9 @@ const remisionesRoutes = require("./routes/remisiones");
 const productosRoutes = require("./routes/productos");
 const ventasRoutes = require("./routes/ventas");
 const authRoutes = require("./routes/auth");
-const empleadosRoutes = require("./routes/empleados");
+const empleadosRoutes = require("./routes/empleado");
+const pagosRoutes = require("./routes/pagos");
+
 // INICIAR EXPRESS
 const app = express();
 
@@ -80,8 +82,10 @@ app.use("/api/remisiones", remisionesRoutes);
 app.use("/api/productos", productosRoutes);
 app.use("/api/ventas", ventasRoutes);
 app.use("/api/auth", authRoutes);
-app.use("/api/empleados", empleadosRoutes);
 
+app.use("/api/empleados", empleadosRoutes);
+app.use("/api/pagos", pagosRoutes);
+app.use("/api/clientes", clientesRoutes);
 
 
 // ========================================

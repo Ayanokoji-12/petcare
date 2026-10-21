@@ -1,0 +1,482 @@
+
+/* ==========================================
+   PETCARE+ | CONSULTAS NIVEL 4 ULTRA PREMIUM
+========================================== */
+
+.consultas-section.consultas-ultra {
+    padding: 26px;
+    border: 1px solid #e3eee8;
+    border-radius: 26px;
+    background: #f7fbf9;
+    color: #173d32;
+}
+
+/* CABECERA */
+
+.consultas-ultra .consultas-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+    overflow: hidden;
+    padding: 36px;
+    margin-bottom: 24px;
+    border: 1px solid #e5e7ec;
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at 85% 10%,
+            rgba(176,143,255,.25),transparent 35%),
+        radial-gradient(circle at 10% 100%,
+            rgba(22,192,143,.18),transparent 42%),
+        linear-gradient(120deg,#e5f8ec,#f8f3ff 75%);
+}
+
+.consultas-ultra .consultas-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 650px;
+}
+
+.consultas-ultra .consultas-kicker {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #08785b;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.7px;
+}
+
+.consultas-ultra .consultas-hero h2 {
+    margin: 0;
+    color: #07513e;
+    font-size: clamp(26px,3vw,39px);
+    font-weight: 900;
+}
+
+.consultas-ultra .consultas-hero p {
+    max-width: 540px;
+    margin: 13px 0 20px;
+    color: #66877b;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.consultas-ultra .consultas-hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.consultas-ultra .consultas-hero-tags span {
+    padding: 8px 12px;
+    border: 1px solid rgba(9,130,94,.12);
+    border-radius: 30px;
+    background: rgba(255,255,255,.75);
+    color: #3b826a;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.consultas-ultra .consultas-nuevo-btn {
+    position: relative;
+    z-index: 1;
+    padding: 15px 24px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg,#7842d6,#9b5ff0);
+    color: #fff;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 12px 25px rgba(117,66,214,.22);
+    transition: transform .25s,box-shadow .25s;
+}
+
+.consultas-ultra .consultas-nuevo-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 17px 30px rgba(117,66,214,.3);
+}
+
+/* TARJETAS */
+
+.consultas-ultra .consultas-resumen {
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 16px;
+    margin-bottom: 26px;
+}
+
+.consultas-ultra .consulta-resumen-card {
+    min-width: 0;
+    padding: 23px;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    transition: transform .25s,box-shadow .25s;
+}
+
+.consultas-ultra .consulta-resumen-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(20,55,45,.09);
+}
+
+.consultas-ultra .consultas-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.consultas-ultra .consultas-card-icon {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    background: rgba(255,255,255,.7);
+    font-size: 22px;
+}
+
+.consultas-ultra .consultas-card-top small {
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    opacity: .7;
+}
+
+.consultas-ultra .consulta-resumen-card p {
+    margin: 0 0 7px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.consultas-ultra .consulta-resumen-card strong {
+    display: block;
+    margin-bottom: 9px;
+    font-size: clamp(23px,2.7vw,38px);
+    font-weight: 900;
+    line-height: 1.2;
+}
+
+.consultas-ultra .consultas-card-note {
+    font-size: 11px;
+    opacity: .7;
+}
+
+.consultas-ultra .consultas-card-total {
+    background: #e3f6ec;
+    border-color: #caeadb;
+    color: #08694e;
+}
+
+.consultas-ultra .consultas-card-mascotas {
+    background: #f0e7ff;
+    border-color: #e5d7fb;
+    color: #7543b2;
+}
+
+.consultas-ultra .consultas-card-hoy {
+    background: #fff3da;
+    border-color: #f6e4b9;
+    color: #95610a;
+}
+
+/* PANEL */
+
+.consultas-ultra .consultas-panel {
+    padding: 24px;
+    border: 1px solid #e0ece6;
+    border-radius: 23px;
+    background: #fff;
+    box-shadow: 0 12px 35px rgba(16,75,51,.045);
+}
+
+.consultas-ultra .consultas-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.consultas-ultra .consultas-panel-kicker {
+    color: #10a67c;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.7px;
+}
+
+.consultas-ultra .consultas-panel-header h3 {
+    margin: 7px 0;
+    color: #0c4737;
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.consultas-ultra .consultas-panel-header p {
+    margin: 0;
+    color: #8aa398;
+    font-size: 12px;
+}
+
+.consultas-ultra .consultas-panel-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 13px;
+    border-radius: 30px;
+    background: #eaf9f0;
+    color: #188663;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.consultas-ultra .consultas-panel-label span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #17bf83;
+    box-shadow: 0 0 0 4px #cff4e0;
+}
+
+/* FILTROS */
+
+.consultas-ultra .consultas-filtros {
+    display: grid;
+    grid-template-columns: minmax(220px,2fr) 1fr auto;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.consultas-ultra .consultas-buscador {
+    position: relative;
+    min-width: 0;
+}
+
+.consultas-ultra .consultas-buscador > span {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #7d9d8d;
+    font-size: 23px;
+    pointer-events: none;
+}
+
+.consultas-ultra #buscarConsulta,
+.consultas-ultra #filtrarFechaConsulta {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    height: 49px;
+    padding: 0 14px;
+    border: 1px solid #dcebe3;
+    border-radius: 12px;
+    outline: none;
+    background: #f8fcfa;
+    color: #375e4e;
+    font: inherit;
+    font-size: 12px;
+}
+
+.consultas-ultra #buscarConsulta {
+    padding-left: 43px;
+}
+
+.consultas-ultra .consultas-limpiar-btn {
+    height: 49px;
+    padding: 0 19px;
+    border: 1px solid #e1d6f5;
+    border-radius: 12px;
+    background: #f2eaff;
+    color: #7543b2;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.consultas-ultra #buscarConsulta:focus,
+.consultas-ultra #filtrarFechaConsulta:focus {
+    border-color: #16ac7d;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(22,172,125,.12);
+}
+
+/* TABLA */
+
+.consultas-ultra .consultas-table-wrap {
+    overflow-x: auto;
+    border: 1px solid #e1ede7;
+    border-radius: 16px;
+    background: #fff;
+}
+
+.consultas-ultra .consultas-table {
+    width: 100%;
+    min-width: 850px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.consultas-ultra .consultas-table thead {
+    background: linear-gradient(90deg,#e9f5f0,#f2f6fb);
+}
+
+.consultas-ultra .consultas-table th {
+    padding: 17px 15px;
+    color: #30604e;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .8px;
+}
+
+.consultas-ultra .consultas-table td {
+    padding: 16px 15px;
+    border-top: 1px solid #edf2ef;
+    color: #476759;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.consultas-ultra .consultas-table tbody tr:hover {
+    background: #f4faf6;
+}
+
+.consultas-ultra .consultas-loading {
+    padding: 38px;
+    text-align: center;
+    color: #8da99a;
+}
+
+/* ELEMENTOS PARA JS */
+
+.consultas-ultra .consulta-paciente {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.consultas-ultra .consulta-avatar {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    background: #e5f6ec;
+    font-size: 23px;
+}
+
+.consultas-ultra .consulta-paciente-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.consultas-ultra .consulta-paciente-info strong {
+    color: #173f32;
+    font-size: 13px;
+}
+
+.consultas-ultra .consulta-paciente-info small {
+    color: #91a79c;
+    font-size: 11px;
+}
+
+.consultas-ultra .consulta-diagnostico {
+    display: inline-block;
+    max-width: 280px;
+    color: #567665;
+    line-height: 1.6;
+}
+
+.consultas-ultra .consulta-acciones {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.consultas-ultra .consulta-btn-editar,
+.consultas-ultra .consulta-btn-eliminar {
+    padding: 9px 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.consultas-ultra .consulta-btn-editar {
+    background: #eee7ff;
+    color: #7543b2;
+}
+
+.consultas-ultra .consulta-btn-eliminar {
+    background: #ffe4e7;
+    color: #bd3345;
+}
+
+/* PIE */
+
+.consultas-ultra .consultas-panel-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 19px;
+}
+
+.consultas-ultra .consultas-panel-footer p {
+    margin: 0;
+    color: #628673;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.consultas-ultra .consultas-panel-footer span {
+    color: #a0b8aa;
+    font-size: 11px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 950px) {
+    .consultas-ultra .consultas-resumen {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+}
+
+@media (max-width: 650px) {
+    .consultas-section.consultas-ultra {
+        padding: 14px;
+    }
+
+    .consultas-ultra .consultas-hero {
+        padding: 23px;
+    }
+
+    .consultas-ultra .consultas-nuevo-btn {
+        width: 100%;
+    }
+
+    .consultas-ultra .consultas-resumen,
+    .consultas-ultra .consultas-filtros {
+        grid-template-columns: 1fr;
+    }
+
+    .consultas-ultra .consultas-panel {
+        padding: 14px;
+    }
+
+    .consultas-ultra .consultas-panel-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

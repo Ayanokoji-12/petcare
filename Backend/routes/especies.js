@@ -1,29 +1,21 @@
-
 const express = require("express");
-const db = require("../db");
-
 const router = express.Router();
 
+const especiesController = require("../controllers/especiesController");
+
 // LISTAR ESPECIES
-router.get("/", async (req, res) => {
-    try {
-        const [especies] = await db.query(
-            "SELECT * FROM especie ORDER BY nombre ASC"
-        );
+router.get("/", especiesController.listarEspecies);
 
-        res.status(200).json({
-            mensaje: "Especies obtenidas correctamente",
-            total: especies.length,
-            datos: especies
-        });
+// OBTENER ESPECIE POR ID
+router.get("/:id", especiesController.obtenerEspecie);
 
-    } catch (error) {
-        console.error("Error al listar especies:", error);
+// REGISTRAR ESPECIE
+router.post("/", especiesController.crearEspecie);
 
-        res.status(500).json({
-            mensaje: "Error al obtener especies"
-        });
-    }
-});
+// ACTUALIZAR ESPECIE
+router.put("/:id", especiesController.actualizarEspecie);
+
+// ELIMINAR ESPECIE
+router.delete("/:id", especiesController.eliminarEspecie);
 
 module.exports = router;

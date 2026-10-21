@@ -1,0 +1,959 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#041e1d">
+  <meta name="description" content="PetCare+ | Centro veterinario y plataforma de atención para mascotas.">
+  <title>PetCare+ | Cuidamos lo que más amas</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/app.js" defer></script>
+</head>
+
+<body>
+
+  <!-- NAVEGACIÓN PRINCIPAL -->
+  <header class="header" id="inicio">
+    <nav class="navbar container">
+
+      <a href="#inicio" class="brand" aria-label="PetCare+ Inicio">
+        <span class="brand-icon">
+          <i class="fa-solid fa-paw"></i>
+        </span>
+        <span class="brand-text">
+          <strong>PetCare<span>+</span></strong>
+          <small>CENTRO VETERINARIO</small>
+        </span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="navLinks">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#inicio" class="active">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#especialistas">Especialistas</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="search-btn" id="searchBtn" type="button" aria-label="Buscar servicios">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+        <a href="login.html" class="btn btn-purple btn-small">
+          Panel de Gestion
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+
+        </a>
+        
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO / PORTADA PREMIUM -->
+    <section class="hero">
+
+      <div class="hero-glow"></div>
+      <div class="hero-paw hero-paw-one">✦</div>
+      <div class="hero-paw hero-paw-two">✦</div>
+
+      <div class="container hero-layout">
+
+        <div class="hero-content">
+
+          <div class="eyebrow">
+            <i class="fa-solid fa-heart-pulse"></i>
+            MEDICINA VETERINARIA CON AMOR
+          </div>
+
+          <h1>
+            Su mundo es pequeño.
+            <span>Nuestro amor es enorme.</span>
+          </h1>
+
+          <p class="hero-description">
+            Cada huella cuenta una historia. En PetCare+ combinamos
+            atención veterinaria, tecnología y un trato cercano para
+            acompañar a tu mejor amigo en cada etapa de su vida.
+          </p>
+
+          <div class="hero-benefits">
+
+            <div class="benefit">
+              <span class="benefit-icon amber">
+                <i class="fa-solid fa-bolt"></i>
+              </span>
+              <span>Atención<br>personalizada</span>
+            </div>
+
+            <div class="benefit">
+              <span class="benefit-icon pink">
+                <i class="fa-solid fa-heart"></i>
+              </span>
+              <span>Amor por<br>los animales</span>
+            </div>
+
+            <div class="benefit">
+              <span class="benefit-icon cyan">
+                <i class="fa-solid fa-shield-heart"></i>
+              </span>
+              <span>Cuidado<br>integral</span>
+            </div>
+
+          </div>
+
+          <div class="hero-buttons">
+
+            <a href="#reservar" class="btn btn-purple btn-large">
+              <i class="fa-solid fa-calendar-check"></i>
+              Reservar una cita
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+            <a href="#remisiones" class="btn btn-outline btn-large">
+              <i class="fa-solid fa-file-medical"></i>
+              Remitir un caso
+            </a>
+
+          </div>
+
+          <div class="hero-trust">
+            <i class="fa-solid fa-circle-check"></i>
+            Tu mascota merece una experiencia extraordinaria.
+          </div>
+
+        </div>
+
+        <div class="hero-visual">
+
+          <div class="hero-ring"></div>
+
+          <div class="hero-cross">
+            <i class="fa-solid fa-paw"></i>
+            <i class="fa-solid fa-plus"></i>
+          </div>
+
+          <!-- Imagen personalizada: la crearemos después -->
+          <img
+            src="assets/imagenes/mascotas-hero.png"
+            alt="Perro y gato de PetCare+"
+            class="hero-pets"
+            onerror="this.style.display='none';document.getElementById('heroFallback').hidden=false"
+          >
+
+          <div class="hero-fallback" id="heroFallback" hidden>
+            🐕 🐈
+          </div>
+
+          <div class="hero-handwriting">
+            Más amor,
+            <br>
+            <span>más momentos juntos ♡</span>
+          </div>
+
+          <div class="floating-stat">
+            <span>
+              <i class="fa-solid fa-heart-pulse"></i>
+            </span>
+            <div>
+              <strong>PetCare+</strong>
+              <small>Cuidamos cada huella</small>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FORMULARIO DE REMISIÓN -->
+    <section class="remission-section" id="remisiones">
+
+      <div class="container">
+
+        <div class="remission-card">
+
+          <div class="section-heading remission-heading">
+
+            <span class="heading-icon purple">
+              <i class="fa-solid fa-file-medical"></i>
+            </span>
+
+            <div>
+              <span class="section-tag">PORTAL DE REMISIONES</span>
+              <h2>Remite tu caso clínico</h2>
+              <p>
+                Una experiencia de remisión organizada, sencilla y profesional.
+                Completa los datos para registrar tu solicitud.
+              </p>
+            </div>
+
+          </div>
+
+          <div class="steps">
+
+            <div class="step active">
+              <i class="fa-solid fa-house-medical"></i>
+              <span>1. Centro y servicio</span>
+            </div>
+
+            <div class="step-line"></div>
+
+            <div class="step">
+              <i class="fa-solid fa-paw"></i>
+              <span>2. Datos del paciente</span>
+            </div>
+
+            <div class="step-line"></div>
+
+            <div class="step">
+              <i class="fa-solid fa-notes-medical"></i>
+              <span>3. Historia clínica</span>
+            </div>
+
+          </div>
+
+          <form id="remisionForm">
+
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label for="centroOrigen">
+                  <i class="fa-solid fa-hospital"></i>
+                  Centro veterinario de origen
+                </label>
+                <select id="centroOrigen" required>
+                  <option value="">Selecciona tu centro</option>
+                  <option value="Particular">Veterinario particular</option>
+                  <option value="Clinica externa">Clínica externa</option>
+                  <option value="PetCare+">PetCare+</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="servicioRemision">
+                  <i class="fa-solid fa-stethoscope"></i>
+                  Servicio solicitado
+                </label>
+                <select id="servicioRemision" required>
+                  <option value="">Cargando servicios...</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="nombreMascota">
+                  <i class="fa-solid fa-paw"></i>
+                  Nombre de la mascota
+                </label>
+                <input
+                  id="nombreMascota"
+                  type="text"
+                  placeholder="Ej. Max"
+                  maxlength="100"
+                  required>
+              </div>
+
+              <div class="form-group">
+                <label for="veterinarioOrigen">
+                  <i class="fa-solid fa-user-doctor"></i>
+                  Veterinario responsable
+                </label>
+                <input
+                  id="veterinarioOrigen"
+                  type="text"
+                  placeholder="Nombre completo"
+                  maxlength="120"
+                  required>
+              </div>
+
+              <div class="form-group">
+                <label for="telefonoRemision">
+                  <i class="fa-solid fa-phone"></i>
+                  Teléfono de contacto
+                </label>
+                <input
+                  id="telefonoRemision"
+                  type="tel"
+                  placeholder="Ej. 987654321"
+                  maxlength="20"
+                  required>
+              </div>
+
+              <div class="form-group">
+                <label for="especieRemision">
+                  <i class="fa-solid fa-dog"></i>
+                  Especie del paciente
+                </label>
+                <select id="especieRemision" required>
+                  <option value="">Selecciona la especie</option>
+                  <option value="Perro">Perro</option>
+                  <option value="Gato">Gato</option>
+                  <option value="Conejo">Conejo</option>
+                  <option value="Ave">Ave</option>
+                  <option value="Otro">Otro</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="correoRemision">
+                  <i class="fa-solid fa-envelope"></i>
+                  Correo profesional
+                </label>
+                <input
+                  id="correoRemision"
+                  type="email"
+                  placeholder="correo@clinica.com"
+                  required>
+              </div>
+
+              <div class="form-group">
+                <label for="propietarioMascota">
+                  <i class="fa-solid fa-user"></i>
+                  Propietario de la mascota
+                </label>
+                <input
+                  id="propietarioMascota"
+                  type="text"
+                  placeholder="Nombre del propietario"
+                  required>
+              </div>
+
+              <div class="form-group full">
+                <label>
+                  <i class="fa-solid fa-list-check"></i>
+                  Método de remisión
+                </label>
+
+                <div class="method-options">
+
+                  <label class="method active">
+                    <input type="radio" name="metodo" value="Hospitalización" checked>
+                    <i class="fa-solid fa-hospital"></i>
+                    Hospitalización
+                  </label>
+
+                  <label class="method">
+                    <input type="radio" name="metodo" value="Cirugía">
+                    <i class="fa-solid fa-syringe"></i>
+                    Cirugía
+                  </label>
+
+                  <label class="method">
+                    <input type="radio" name="metodo" value="Diagnóstico">
+                    <i class="fa-solid fa-stethoscope"></i>
+                    Diagnóstico
+                  </label>
+
+                  <label class="method">
+                    <input type="radio" name="metodo" value="Reevaluación">
+                    <i class="fa-solid fa-rotate"></i>
+                    Reevaluación
+                  </label>
+
+                  <label class="method">
+                    <input type="radio" name="metodo" value="Rehabilitación">
+                    <i class="fa-solid fa-person-walking"></i>
+                    Rehabilitación
+                  </label>
+
+                </div>
+              </div>
+
+              <div class="form-group full">
+                <label for="motivoRemision">
+                  <i class="fa-solid fa-notes-medical"></i>
+                  Resumen clínico / motivo de remisión
+                </label>
+                <textarea
+                  id="motivoRemision"
+                  rows="5"
+                  required
+                  placeholder="Describe el caso clínico, síntomas, evolución y motivo de la remisión..."></textarea>
+              </div>
+
+              <div class="form-group full">
+                <label class="upload-area" for="archivoRemision">
+
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                  <span>
+                    <strong>Adjuntar archivo clínico</strong>
+                    <small>PDF, JPG o PNG · Máximo 10 MB</small>
+                    <small id="fileName">Ningún archivo seleccionado</small>
+                  </span>
+
+                  <span class="upload-button">
+                    Seleccionar archivo
+                    <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                  </span>
+
+                </label>
+
+                <input
+                  id="archivoRemision"
+                  class="file-input"
+                  type="file"
+                  accept=".pdf,.jpg,.jpeg,.png">
+              </div>
+
+            </div>
+
+            <div class="form-submit">
+
+              <button
+                type="submit"
+                id="enviarRemision"
+                class="btn btn-purple btn-large">
+
+                <i class="fa-solid fa-paper-plane"></i>
+                Enviar solicitud de remisión
+                <i class="fa-solid fa-arrow-right"></i>
+
+              </button>
+
+              <p class="privacy-note">
+                <i class="fa-solid fa-lock"></i>
+                Tus datos serán utilizados para gestionar tu solicitud veterinaria.
+              </p>
+
+              <p class="form-message" id="remisionMensaje" role="status"></p>
+
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SERVICIOS VETERINARIOS -->
+    <section class="services-section" id="servicios">
+
+      <div class="container">
+
+        <div class="services-top">
+
+          <div>
+            <span class="section-tag">
+              <i class="fa-solid fa-sparkles"></i>
+              NUESTROS SERVICIOS
+            </span>
+
+            <h2>
+              Cuidado extraordinario
+              <span>para cada huella.</span>
+            </h2>
+
+            <p>
+              Una atención integral pensada para acompañar
+              a tu mascota en cada momento.
+            </p>
+          </div>
+
+          <a href="#reservar" class="btn btn-service">
+            Explorar atención
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+
+        </div>
+
+        <div class="services-grid">
+
+          <article class="service-card">
+            <div class="service-picture dog-bg">
+         <img
+            src="assets/imagenes/consulta.png"
+            alt="Veterinaria atendiendo a un perro"
+            class="service-img"
+           >
+         </div>
+            <span class="service-icon green">
+              <i class="fa-solid fa-stethoscope"></i>
+            </span>
+            <h3>Consulta general</h3>
+            <p>Evaluación profesional y seguimiento de la salud.</p>
+            <a href="#reservar">
+              Solicitar atención
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-picture cat-bg">
+         <img
+            src="assets/imagenes/vacunacion.png"
+            alt="Veterinaria vacunando a un gato"
+            class="service-img"
+         >
+         </div>
+            <span class="service-icon purple">
+              <i class="fa-solid fa-syringe"></i>
+            </span>
+            <h3>Vacunación</h3>
+            <p>Prevención y protección en cada etapa de su vida.</p>
+            <a href="#reservar">
+              Solicitar atención
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </article>
+
+          <article class="service-card">
+            
+            <div class="service-picture dog-bg">
+            <img
+            src="assets/imagenes/cirugia.png"
+            alt="Veterinario realizando una cirugía a un perro"
+            class="service-img"
+         >
+        </div>
+
+            <span class="service-icon green">
+              <i class="fa-solid fa-kit-medical"></i>
+            </span>
+            <h3>Cirugía</h3>
+            <p>Atención quirúrgica y evaluación especializada.</p>
+            <a href="#remisiones">
+              Remitir un caso
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </article>
+
+          <article class="service-card">
+            
+         <div class="service-picture cat-bg">
+         <img
+             src="assets/imagenes/diagnostico.png"
+             alt="Veterinario realizando un diagnóstico por ecografía a un perro"
+            class="service-img"
+         >
+         </div>
+
+            <span class="service-icon purple">
+              <i class="fa-fsolid fa-microscope"></i>
+            </span>
+            <h3>Diagnóstico</h3>
+            <p>Evaluación clínica y apoyo al diagnóstico.</p>
+            <a href="#remisiones">
+              Remitir un caso
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </article>
+
+          <article class="service-card">
+            
+         <div class="service-picture cat-bg">
+         <img
+              src="assets/imagenes/odontologia.png"
+              alt="Veterinaria revisando los dientes de un conejo"
+              class="service-img"
+  >
+</div>
+
+            <span class="service-icon green">
+              <i class="fa-solid fa-tooth"></i>
+            </span>
+            <h3>Odontología</h3>
+            <p>Cuidado bucal y prevención de problemas dentales.</p>
+            <a href="#reservar">
+              Solicitar atención
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </article>
+
+          <article class="service-card">
+            
+         <div class="service-picture dog-bg">
+         <img
+            src="assets/imagenes/estetica.png"
+             alt="Peluquería y estética para mascotas"
+             class="service-img"
+         >
+            </div>
+
+            <span class="service-icon purple">
+              <i class="fa-solid fa-scissors"></i>
+            </span>
+            <h3>Estética</h3>
+            <p>Higiene, bienestar y cuidado de su apariencia.</p>
+            <a href="#reservar">
+              Solicitar atención
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- RESERVAR CITA -->
+    <section class="booking-section" id="reservar">
+
+      <div class="container booking-layout">
+
+        <div class="booking-info">
+
+          <span class="section-tag">
+            <i class="fa-solid fa-calendar-heart"></i>
+            AGENDA TU VISITA
+          </span>
+
+          <h2>
+            Una cita hoy.
+            <span>Más momentos juntos mañana.</span>
+          </h2>
+
+          <p>
+            Solicita una cita para tu mascota de forma sencilla.
+            Nuestro equipo revisará la información registrada
+            para gestionar tu solicitud.
+          </p>
+
+          <div class="booking-feature">
+            <i class="fa-solid fa-calendar-check"></i>
+            <span>Solicitudes organizadas</span>
+          </div>
+
+          <div class="booking-feature">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <span>Atención enfocada en el bienestar</span>
+          </div>
+
+          <div class="booking-feature">
+            <i class="fa-solid fa-paw"></i>
+            <span>Cuidado para cada etapa de su vida</span>
+          </div>
+
+          <div class="booking-decoration">
+            <i class="fa-solid fa-paw"></i>
+          </div>
+
+        </div>
+
+        <form class="booking-form" id="citaForm">
+
+          <span class="section-tag">
+            <i class="fa-solid fa-calendar-days"></i>
+            NUEVA SOLICITUD
+          </span>
+
+          <h3>Solicitar una cita</h3>
+
+          <p>Cuéntanos un poco sobre tu mejor amigo.</p>
+
+          <div class="form-grid two">
+
+            <div class="form-group">
+              <label for="citaPropietario">Nombre del propietario</label>
+              <input
+                id="citaPropietario"
+                type="text"
+                placeholder="Nombre completo"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label for="citaTelefono">Teléfono de contacto</label>
+              <input
+                id="citaTelefono"
+                type="tel"
+                placeholder="Ej. 987654321"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label for="citaMascota">Nombre de la mascota</label>
+              <input
+                id="citaMascota"
+                type="text"
+                placeholder="Ej. Max"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label for="citaEspecie">Especie</label>
+              <select id="citaEspecie" required>
+                <option value="">Seleccionar especie</option>
+                <option value="Perro">Perro</option>
+                <option value="Gato">Gato</option>
+                <option value="Conejo">Conejo</option>
+                <option value="Ave">Ave</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="citaServicio">Servicio solicitado</label>
+              <select id="citaServicio" required>
+                <option value="">Cargando servicios...</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="citaFecha">Fecha preferida</label>
+              <input id="citaFecha" type="date" required>
+            </div>
+
+            <div class="form-group">
+              <label for="citaHora">Hora preferida</label>
+              <input id="citaHora" type="time" required>
+            </div>
+
+            <div class="form-group">
+              <label for="citaMotivo">Motivo de consulta</label>
+              <input
+                id="citaMotivo"
+                type="text"
+                placeholder="Ej. Control general"
+                required>
+            </div>
+
+          </div>
+
+          <button
+            type="submit"
+            id="enviarCita"
+            class="btn btn-purple btn-large full-button">
+
+            <i class="fa-solid fa-calendar-check"></i>
+            Enviar solicitud de cita
+            <i class="fa-solid fa-arrow-right"></i>
+
+          </button>
+
+          <p class="form-message" id="citaMensaje" role="status"></p>
+
+        </form>
+
+      </div>
+    </section>
+
+    <!-- SOBRE PETCARE+ -->
+    <section class="about-section" id="nosotros">
+
+      <div class="container about-layout">
+
+        <div class="about-symbol">
+          <i class="fa-solid fa-paw"></i>
+        </div>
+
+        <div>
+
+          <span class="section-tag">
+            <i class="fa-solid fa-heart"></i>
+            NUESTRA ESENCIA
+          </span>
+
+          <h2>
+            Ellos nos dan su mundo.
+            Nosotros les damos nuestro mejor cuidado.
+          </h2>
+
+          <p>
+            PetCare+ es un proyecto de atención veterinaria que integra
+            una experiencia digital moderna con herramientas para
+            organizar pacientes, citas, consultas, remisiones e inventario.
+          </p>
+
+          <p>
+            Creemos en una atención cercana, responsable y organizada,
+            donde cada mascota merece ser tratada con dedicación.
+          </p>
+
+          <a href="#reservar" class="btn btn-purple">
+            Conoce nuestra atención
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ESPECIALISTAS -->
+    <section class="specialists-section" id="especialistas">
+
+      <div class="container specialists-content">
+
+        <span class="section-tag">
+          <i class="fa-solid fa-user-doctor"></i>
+          PORTAL PROFESIONAL
+        </span>
+
+        <h2>
+          Tecnología al servicio
+          <span>del cuidado veterinario.</span>
+        </h2>
+
+        <p>
+          Una plataforma para gestionar pacientes, consultas,
+          citas y operaciones veterinarias desde un mismo lugar.
+        </p>
+
+        <a href="login.html" class="btn btn-purple btn-large">
+          <i class="fa-solid fa-shield-halved"></i>
+          Acceder al portal profesional
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- VALORES DE LA PLATAFORMA -->
+    <section class="stats-strip">
+
+      <div class="container stats-grid">
+
+        <div class="stat">
+          <i class="fa-solid fa-heart-pulse"></i>
+          <div>
+            <strong>Cuidado</strong>
+            <small>Bienestar animal</small>
+          </div>
+        </div>
+
+        <div class="stat">
+          <i class="fa-solid fa-user-doctor"></i>
+          <div>
+            <strong>Gestión</strong>
+            <small>Portal profesional</small>
+          </div>
+        </div>
+
+        <div class="stat">
+          <i class="fa-solid fa-calendar-check"></i>
+          <div>
+            <strong>Citas</strong>
+            <small>Solicitudes organizadas</small>
+          </div>
+        </div>
+
+        <div class="stat">
+          <i class="fa-solid fa-shield-heart"></i>
+          <div>
+            <strong>Confianza</strong>
+            <small>Atención responsable</small>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="footer" id="contacto">
+
+    <div class="container footer-grid">
+
+      <div class="footer-brand">
+
+        <a href="#inicio" class="brand">
+          <span class="brand-icon">
+            <i class="fa-solid fa-paw"></i>
+          </span>
+
+          <span>
+            <strong>PetCare<span>+</span></strong>
+            <small>CENTRO VETERINARIO</small>
+          </span>
+        </a>
+
+        <p>
+          Porque el amor también tiene cuatro patas.
+          Cuidamos cada huella, cada historia y cada momento.
+        </p>
+
+        <div class="social-links">
+          <a href="#contacto" aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="#contacto" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="#contacto" aria-label="TikTok">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+        </div>
+
+      </div>
+
+      <div>
+        <h4>Explorar</h4>
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#especialistas">Especialistas</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+
+      <div>
+        <h4>Servicios</h4>
+        <a href="#servicios">Consulta general</a>
+        <a href="#servicios">Vacunación</a>
+        <a href="#servicios">Cirugía</a>
+        <a href="#servicios">Diagnóstico</a>
+        <a href="#servicios">Odontología</a>
+        <a href="#servicios">Estética</a>
+      </div>
+
+      <div>
+        <h4>Contacto</h4>
+        <p>
+          <i class="fa-solid fa-location-dot"></i>
+          Cajamarca, Perú
+        </p>
+        <p>
+          <i class="fa-solid fa-envelope"></i>
+          Información de contacto por configurar
+        </p>
+        <p>
+          <i class="fa-solid fa-circle-info"></i>
+          Proyecto académico PETCARE+
+        </p>
+      </div>
+
+      <div>
+        <h4>Accesos</h4>
+        <a href="#reservar">Solicitar cita</a>
+        <a href="#remisiones">Remitir un caso</a>
+        <a href="login.html">Portal profesional</a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom container">
+      <span>
+        © <span id="currentYear">2026</span> PetCare+.
+        Todos los derechos reservados.
+      </span>
+
+      <span>
+        Proyecto académico · SENATI
+      </span>
+    </div>
+
+  </footer>
+
+</body>
+</html>

@@ -1,229 +1,198 @@
 
-const db = require("../db");
+const clienteRepository = require(
+  "../repositories/clienteRepository"
+);
 
-// ========================================
-// 1. LISTAR TODOS LOS CLIENTES
-// ========================================
+// =====================================
+// VALIDACIONES
+// =====================================
+function validarCliente(datos) {
+  if (
+    typeof datos.nombres !== "string" ||
+    !datos.nombres.trim() ||
+    typeof datos.apellidos !== "string" ||
+    !datos.apellidos.trim()
+  ) {
+    return "Nombres y apellidos son obligatorios";
+  }
+
+  return null;
+}
+
+function prepararDatos(datos) {
+  return {
+    nombres: datos.nombres.trim(),
+    apellidos: datos.apellidos.trim(),
+    dni: datos.dni || null,
+    telefono: datos.telefono || null,
+    correo: datos.correo || null,
+    direccion: datos.direccion || null
+  };
+}
+
+function manejarError(res, error, mensaje) {
+  console.error(mensaje, error);
+
+  if (error.name === "SequelizeUniqueConstraintError") {
+    return res.status(409).json({
+      mensaje: "El DNI ya está registrado"
+    });
+  }
+
+  if (error.name === "SequelizeForeignKeyConstraintError") {
+    return res.status(409).json({
+      mensaje: "No puedes eliminar este cliente porque tiene registros relacionados"
+    });
+  }
+
+  if (error.name === "SequelizeValidationError") {
+    return res.status(400).json({
+      mensaje: "Los datos del cliente no son válidos"
+    });
+  }
+
+  return res.status(500).json({
+    mensaje
+  });
+}
+
+// =====================================
+// 1. LISTAR CLIENTES
+// =====================================
 exports.listarClientes = async (req, res) => {
-    try {
-        const [clientes] = await db.query(
-            "SELECT * FROM cliente ORDER BY id_cliente DESC"
-        );
+  try {
+    const clientes = await clienteRepository.obtenerTodos();
 
-        res.status(200).json({
-            mensaje: "Clientes obtenidos correctamente",
-            total: clientes.length,
-            datos: clientes
-        });
-
-    } catch (error) {
-        console.error("Error al listar:", error);
-
-        res.status(500).json({
-            mensaje: "Error al obtener los clientes"
-        });
-    }
+    return res.status(200).json({
+      mensaje: "Clientes obtenidos correctamente",
+      total: clientes.length,
+      datos: clientes
+    });
+  } catch (error) {
+    return manejarError(
+      res,
+      error,
+      "Error al obtener los clientes"
+    );
+  }
 };
 
-// ========================================
-// 2. BUSCAR CLIENTE POR ID
-// ========================================
+// =====================================
+// 2. OBTENER CLIENTE
+// =====================================
 exports.obtenerCliente = async (req, res) => {
-    try {
-        const { id } = req.params;
+  try {
+    const cliente = await clienteRepository.obtenerPorId(
+      req.params.id
+    );
 
-        const [clientes] = await db.query(
-            "SELECT * FROM cliente WHERE id_cliente = ?",
-            [id]
-        );
-
-        if (clientes.length === 0) {
-            return res.status(404).json({
-                mensaje: "Cliente no encontrado"
-            });
-        }
-
-        res.status(200).json({
-            datos: clientes[0]
-        });
-
-    } catch (error) {
-        console.error("Error al buscar:", error);
-
-        res.status(500).json({
-            mensaje: "Error al buscar cliente"
-        });
+    if (!cliente) {
+      return res.status(404).json({
+        mensaje: "Cliente no encontrado"
+      });
     }
+
+    return res.status(200).json({
+      datos: cliente
+    });
+  } catch (error) {
+    return manejarError(
+      res,
+      error,
+      "Error al buscar cliente"
+    );
+  }
 };
 
-// ========================================
-// 3. REGISTRAR UN CLIENTE
-// ========================================
+// =====================================
+// 3. REGISTRAR CLIENTE
+// =====================================
 exports.crearCliente = async (req, res) => {
-    try {
-        const {
-            nombres,
-            apellidos,
-            dni,
-            telefono,
-            correo,
-            direccion
-        } = req.body;
+  try {
+    const errorValidacion = validarCliente(req.body);
 
-        if (
-            typeof nombres !== "string" ||
-            !nombres.trim() ||
-            typeof apellidos !== "string" ||
-            !apellidos.trim()
-        ) {
-            return res.status(400).json({
-                mensaje: "Nombres y apellidos son obligatorios"
-            });
-        }
-
-        const [resultado] = await db.query(
-            `INSERT INTO cliente
-            (nombres, apellidos, dni, telefono, correo, direccion)
-            VALUES (?, ?, ?, ?, ?, ?)`,
-            [
-                nombres.trim(),
-                apellidos.trim(),
-                dni || null,
-                telefono || null,
-                correo || null,
-                direccion || null
-            ]
-        );
-
-        res.status(201).json({
-            mensaje: "Cliente registrado correctamente",
-            id_cliente: resultado.insertId
-        });
-
-    } catch (error) {
-        console.error("Error al registrar:", error);
-
-        if (error.code === "ER_DUP_ENTRY") {
-            return res.status(409).json({
-                mensaje: "El DNI ya está registrado"
-            });
-        }
-
-        res.status(500).json({
-            mensaje: "Error al registrar cliente"
-        });
+    if (errorValidacion) {
+      return res.status(400).json({
+        mensaje: errorValidacion
+      });
     }
+
+    const cliente = await clienteRepository.crear(
+      prepararDatos(req.body)
+    );
+
+    return res.status(201).json({
+      mensaje: "Cliente registrado correctamente",
+      id_cliente: cliente.id_cliente
+    });
+  } catch (error) {
+    return manejarError(
+      res,
+      error,
+      "Error al registrar cliente"
+    );
+  }
 };
 
-// ========================================
-// 4. ACTUALIZAR UN CLIENTE
-// ========================================
+// =====================================
+// 4. ACTUALIZAR CLIENTE
+// =====================================
 exports.actualizarCliente = async (req, res) => {
-    try {
-        const { id } = req.params;
+  try {
+    const errorValidacion = validarCliente(req.body);
 
-        const {
-            nombres,
-            apellidos,
-            dni,
-            telefono,
-            correo,
-            direccion
-        } = req.body;
-
-        if (
-            typeof nombres !== "string" ||
-            !nombres.trim() ||
-            typeof apellidos !== "string" ||
-            !apellidos.trim()
-        ) {
-            return res.status(400).json({
-                mensaje: "Nombres y apellidos son obligatorios"
-            });
-        }
-
-        const [resultado] = await db.query(
-            `UPDATE cliente SET
-                nombres = ?,
-                apellidos = ?,
-                dni = ?,
-                telefono = ?,
-                correo = ?,
-                direccion = ?
-            WHERE id_cliente = ?`,
-            [
-                nombres.trim(),
-                apellidos.trim(),
-                dni || null,
-                telefono || null,
-                correo || null,
-                direccion || null,
-                id
-            ]
-        );
-
-        if (resultado.affectedRows === 0) {
-            return res.status(404).json({
-                mensaje: "Cliente no encontrado"
-            });
-        }
-
-        res.status(200).json({
-            mensaje: "Cliente actualizado correctamente"
-        });
-
-    } catch (error) {
-        console.error("Error al actualizar:", error);
-
-        if (error.code === "ER_DUP_ENTRY") {
-            return res.status(409).json({
-                mensaje: "El DNI ya está registrado"
-            });
-        }
-
-        res.status(500).json({
-            mensaje: "Error al actualizar cliente"
-        });
+    if (errorValidacion) {
+      return res.status(400).json({
+        mensaje: errorValidacion
+      });
     }
+
+    const cliente = await clienteRepository.actualizar(
+      req.params.id,
+      prepararDatos(req.body)
+    );
+
+    if (!cliente) {
+      return res.status(404).json({
+        mensaje: "Cliente no encontrado"
+      });
+    }
+
+    return res.status(200).json({
+      mensaje: "Cliente actualizado correctamente"
+    });
+  } catch (error) {
+    return manejarError(
+      res,
+      error,
+      "Error al actualizar cliente"
+    );
+  }
 };
 
-// ========================================
-// 5. ELIMINAR UN CLIENTE
-// ========================================
+// =====================================
+// 5. ELIMINAR CLIENTE
+// =====================================
 exports.eliminarCliente = async (req, res) => {
-    try {
-        const { id } = req.params;
+  try {
+    const eliminado = await clienteRepository.eliminar(
+      req.params.id
+    );
 
-        const [resultado] = await db.query(
-            "DELETE FROM cliente WHERE id_cliente = ?",
-            [id]
-        );
-
-        if (resultado.affectedRows === 0) {
-            return res.status(404).json({
-                mensaje: "Cliente no encontrado"
-            });
-        }
-
-        res.status(200).json({
-            mensaje: "Cliente eliminado correctamente"
-        });
-
-    } catch (error) {
-        console.error("Error al eliminar:", error);
-
-        if (
-            error.code === "ER_ROW_IS_REFERENCED_2" ||
-            error.code === "ER_ROW_IS_REFERENCED"
-        ) {
-            return res.status(409).json({
-                mensaje:
-                    "No puedes eliminar este cliente porque tiene registros relacionados"
-            });
-        }
-
-        res.status(500).json({
-            mensaje: "Error al eliminar cliente"
-        });
+    if (!eliminado) {
+      return res.status(404).json({
+        mensaje: "Cliente no encontrado"
+      });
     }
+
+    return res.status(200).json({
+      mensaje: "Cliente eliminado correctamente"
+    });
+  } catch (error) {
+    return manejarError(
+      res,
+      error,
+      "Error al eliminar cliente"
+    );
+  }
 };
