@@ -1,10 +1,7 @@
 
-const path = require("path");
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
-
-
 
 const db = require("./db");
 
@@ -22,41 +19,38 @@ const authRoutes = require("./routes/auth");
 const empleadosRoutes = require("./routes/empleado");
 const pagosRoutes = require("./routes/pagos");
 
-// INICIAR EXPRESS
 const app = express();
 
 // MIDDLEWARES
-app.use(cors());
+app.use(cors({
+    origin: [
+        "http://localhost:5173",
+        "http://localhost:3000",
+        "https://petcare-frontend-react.onrender.com"
+    ],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
 app.use(express.json());
 
-app.use(
-    express.static(
-        path.join(__dirname, "../Frontend")
-    )
-);
-
-// ========================================
 // RUTA PRINCIPAL
-// ========================================
-
 app.get("/", (req, res) => {
-    res.sendFile(
-        path.join(__dirname, "../frontend/index.html")
-    );
+    res.status(200).json({
+        proyecto: "PETCARE+",
+        mensaje: "API veterinaria funcionando",
+        version: "1.0.0"
+    });
 });
 
-
-// ========================================
 // COMPROBAR MYSQL
-// ========================================
 app.get("/api/health", async (req, res) => {
     try {
         await db.query("SELECT 1");
 
         res.status(200).json({
             estado: "OK",
-            mysql: "Conectado",
-            base_datos: "petcare_db"
+            mysql: "Conectado"
         });
 
     } catch (error) {
@@ -69,9 +63,7 @@ app.get("/api/health", async (req, res) => {
     }
 });
 
-// ========================================
-// RUTAS DE CLIENTES
-// ========================================
+// RUTAS DE LA API
 app.use("/api/clientes", clientesRoutes);
 app.use("/api/mascotas", mascotasRoutes);
 app.use("/api/especies", especiesRoutes);
@@ -82,29 +74,22 @@ app.use("/api/remisiones", remisionesRoutes);
 app.use("/api/productos", productosRoutes);
 app.use("/api/ventas", ventasRoutes);
 app.use("/api/auth", authRoutes);
-
 app.use("/api/empleados", empleadosRoutes);
 app.use("/api/pagos", pagosRoutes);
-app.use("/api/clientes", clientesRoutes);
 
-
-// ========================================
 // RUTA NO ENCONTRADA
-// ========================================
 app.use((req, res) => {
     res.status(404).json({
         mensaje: "Ruta no encontrada"
     });
 });
 
-// ========================================
 // INICIAR SERVIDOR
-// ========================================
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
     console.log("==================================");
-    console.log("    PETCARE+ BACKEND INICIADO");
-    console.log(`    http://localhost:${PORT}`);
+    console.log(" PETCARE+ BACKEND INICIADO");
+    console.log(` Puerto: ${PORT}`);
     console.log("==================================");
 });
