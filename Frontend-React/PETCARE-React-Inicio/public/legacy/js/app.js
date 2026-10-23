@@ -927,7 +927,7 @@ async function manejarCita(evento) {
     necesitaremos conectar primero
     propietario + mascota + cita.
   */
-}
+
 
 /* =====================================================
    12. OBTENER VALORES
