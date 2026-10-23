@@ -802,23 +802,20 @@ function manejarRemision(evento) {
    11. VALIDACIÓN DE CITAS
    ===================================================== */
 
-function manejarCita(evento) {
+
+async function manejarCita(evento) {
   evento.preventDefault();
 
   const formulario = evento.currentTarget;
 
-  if (!formulario.reportValidity()) {
-    return;
-  }
+  if (!formulario.reportValidity()) return;
 
   const datos = {
     propietario: valor("citaPropietario"),
     telefono: valor("citaTelefono"),
     mascota: valor("citaMascota"),
     especie: valor("citaEspecie"),
-    id_servicio: Number(
-      valor("citaServicio")
-    ),
+    id_servicio: Number(valor("citaServicio")),
     fecha: valor("citaFecha"),
     hora: valor("citaHora"),
     motivo: valor("citaMotivo")
@@ -830,12 +827,11 @@ function manejarCita(evento) {
       "Selecciona un servicio válido.",
       "error"
     );
-
     return;
   }
 
   const fechaHora = new Date(
-    `${datos.fecha}T${datos.hora}`
+    `${datos.fecha}T${datos.hora}:00`
   );
 
   if (
@@ -847,20 +843,78 @@ function manejarCita(evento) {
       "Selecciona una fecha y hora futuras.",
       "error"
     );
-
     return;
   }
 
-  console.log(
-    "Cita validada:",
-    datos
+  const boton = formulario.querySelector(
+    'button[type="submit"]'
   );
+
+  if (boton?.disabled) return;
+
+  if (boton) {
+    boton.disabled = true;
+    boton.textContent = "Enviando solicitud...";
+  }
 
   mostrarMensaje(
     "citaMensaje",
-    "✓ Datos de la cita validados. Todavía falta conectar el registro público con el backend. La cita no se ha guardado ni confirmado.",
-    "success"
+    "Registrando tu solicitud...",
+    "info"
   );
+
+  try {
+    const respuesta = await fetch(
+      `${API_BASE}/citas/publica`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(datos)
+      }
+    );
+
+    const resultado = await respuesta.json();
+
+    if (!respuesta.ok) {
+      throw new Error(
+        resultado.mensaje ||
+        "No se pudo registrar la cita."
+      );
+    }
+
+    mostrarMensaje(
+      "citaMensaje",
+      `✓ Solicitud registrada correctamente. ` +
+      `Número de cita: ${resultado.id_cita}. ` +
+      `Estado: Pendiente. ` +
+      `La clínica deberá confirmar tu cita.`,
+      "success"
+    );
+
+    formulario.reset();
+
+  } catch (error) {
+    console.error(
+      "Error al solicitar cita:",
+      error
+    );
+
+    mostrarMensaje(
+      "citaMensaje",
+      error.message ||
+      "Ocurrió un error al registrar la cita.",
+      "error"
+    );
+
+  } finally {
+    if (boton) {
+      boton.disabled = false;
+      boton.textContent = "Enviar solicitud de cita";
+    }
+  }
+}
 
   /*
     La API administrativa de citas utiliza

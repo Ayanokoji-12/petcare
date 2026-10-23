@@ -6,6 +6,13 @@ const router = express.Router();
 const citasController = require(
     "../controllers/citasController"
 );
+const citasPublicasController = require(
+  "../controllers/citasPublicasController"
+);
+router.post(
+  "/publica",
+  citasPublicasController.crearSolicitud
+);
 
 // LISTAR CITAS
 router.get("/", citasController.listarCitas);
