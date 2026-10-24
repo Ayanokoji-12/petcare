@@ -888,8 +888,7 @@ async function manejarCita(evento) {
       "citaMensaje",
       `✓ Solicitud registrada correctamente. ` +
       `Número de cita: ${resultado.id_cita}. ` +
-      `Estado: Pendiente. ` +
-      `La clínica deberá confirmar tu cita.`,
+      "Nuestro equipo confirmará tu cita próximamente.",
       "success"
     );
 
