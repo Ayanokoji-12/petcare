@@ -22,21 +22,11 @@ loginForm.addEventListener("submit", async (e) => {
             })
         });
 
-        const texto = await respuesta.text();
-
-        let datos;
-
-        try {
-            datos = JSON.parse(texto);
-        } catch {
-            throw new Error(
-                "El servidor no devolvió JSON válido. Revisa la conexión con el backend."
-            );
-        }
+        const datos = await respuesta.json();
 
         if (!respuesta.ok) {
             throw new Error(
-                datos.mensaje || `Error del servidor: ${respuesta.status}`
+                datos.mensaje || "No se pudo iniciar sesión"
             );
         }
 
@@ -51,7 +41,6 @@ loginForm.addEventListener("submit", async (e) => {
         window.location.href = "admin.html";
 
     } catch (error) {
-        console.error("Error en login:", error);
         mensaje.textContent = error.message;
     }
 });

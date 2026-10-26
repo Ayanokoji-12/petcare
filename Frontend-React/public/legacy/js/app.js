@@ -6,12 +6,7 @@
    Archivo: frontend/js/app.js
    ===================================================== */
 
-
-const API_BASE = window.location.hostname === "localhost"
-  || window.location.hostname === "127.0.0.1"
-  ? "http://localhost:3000/api"
-  : "https://petcare-plus.onrender.com/api";
-
+const API_BASE = "http://localhost:3000/api";
 
 document.addEventListener("DOMContentLoaded", () => {
   configurarMenu();
@@ -802,20 +797,23 @@ function manejarRemision(evento) {
    11. VALIDACIÓN DE CITAS
    ===================================================== */
 
-
-async function manejarCita(evento) {
+function manejarCita(evento) {
   evento.preventDefault();
 
   const formulario = evento.currentTarget;
 
-  if (!formulario.reportValidity()) return;
+  if (!formulario.reportValidity()) {
+    return;
+  }
 
   const datos = {
     propietario: valor("citaPropietario"),
     telefono: valor("citaTelefono"),
     mascota: valor("citaMascota"),
     especie: valor("citaEspecie"),
-    id_servicio: Number(valor("citaServicio")),
+    id_servicio: Number(
+      valor("citaServicio")
+    ),
     fecha: valor("citaFecha"),
     hora: valor("citaHora"),
     motivo: valor("citaMotivo")
@@ -827,11 +825,12 @@ async function manejarCita(evento) {
       "Selecciona un servicio válido.",
       "error"
     );
+
     return;
   }
 
   const fechaHora = new Date(
-    `${datos.fecha}T${datos.hora}:00`
+    `${datos.fecha}T${datos.hora}`
   );
 
   if (
@@ -843,77 +842,20 @@ async function manejarCita(evento) {
       "Selecciona una fecha y hora futuras.",
       "error"
     );
+
     return;
   }
 
-  const boton = formulario.querySelector(
-    'button[type="submit"]'
+  console.log(
+    "Cita validada:",
+    datos
   );
-
-  if (boton?.disabled) return;
-
-  if (boton) {
-    boton.disabled = true;
-    boton.textContent = "Enviando solicitud...";
-  }
 
   mostrarMensaje(
     "citaMensaje",
-    "Registrando tu solicitud...",
-    "info"
+    "✓ Datos de la cita validados. Todavía falta conectar el registro público con el backend. La cita no se ha guardado ni confirmado.",
+    "success"
   );
-
-  try {
-    const respuesta = await fetch(
-      `${API_BASE}/citas/publica`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(datos)
-      }
-    );
-
-    const resultado = await respuesta.json();
-
-    if (!respuesta.ok) {
-      throw new Error(
-        resultado.mensaje ||
-        "No se pudo registrar la cita."
-      );
-    }
-
-    mostrarMensaje(
-      "citaMensaje",
-      `✓ Solicitud registrada correctamente. ` +
-      `Número de cita: ${resultado.id_cita}. ` +
-      "Nuestro equipo confirmará tu cita próximamente.",
-      "success"
-    );
-
-    formulario.reset();
-
-  } catch (error) {
-    console.error(
-      "Error al solicitar cita:",
-      error
-    );
-
-    mostrarMensaje(
-      "citaMensaje",
-      error.message ||
-      "Ocurrió un error al registrar la cita.",
-      "error"
-    );
-
-  } finally {
-    if (boton) {
-      boton.disabled = false;
-      boton.textContent = "Enviar solicitud de cita";
-    }
-  }
-}
 
   /*
     La API administrativa de citas utiliza
@@ -926,7 +868,7 @@ async function manejarCita(evento) {
     necesitaremos conectar primero
     propietario + mascota + cita.
   */
-
+}
 
 /* =====================================================
    12. OBTENER VALORES
